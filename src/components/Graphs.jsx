@@ -173,7 +173,7 @@ export default function Graphs() {
                 </div>
               </div>
               <div className="col-lg-8 col-md-12 col-sm-12">
-                <div className="card ui-card h-100 overflow-hidden">
+                <div className="card ui-card ">
                   <div
                     className="card-body p-0"
                     style={{ maxHeight: '280px', overflow: 'hidden' }}
