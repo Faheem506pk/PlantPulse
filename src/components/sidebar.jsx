@@ -1,33 +1,33 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Add this import
 
 export default function Sidebar() {
   return (
     <div className="sidebar">
-    <aside className="side-navbar">
-      <div className="d-flex align-items-center justify-content-center ">
+      <aside className="side-navbar">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">
+            <Link to="/" className="nav-link active" aria-current="page">
               <span className="nav-icon">
                 <i className="bi bi-cloud-sun-fill"></i>
               </span>
-              Weather
-            </a>
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/graphs">
+              <span className="nav-icon">
+                <i className="bi bi-map-fill"></i>
+              </span>
+              Graphs
+            </Link>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
               <span className="nav-icon">
                 <i className="bi bi-list-task"></i>
               </span>
-              Cities
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              <span className="nav-icon">
-                <i className="bi bi-map-fill"></i>
-              </span>
-              Map
+              Presets
             </a>
           </li>
           <li className="nav-item">
@@ -39,8 +39,7 @@ export default function Sidebar() {
             </a>
           </li>
         </ul>
-      </div>
-    </aside>
+      </aside>
     </div>
   );
 }

@@ -1,188 +1,206 @@
 body {
-    font-family: "Roboto", sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('../images/bg-1.jpg') no-repeat center center fixed;
-    background-size: cover;
-    z-index: -2;
-  }
-  
-  body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(90, 90, 90, 0.4);
-    z-index: -1;
-  }
-  
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 6px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: white;
-    border-radius: 6px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #cdcdcd;
-  }
-  
-  .App {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .Topbar {
-    width: 100%;
-    
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .main-layout {
-    display: flex;
-    flex: 1;
-  }
-  
-  .side-navbar {
-    width: 140px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 24px;
-    margin-top: 30px; /* 50px from top */
-    margin-bottom: 40px; /* 50px from bottom */
-    margin-left: 50px; /* 50px from left */
-    z-index: 1;
-    padding: 45px 20px;
-   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .main-content {
-    flex: 1;
-    
-    overflow-y: auto;
-    padding: 20px; /* Optional: add some padding */
-  }
-  
-  .nav .nav-item .nav-link {
-    color: #cdcdcd;
-    text-align: center;
-    margin: 16px 0px;
-  }
-  
-  .nav .nav-item .nav-link .nav-icon {
-    display: block;
-    font-size: 24px;
-    margin-bottom: 8px;
-    color: #cdcdcd;
-  }
-  
-  .nav .nav-item .nav-link.active,
-  .nav .nav-item .nav-link.active .nav-icon {
-    color: #fff;
-  }
-  
-  .nav .nav-item .nav-link:hover,
-  .nav .nav-item .nav-link:hover .nav-icon {
-    color: #fff;
-  }
-  
-  .main-wrapper {
-    padding: 12px;
-    min-height: 100vh;
-    position: relative;
-  }
-  
-  .main-wrapper .container {
-    z-index: 1;
-    position: relative;
-  }
-  
-  .today-weather {
-    color: #fff;
-    text-align: center;
-    padding: 24px 0px;
-  }
-  
-  .today-weather h1 {
-    font-size: 30px;
-  }
-  
-  .today-weather h3 {
-    font-size: 56px;
-  }
-  
-  .ui-card {
-    border: none;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 24px;
-    min-height: 250px;
-  }
-  
-  .ui-card .card-title {
-    color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .dashboard {
-    display: grid;
-    grid-template-rows: 100%;
-    gap: 24px 24px;
-    grid-template-areas: ". .";
-  }
-  
-  .hour-list .list-group-item {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 12px;
-  }
-  
-  .hour-list .list-group-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .hour-list .list-group-item .deg i {
-    margin-right: 12px;
-  }
-  
-  .weather-data {
-    text-align: center;
-    color: #fff;
-  }
-  
-  .weather-data .weather-icon {
-    font-size: 64px;
-  }
-  
-  .weather-data h4 {
-    font-size: 32px;
-  }
-  
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../images/bg-1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(90, 90, 90, 0.4);
+  z-index: -1;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cdcdcd;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.Topbar {
+  width: 100%;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background: transparent; /* Make the background transparent */
+}
+
+.main-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 50px; /* top, right, bottom, left */
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 20px;
+  min-height: calc(100vh - 160px); /* Adjusting the height dynamically */
+  max-height: calc(100vh - 140px); /* Ensure it doesn't exceed the available space */
+  overflow-y: auto; /* Allow scrolling if content exceeds available height */
+}
+
+.side-navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%; /* Ensure it uses all available height */
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.nav .nav-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav .nav-link {
+  color: #cdcdcd;
+  text-align: center;
+  width: 100%;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav .nav-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.nav .nav-link.active,
+.nav .nav-link.active .nav-icon {
+  color: #fff;
+}
+
+.nav .nav-link:hover,
+.nav .nav-link:hover .nav-icon {
+  color: #fff;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0px 20px;
+}
+
+.main-wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-wrapper .container {
+  z-index: 1;
+  position: relative;
+}
+
+.today-weather {
+  color: #fff;
+  text-align: center;
+  padding: 24px 0px;
+}
+
+.today-weather h1 {
+  font-size: 30px;
+}
+
+.today-weather h3 {
+  font-size: 56px;
+}
+
+.ui-card {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  min-height: 210px;
+}
+
+.ui-card .card-title {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dashboard {
+  grid-template-rows: 100%;
+  gap: 24px 24px;
+  grid-template-areas: ". .";
+}
+
+.hour-list .list-group-item {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+}
+
+.hour-list .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hour-list .list-group-item .deg i {
+  margin-right: 12px;
+}
+
+.weather-data {
+  text-align: center;
+  color: #fff;
+}
+
+.weather-data .weather-icon {
+  font-size: 64px;
+}
+
+.weather-data h4 {
+  font-size: 32px;
+}
