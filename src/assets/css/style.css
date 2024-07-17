@@ -61,6 +61,7 @@ body::after {
   border-radius: 24px;
   padding: 20px;
   justify-content: center;
+  z-index: 5;
 }
 
 .side-navbar {
