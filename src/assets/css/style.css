@@ -80,7 +80,7 @@ body::after {
   padding: 20px;
   min-height: calc(100vh - 160px); /* Adjusting the height dynamically */
   max-height: calc(100vh - 140px); /* Ensure it doesn't exceed the available space */
-  overflow-y: auto; /* Allow scrolling if content exceeds available height */
+  overflow-y: hidden; /* Allow scrolling if content exceeds available height */
 }
 
 .side-navbar {
