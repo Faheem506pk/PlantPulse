@@ -1,48 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { initializeApp } from "firebase/app";
-import {
-  getDatabase,
-  ref,
-  onValue
-} from "firebase/database";
+// src/components/Dashboard.jsx
+
+import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../assets/css/style.css"; // Adjust the path as needed
 import Sidebar from "./sidebar";
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyABefD1-K7aCtUhEtsip9TYJJjOUl_YOpg",
-  authDomain: "esp32-1b972.firebaseapp.com",
-  databaseURL: "https://esp32-1b972-default-rtdb.firebaseio.com",
-  projectId: "esp32-1b972",
-  storageBucket: "esp32-1b972.appspot.com",
-  messagingSenderId: "438774419341",
-  appId: "1:438774419341:web:576032b2fefac98e86b7c4"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+import Topbar from "./Topbar";
+import { useFirebaseData } from "../hooks/useFirebaseData";
 
 const Dashboard = () => {
-  const [temperature, setTemperature] = useState("--");
-  const [humidity, setHumidity] = useState("--");
-
-  useEffect(() => {
-    // Fetching and displaying data
-    const tempRef = ref(database, "DHT_11/Temperature");
-    onValue(tempRef, (snapshot) => {
-      setTemperature(snapshot.val());
-    });
-
-    const humiRef = ref(database, "DHT_11/Humidity");
-    onValue(humiRef, (snapshot) => {
-      setHumidity(snapshot.val());
-    });
-  }, []);
+  const { temperature, humidity } = useFirebaseData();
 
   const highchartsOptions = {
     colors: ["#ffffff"],
@@ -107,17 +76,7 @@ const Dashboard = () => {
 
   return (
     <main className="main-wrapper">
-      <div className="container">
-        <div className="d-flex justify-content-center align-items-center">
-          <div className="today-weather">
-            <h1>Plant Pulse</h1>
-            <h3 className="value" id="temperature">
-              {temperature} &deg;C
-            </h3>
-            <p>Feels like 60°F</p>
-          </div>
-        </div>
-      </div>
+      
       <div className="container">
         <div className="dashboard">
           <section className="content">
