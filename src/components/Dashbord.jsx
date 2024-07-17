@@ -10,6 +10,7 @@ import HighchartsReact from "highcharts-react-official";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../assets/css/style.css"; // Adjust the path as needed
+import Sidebar from "./sidebar";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -119,88 +120,56 @@ const Dashboard = () => {
       </div>
       <div className="container">
         <div className="dashboard">
-          <aside className="side-navbar d-flex align-items-center justify-content-center">
-            <ul className="nav flex-column">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  <span className="nav-icon">
-                    <i className="bi bi-cloud-sun-fill"></i>
-                  </span>
-                  Weather
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <span className="nav-icon">
-                    <i className="bi bi-list-task"></i>
-                  </span>
-                  Cities
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <span className="nav-icon">
-                    <i className="bi bi-map-fill"></i>
-                  </span>
-                  Map
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <span className="nav-icon">
-                    <i className="bi bi-gear-fill"></i>
-                  </span>
-                  Settings
-                </a>
-              </li>
-            </ul>
-          </aside>
           <section className="content">
             <div className="row g-4">
               <div className="col-4">
-                <div className="card ui-card h-100 overflow-hidden">
-                  <div className="card-body p-0" style={{ height: "250px", overflowY: "auto" }}>
-                    <ul className="list-group hour-list">
-                      <li className="list-group-item d-flex justify-content-between align-items-center">
-                        Now
-                        <span className="deg">
-                          <i className="bi bi-brightness-high-fill"></i> 32&deg;C
-                        </span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      11 PM
-                                      <span class="deg"><i class="bi bi-brightness-high-fill"></i> 31&deg;C</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      12 PM
-                                      <span class="deg"><i class="bi bi-brightness-high-fill"></i> 30&deg;C</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        01 AM
-                                        <span class="deg"><i class="bi bi-brightness-high-fill"></i> 29&deg;C</span>
-                                      </li>
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        02 AM
-                                        <span class="deg"><i class="bi bi-brightness-high-fill"></i> 28&deg;C</span>
-                                      </li>
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        03 AM
-                                        <span class="deg"><i class="bi bi-brightness-high-fill"></i> 27&deg;C</span>
-                                      </li>
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        04 AM
-                                        <span class="deg"><i class="bi bi-brightness-high-fill"></i> 26&deg;C</span>
-                                      </li>
-                    </ul>
-                  </div>
-                </div>
+              <div className="card ui-card p-3">
+  <div className="card-body-2 p-0">
+    <ul className="list-group hour-list">
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        Now
+        <span className="deg">
+          <i className="bi bi-brightness-high-fill"></i> 32&deg;C
+        </span>
+      </li>
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        11 PM
+        <span className="deg"><i className="bi bi-brightness-high-fill"></i> 31&deg;C</span>
+      </li>
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        12 PM
+        <span className="deg"><i className="bi bi-brightness-high-fill"></i> 30&deg;C</span>
+      </li>
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        01 AM
+        <span className="deg"><i className="bi bi-brightness-high-fill"></i> 29&deg;C</span>
+      </li>
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        02 AM
+        <span className="deg"><i className="bi bi-brightness-high-fill"></i> 28&deg;C</span>
+      </li>
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        03 AM
+        <span className="deg"><i className="bi bi-brightness-high-fill"></i> 27&deg;C</span>
+      </li>
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        04 AM
+        <span className="deg"><i className="bi bi-brightness-high-fill"></i> 26&deg;C</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
               </div>
               <div className="col-8">
-                <div className="card ui-card h-100 overflow-hidden">
-                  <div className="card-body p-0">
-                    <HighchartsReact highcharts={Highcharts} options={highchartsOptions} />
-                  </div>
-                </div>
+              <div className="card ui-card h-100 overflow-hidden">
+  <div className="card-body p-0" style={{ maxHeight: "270px", overflow: "hidden" }}>
+    <HighchartsReact highcharts={Highcharts} options={highchartsOptions} />
+  </div>
+</div>
+
+
+
               </div>
               <div className="col-4">
                 <div className="card ui-card h-100">
