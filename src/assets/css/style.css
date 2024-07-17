@@ -60,9 +60,7 @@ body::after {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 24px;
   padding: 20px;
-  min-height: calc(100vh - 160px); /* Adjusting the height dynamically */
-  max-height: calc(100vh - 140px); /* Ensure it doesn't exceed the available space */
-  overflow-y: auto; /* Allow scrolling if content exceeds available height */
+  justify-content: center;
 }
 
 .side-navbar {
@@ -71,7 +69,6 @@ body::after {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%; /* Ensure it uses all available height */
 }
 
 .nav {
@@ -85,6 +82,7 @@ body::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%; /* Make sure nav-item takes full width */
 }
 
 .nav .nav-link {
@@ -166,7 +164,7 @@ body::after {
   font-size: 12px;
 }
 
-.hour-list .list-group-item:hover {
+hour-list .list-group-item:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -187,30 +185,31 @@ body::after {
   font-size: 32px;
 }
 
+/* For laptops */
 @media (max-width: 1200px) {
   .Topbar {
     padding: 10px 30px;
   }
-  
+
   .sidebar {
-    max-height: 680px;
+    max-height: 1000px; /* Adjust this value for laptops */
   }
 }
 
+/* For tablets */
 @media (max-width: 992px) {
   .Topbar {
     padding: 10px 20px;
     justify-content: center;
     align-items: center;
   }
-  
+
   .sidebar {
     margin: 0px 20px;
     padding: 10px;
-    overflow-y: auto; /* Allow scrolling for the sidebar on smaller screens */
-    max-height: 680px;
+    
   }
-  
+
   .main-content {
     padding: 0px 15px;
   }
@@ -222,16 +221,35 @@ body::after {
     justify-content: center;
     align-items: center;
   }
-  
+
   .sidebar {
-    margin: 0px 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0;
     padding: 10px;
-    overflow-y: auto; /* Allow scrolling for the sidebar on smaller screens */
-    max-height: calc(80vh - 60px);
+    border-radius: 0;
   }
-  
-  .main-content {
-    padding: 0px 2px 45px 2px;
+
+  .nav {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .nav .nav-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Make sure nav-item does not take full width */
+  }
+
+  .nav .nav-link {
+    padding: 10px;
+    width: auto; /* Adjust nav-link width to auto */
   }
 }
 
@@ -241,15 +259,32 @@ body::after {
     justify-content: center;
     align-items: center;
   }
-  
-  
+
   .sidebar {
-    margin: 0px 5px;
+    margin: 0;
     padding: 10px;
-    overflow-y: auto; /* Allow scrolling for the sidebar on smaller screens */
-    max-height: calc(80vh - 60px); /* Adjust the height to be dynamic */
+    max-height: none; /* Adjust the height to be dynamic */
   }
-  
+
+  .nav {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .nav .nav-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Make sure nav-item does not take full width */
+  }
+
+  .nav .nav-link {
+    padding: 10px;
+    width: auto; /* Adjust nav-link width to auto */
+  }
+
   .main-content {
     padding: 0px 2px 45px 2px;
   }
