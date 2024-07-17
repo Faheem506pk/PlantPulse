@@ -1,5 +1,3 @@
-// src/components/Dashboard.jsx
-
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -10,14 +8,12 @@ const Dashboard = () => {
   const { temperature, humidity } = useFirebaseData();
 
   return (
-    
     <main className="main-wrapper">
       <div className="container">
         <div className="dashboard">
           <section className="content">
             <div className="row g-4">
-             
-              <div className="col-4">
+              <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card h-100">
                   <div className="card-body">
                     <h5 className="card-title">Humidity</h5>
@@ -34,7 +30,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card h-100">
                   <div className="card-body">
                     <h5 className="card-title">Temperature</h5>
@@ -51,7 +47,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card h-100">
                   <div className="card-body">
                     <h5 className="card-title">Dew Point</h5>
@@ -66,9 +62,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-4">
-                <div className="card ui-card p-3">
-                <div className="card-body">
+              <div className="col-lg-4 col-md-6 col-sm-12">
+                <div className="card ui-card h-100">
+                  <div className="card-body">
                     <h5 className="card-title">Humidity</h5>
                     <div className="d-flex justify-content-center">
                       <div className="weather-data">
@@ -83,9 +79,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-8">
+              <div className="col-lg-8 col-md-12 col-sm-12">
                 <div className="card ui-card h-100 overflow-hidden">
-                <div className="card-body">
+                  <div className="card-body">
                     <h5 className="card-title">Temperature</h5>
                     <div className="d-flex justify-content-center">
                       <div className="weather-data">
@@ -98,7 +94,6 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                 
                 </div>
               </div>
             </div>
@@ -106,7 +101,6 @@ const Dashboard = () => {
         </div>
       </div>
     </main>
-    
   );
 };
 

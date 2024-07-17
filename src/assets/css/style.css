@@ -5,7 +5,7 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2); /* Fallback background color */
 }
 
 body::before {
@@ -203,4 +203,57 @@ body::after {
 
 .weather-data h4 {
   font-size: 32px;
+}
+
+@media (max-width: 1200px) {
+  .Topbar {
+    padding: 10px 30px;
+  }
+  
+  .sidebar {
+    margin: 0px 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  .Topbar {
+    padding: 10px 20px;
+  }
+  
+  .sidebar {
+    margin: 0px 20px;
+  }
+  
+  .main-content {
+    padding: 0px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Topbar {
+    padding: 10px 10px;
+  }
+  
+  .sidebar {
+    margin: 0px 10px;
+  }
+  
+  .main-content {
+    padding: 0px 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .Topbar {
+    padding: 10px 5px;
+  }
+  
+  .sidebar {
+    margin: 0px 5px;
+    padding: 10px;
+  }
+  
+  .main-content {
+    padding: 0px 5px;
+  }
 }
