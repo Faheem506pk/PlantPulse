@@ -187,9 +187,10 @@ body::after {
 }
 
 /* For laptops and larger devices */
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
   .sidebar {
     max-height: 1000px; /* Adjust this value for laptops */
+    margin-bottom: 50px;
   }
 }
 
@@ -204,7 +205,7 @@ body::after {
   .sidebar {
     margin: 0px 20px;
     padding: 10px;
-    max-height: 600px; /* Adjust this value for tablets */
+    max-height: 810px; /* Adjust this value for tablets */
   }
 
   .main-content {
