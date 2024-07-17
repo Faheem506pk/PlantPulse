@@ -232,6 +232,8 @@ body::after {
 @media (max-width: 768px) {
   .Topbar {
     padding: 10px 10px;
+    justify-content: center;
+    align-items: center;
   }
   
   .sidebar {
@@ -246,7 +248,10 @@ body::after {
 @media (max-width: 576px) {
   .Topbar {
     padding: 10px 5px;
+    justify-content: center;
+    align-items: center;
   }
+  
   
   .sidebar {
     margin: 0px 5px;
