@@ -122,7 +122,7 @@ const Dashboard = () => {
               </div>
               <div className="col-8">
               <div className="card ui-card h-100 overflow-hidden">
-  <div className="card-body p-0" style={{ maxHeight: "270px", overflow: "hidden" }}>
+  <div className="card-body p-0" style={{ maxHeight: "280px", overflow: "hidden" }}>
     <HighchartsReact highcharts={Highcharts} options={highchartsOptions} />
   </div>
 </div>

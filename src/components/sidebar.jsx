@@ -4,7 +4,7 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
     <aside className="side-navbar">
-      <div className="d-flex align-items-center justify-content-center h-100">
+      <div className="d-flex align-items-center justify-content-center ">
         <ul className="nav flex-column">
           <li className="nav-item">
             <a className="nav-link active" aria-current="page" href="#">
