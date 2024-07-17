@@ -73,7 +73,7 @@ export default function Graphs() {
         <div className="dashboard">
           <section className="content">
             <div className="row g-4">
-              <div className="col-lg-4 col-md-6 col-sm-12">
+              {/* <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card h-100">
                   <div className="card-body">
                     <h5 className="card-title">Humidity</h5>
@@ -121,7 +121,7 @@ export default function Graphs() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card p-3">
                   <div className="card-body-2 p-0">
