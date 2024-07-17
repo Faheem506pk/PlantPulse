@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
-  useEffect(() => {
-    const sidebar = document.querySelector('.sidebar');
-    const navItems = document.querySelectorAll('.nav-item');
-    const itemHeight = 120; // Adjust this value based on the height of your nav items including padding and margins
+  
 
-    const sidebarHeight = navItems.length * itemHeight;
-    sidebar.style.maxHeight = `${sidebarHeight}px`;
-  }, []);
+ 
 
   return (
-    <div className="sidebar">
+    <div className="sidebar" >
       <aside className="side-navbar">
-        <ul className="nav ">
+        <ul className="nav">
           <li className="nav-item">
             <Link to="/" className="nav-link active" aria-current="page">
               <span className="nav-icon">
