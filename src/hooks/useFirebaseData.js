@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -21,19 +21,62 @@ const database = getDatabase(app);
 
 export const useFirebaseData = () => {
   const [temperature, setTemperature] = useState("--");
+  const [tempUp, setTempUp] = useState("--");
+  const [tempDown, setTempDown] = useState("--");
   const [humidity, setHumidity] = useState("--");
+  const [humidUp, setHumidUp] = useState("--");
+  const [humidDown, setHumidDown] = useState("--");
+  const [ldr, setLdr] = useState("--");
+  const [moisture, setMoisture] = useState("--");
+  const [moistureUp, setMoistureUp] = useState("--");
+  const [moistureDown, setMoistureDown] = useState("--");
+  const [servo, setServo] = useState("--");
+  const [servoAngle, setServoAngle] = useState("--");
 
   useEffect(() => {
     const tempRef = ref(database, "DHT_11/Temperature");
-    onValue(tempRef, (snapshot) => {
-      setTemperature(snapshot.val());
-    });
+    onValue(tempRef, (snapshot) => setTemperature(snapshot.val()));
+
+    const tempUpRef = ref(database, "tempup");
+    onValue(tempUpRef, (snapshot) => setTempUp(snapshot.val()));
+
+    const tempDownRef = ref(database, "tempdown");
+    onValue(tempDownRef, (snapshot) => setTempDown(snapshot.val()));
 
     const humiRef = ref(database, "DHT_11/Humidity");
-    onValue(humiRef, (snapshot) => {
-      setHumidity(snapshot.val());
-    });
+    onValue(humiRef, (snapshot) => setHumidity(snapshot.val()));
+
+    const humidUpRef = ref(database, "humidup");
+    onValue(humidUpRef, (snapshot) => setHumidUp(snapshot.val()));
+
+    const humidDownRef = ref(database, "humiddown");
+    onValue(humidDownRef, (snapshot) => setHumidDown(snapshot.val()));
+
+    const ldrRef = ref(database, "LDR");
+    onValue(ldrRef, (snapshot) => setLdr(snapshot.val()));
+
+    const moistureRef = ref(database, "Moisture");
+    onValue(moistureRef, (snapshot) => setMoisture(snapshot.val()));
+
+    const moistureUpRef = ref(database, "Moistureup");
+    onValue(moistureUpRef, (snapshot) => setMoistureUp(snapshot.val()));
+
+    const moistureDownRef = ref(database, "Moisturedown");
+    onValue(moistureDownRef, (snapshot) => setMoistureDown(snapshot.val()));
+
+    const servoRef = ref(database, "servo");
+    onValue(servoRef, (snapshot) => setServo(snapshot.val()));
+
+    const servoAngleRef = ref(database, "servoangle");
+    onValue(servoAngleRef, (snapshot) => setServoAngle(snapshot.val()));
   }, []);
 
-  return { temperature, humidity };
+  const setData = (path, value) => {
+    set(ref(database, path), value);
+  };
+
+  return {
+    temperature, tempUp, tempDown, humidity, humidUp, humidDown,
+    ldr, moisture, moistureUp, moistureDown, servo, servoAngle, setData
+  };
 };

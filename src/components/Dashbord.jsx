@@ -5,7 +5,8 @@ import "../assets/css/style.css"; // Adjust the path as needed
 import { useFirebaseData } from "../hooks/useFirebaseData";
 
 const Dashboard = () => {
-  const { temperature, humidity } = useFirebaseData();
+  const { temperature, tempUp, tempDown, humidity, humidUp, humidDown,
+    ldr, moisture, moistureUp, moistureDown, servo, servoAngle, setData } = useFirebaseData();
 
   return (
     <main className="main-wrapper">
@@ -13,31 +14,14 @@ const Dashboard = () => {
         <div className="dashboard">
           <section className="content">
             <div className="row g-4">
-              <div className="col-lg-4 col-md-6 col-sm-12">
-                <div className="card ui-card h-100">
-                  <div className="card-body">
-                    <h5 className="card-title">Humidity</h5>
-                    <div className="d-flex justify-content-center">
-                      <div className="weather-data">
-                        <div className="weather-icon">
-                          <i className="bi bi-water"></i>
-                        </div>
-                        <h4 className="value" id="humidity">
-                          {humidity}%
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-12">
+            <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card h-100">
                   <div className="card-body">
                     <h5 className="card-title">Temperature</h5>
                     <div className="d-flex justify-content-center">
                       <div className="weather-data">
                         <div className="weather-icon">
-                          <i className="bi bi-droplet-half"></i>
+                        <i class="bi bi-thermometer-half"></i>
                         </div>
                         <h4 className="value" id="temperature">
                           {temperature} &deg;C
@@ -50,13 +34,33 @@ const Dashboard = () => {
               <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card h-100">
                   <div className="card-body">
-                    <h5 className="card-title">Dew Point</h5>
+                    <h5 className="card-title">Humidity</h5>
                     <div className="d-flex justify-content-center">
                       <div className="weather-data">
                         <div className="weather-icon">
-                          <i className="bi bi-wind"></i>
+                        <i className="bi bi-droplet-half"></i>
                         </div>
-                        <h4>5 mph</h4>
+                        <h4 className="value" id="humidity">
+                          {humidity}%
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <div className="col-lg-4 col-md-6 col-sm-12">
+                <div className="card ui-card h-100">
+                  <div className="card-body">
+                    <h5 className="card-title">Soil Moisture</h5>
+                    <div className="d-flex justify-content-center">
+                      <div className="weather-data">
+                        <div className="weather-icon">
+                        <i className="bi bi-water"></i>
+                        </div>
+                        <h4 className="value" id="moisture">
+                          {moisture}%
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -65,14 +69,14 @@ const Dashboard = () => {
               <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card h-100">
                   <div className="card-body">
-                    <h5 className="card-title">Humidity</h5>
+                    <h5 className="card-title">Servo Motor</h5>
                     <div className="d-flex justify-content-center">
                       <div className="weather-data">
                         <div className="weather-icon">
-                          <i className="bi bi-water"></i>
+                        <i className="bi bi-gear"></i>
                         </div>
-                        <h4 className="value" id="humidity">
-                          {humidity}%
+                        <h4 className="value" id="servo">
+                        {servo} &deg;
                         </h4>
                       </div>
                     </div>
