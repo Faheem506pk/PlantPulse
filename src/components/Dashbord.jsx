@@ -86,14 +86,18 @@ const Dashboard = () => {
               <div className="col-lg-8 col-md-12 col-sm-12">
                 <div className="card ui-card h-100 overflow-hidden">
                   <div className="card-body">
-                    <h5 className="card-title">Temperature</h5>
+                    <h5 className="card-title">LDR</h5>
                     <div className="d-flex justify-content-center">
                       <div className="weather-data">
                         <div className="weather-icon">
-                          <i className="bi bi-droplet-half"></i>
+                        {ldr === 'light' ? (
+                            <i className="bi bi-lightbulb-fill"></i>
+                          ) : (
+                            <i className="bi bi-lightbulb"></i>
+                          )}
                         </div>
-                        <h4 className="value" id="temperature">
-                          {temperature} &deg;C
+                        <h4 className="value" id="LDR">
+                          It is {ldr} 
                         </h4>
                       </div>
                     </div>
