@@ -5,6 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import {getAuth} from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
+import {getStorage} from "firebase/storage";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -21,6 +22,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const storage = getStorage(app);
 
 export const useFirebaseData = () => {
   const [temperature, setTemperature] = useState("--");
@@ -84,6 +86,7 @@ export const useFirebaseData = () => {
   };
 };
 
+export { storage };
 export const auth=getAuth();
 export const db=getFirestore(app);
 export default app;

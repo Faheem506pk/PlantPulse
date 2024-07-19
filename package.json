@@ -3,19 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.12.0",
     "@popperjs/core": "^2.11.8",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "firebase": "^10.12.3",
+    "cropperjs": "^1.6.2",
+    "firebase": "^10.12.4",
     "highcharts": "^11.4.6",
     "highcharts-react-official": "^3.2.1",
     "jquery": "^3.7.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
+    "react-cropper": "^2.3.3",
     "react-dom": "^18.3.1",
+    "react-easy-crop": "^5.0.7",
+    "react-firebase-hooks": "^5.1.1",
+    "react-image-crop": "^11.0.6",
     "react-router": "^6.25.0",
     "react-router-dom": "^6.25.0",
     "react-scripts": "5.0.1",
@@ -27,7 +33,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    
   },
   "eslintConfig": {
     "extends": [

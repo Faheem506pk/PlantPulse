@@ -9,6 +9,7 @@ import Topbar from './components/Topbar';
 import Profile from './components/Profile';
 import Register from './components/register';
 import Login from './components/login';
+import EditProfile from './components/EditProfile';
 import { auth } from "./hooks/useFirebaseData"; // Import auth from your Firebase configuration
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
             <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
             <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+            <Route path="/edit-profile" element={user ? <EditProfile/> : <Navigate to="/login" />} />
             <Route path="/graphs" element={user ? <Graphs /> : <Navigate to="/login" />} />
             <Route path="/presets" element={user ? <Presets /> : <Navigate to="/login" />} />
             <Route path="/settings" element={user ? <Settings /> : <Navigate to="/login" />} />

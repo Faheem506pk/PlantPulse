@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../hooks/useFirebaseData";
+import { Link } from "react-router-dom"; 
 import { doc, getDoc } from "firebase/firestore";
 
 function Profile() {
@@ -100,10 +101,10 @@ function Profile() {
               <hr />
               <div className="row">
                 <div className="col-sm-3">
-                  <h6 className="mb-0">Mobile</h6>
+                  <h6 className="mb-0">City</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {userDetails?.mobile || "(320) 380-4539"}
+                  {userDetails?.mobile || "Chakwal"}
                 </div>
               </div>
               <hr />
@@ -118,9 +119,9 @@ function Profile() {
               <hr />
               <div className="row">
                 <div className="col-sm-12">
-                  <a className="btn btn-info" target="__blank">
-                    Edit
-                  </a>
+                <Link to="/edit-profile" className="btn btn-info">
+      Edit Profile
+    </Link>
                 </div>
               </div>
             </div>
