@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { auth, db, useFirebaseData } from "../hooks/useFirebaseData";
 import { doc, getDoc } from "firebase/firestore";
+import { Link } from 'react-router-dom';
 
 const Topbar = () => {
   const { temperature } = useFirebaseData();
@@ -69,11 +70,13 @@ const Topbar = () => {
         <h1>Plant Pulse</h1>
       </div>
       <div className="dp-img-2">  
+      <Link to="/profile" className="nav-link" >
         <img
           src={userDetails?.photo || "default-photo-url"} // Provide a default image URL if photo is not available
           className="dp-img"
           alt="User Profile"
         />
+        </Link>
       </div>
     </div>
   );
