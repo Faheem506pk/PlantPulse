@@ -51,7 +51,7 @@ function Profile() {
 
   return (
     <main className="main-wrapper">
-   <div className="container d-flex justify-content-center align-items-center">
+   <div className="profile-cd d-flex justify-content-center align-items-center">
         <div className="row w-100">
           <div className="col-lg-5 col-md-5 profile-n">
             <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center">

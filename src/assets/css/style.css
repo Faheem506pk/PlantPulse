@@ -335,18 +335,23 @@ h3 {
   z-index: 5;
 }
 
+.profile-cd{
+  overflow: hidden;
+}
 
 .dp-img-2{
 width: auto;
 height: auto;
 display: flex;
 justify-content: right;
+z-index: -1;
 }
 .dp-img{
-width: 60%;
+width: 50%;
 max-width: 120px;
 height: auto;
 border-radius: 50%;
+z-index: -1;
 }
 
 .main-layout {
