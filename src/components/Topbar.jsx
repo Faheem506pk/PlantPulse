@@ -70,7 +70,7 @@ const Topbar = () => {
         <h1>Plant Pulse</h1>
       </div>
       <div className="dp-img-2">  
-      <Link to="/profile" className="nav-link" >
+      <Link to="/profile" >
         <img
           src={userDetails?.photo || "default-photo-url"} // Provide a default image URL if photo is not available
           className="dp-img"

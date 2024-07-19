@@ -181,6 +181,64 @@ h3 {
 }
 
 
+/* Profile Container */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Profile Card */
+.profile-card {
+  margin-top: 20px;
+  height: 100%; /* Ensure both cards have the same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Profile Image */
+.profile-img {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+/* Profile Details */
+.profile-text-container {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.last-name {
+  margin-left: 5px; /* Adjust the value to get the desired spacing */
+}
+
+.profile-container p {
+  font-size: 18px;
+  color: rgba(255, 255, 255);
+  margin: 10px 0;
+}
+
+.profile-container button {
+  margin-top: 20px;
+}
+
+
+/* UI Card */
+.ui-card {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  min-height: 210px;
+  padding: 20px;
+  text-align: left;
+}
+
+.ui-card .card-title {
+  color: rgba(255, 255, 255, 0.8);
+}
 
 
 
@@ -192,7 +250,7 @@ h3 {
 
 .Topbar {
   width: 100%;
-  padding: 30px 40px 30px 50px;
+  padding: 30px 10px 30px 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -387,7 +445,7 @@ border-radius: 50%;
 /* For tablets */
 @media (max-width: 992px) {
   .Topbar {
-    padding: 20px 40px 20px 40px;
+    padding: 20px 20px 20px 40px;
     
   }
 
@@ -431,6 +489,22 @@ border-radius: 50%;
     max-height: 300px; /* Adjust this value for mobile devices */
   }
 
+  .profile-container {
+    padding: 10px;
+  }
+
+  .profile-container h3 {
+    font-size: 20px;
+  }
+
+  .profile-container p {
+    font-size: 16px;
+  }
+
+  .profile-container img {
+    max-width: 150px;
+  }
+
   .nav {
     flex-direction: row;
     width: 100%;
@@ -465,7 +539,7 @@ border-radius: 50%;
 /* For smaller screens */
 @media (max-width: 576px) {
   .Topbar {
-    padding: 20px 40px 20px 40px;
+    padding: 20px 10px 20px 40px;
     
   }
   .dp-img-2{
@@ -505,4 +579,18 @@ border-radius: 50%;
 
   
 
+}
+
+@media (max-width: 480px) {
+  .profile-container h3 {
+    font-size: 18px;
+  }
+
+  .profile-container p {
+    font-size: 14px;
+  }
+
+  .profile-container img {
+    max-width: 100px;
+  }
 }

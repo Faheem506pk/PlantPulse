@@ -49,30 +49,83 @@ function Profile() {
   }
 
   return (
-    <div>
-      {userDetails ? (
-        <>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img
-              src={userDetails.photo || 'default-photo-url'} // Provide a default image URL if photo is not available
-              width={"40%"}
-              style={{ borderRadius: "50%" }}
-              alt="User Profile"
-            />
+    <div className="container profile-container">
+      <div className="row gutters-sm">
+        <div className="col-md-4 ">
+          <div className="card profile-card ">
+            <div className="card-body text-center d-flex justify-content-center flex-column justify-content-center align-items-center ">
+              <img
+                src={userDetails?.photo || 'default-photo-url'}
+                alt="User Profile"
+                className="rounded-circle profile-img"
+              />
+              <h4>{userDetails?.firstName || "John"} {userDetails?.lastName || "Doe"}</h4>
+              <button className="btn btn-primary" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
           </div>
-          <h3>Welcome {userDetails.firstName}</h3>
-          <div>
-            <p><b>Email: </b> {userDetails.email}</p>
-            <p><b>First Name:</b> {userDetails.firstName}</p>
-            {/* <p>Last Name: {userDetails.lastName}</p> */}
+        </div>
+        <div className="col-md-8">
+          <div className="card profile-card">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Full Name</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  <span>{userDetails?.firstName || "Kenneth"}</span>
+                  <span className="last-name">{userDetails?.lastName || "Valdez"}</span>
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Email</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {userDetails?.email || "fip@jukmuh.al"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Phone</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {userDetails?.phone || "(239) 816-9029"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Mobile</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {userDetails?.mobile || "(320) 380-4539"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Address</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {userDetails?.address || "Bay Area, San Francisco, CA"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-12">
+                  <a className="btn btn-info" target="__blank">
+                    Edit
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <button className="btn btn-primary" onClick={handleLogout}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <p>User details not found</p>
-      )}
+        </div>
+      </div>
     </div>
   );
 }
