@@ -339,19 +339,18 @@ h3 {
   overflow: hidden;
 }
 
-.dp-img-2{
-width: auto;
-height: auto;
-display: flex;
-justify-content: right;
-z-index: -1;
+.dp-img-2 {
+  display: flex;
+  align-items: center;
+  padding-right: 30px;
 }
-.dp-img{
-width: 50%;
-max-width: 120px;
-height: auto;
-border-radius: 50%;
-z-index: -1;
+
+.dp-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 10px;
+  object-fit: cover;
 }
 
 .main-layout {
@@ -546,6 +545,7 @@ z-index: -1;
   }
   .dp-img-2{
     margin-bottom: 15px;
+    padding-right: 30px;
   }
 
   .profile-image {
