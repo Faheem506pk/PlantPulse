@@ -8,13 +8,14 @@ import {getFirestore} from "firebase/firestore";
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyABefD1-K7aCtUhEtsip9TYJJjOUl_YOpg",
-  authDomain: "esp32-1b972.firebaseapp.com",
-  databaseURL: "https://esp32-1b972-default-rtdb.firebaseio.com",
-  projectId: "esp32-1b972",
-  storageBucket: "esp32-1b972.appspot.com",
-  messagingSenderId: "438774419341",
-  appId: "1:438774419341:web:576032b2fefac98e86b7c4"
+  apiKey: "AIzaSyBU2T3J2eXy-dUqIPRLZ5Hj1ijbIrXhs5g",
+  authDomain: "plantpulse-742d1.firebaseapp.com",
+  databaseURL: "https://plantpulse-742d1-default-rtdb.firebaseio.com",
+  projectId: "plantpulse-742d1",
+  storageBucket: "plantpulse-742d1.appspot.com",
+  messagingSenderId: "1163762562",
+  appId: "1:1163762562:web:18d1ee709944072aac8d9b",
+  measurementId: "G-KXQBKTPF3X"
 };
 
 // Initialize Firebase

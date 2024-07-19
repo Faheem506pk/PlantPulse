@@ -27,7 +27,7 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a className="nav-link" >
               <span className="nav-icon">
                 <i className="bi bi-list-task"></i>
               </span>
@@ -35,12 +35,12 @@ export default function Sidebar() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+          <Link to="/profile" className="nav-link" >
               <span className="nav-icon">
                 <i className="bi bi-gear-fill"></i>
               </span>
               Settings
-            </a>
+              </Link>
           </li>
         </ul>
       </aside>
