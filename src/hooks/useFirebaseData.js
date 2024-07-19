@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, set } from "firebase/database";
+import {getAuth} from "firebase/auth";
+import {getFirestore} from "firebase/firestore";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -80,3 +82,7 @@ export const useFirebaseData = () => {
     ldr, moisture, moistureUp, moistureDown, servo, servoAngle, setData
   };
 };
+
+export const auth=getAuth();
+export const db=getFirestore(app);
+export default app;

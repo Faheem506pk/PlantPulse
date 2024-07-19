@@ -1,27 +1,56 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./components/Dashbord";
-import Sidebar from "./components/sidebar";
-import Topbar from "./components/Topbar";
-import Graphs from "./components/Graphs";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import Dashboard from './components/Dashbord';
+import Graphs from './components/Graphs';
+import Presets from './components/Presets';
+import Settings from './components/Settings';
+import Sidebar from './components/sidebar';
+import Topbar from './components/Topbar';
+import Profile from './components/profile';
+import Register from './components/register';
+import Login from './components/login';
+import { auth } from "./hooks/useFirebaseData"; // Import auth from your Firebase configuration
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState(null); // Initial state is null to indicate no user is authenticated
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe(); // Cleanup subscription on unmount
+  }, []);
+
+  const location = useLocation();
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+
   return (
-    <Router>
-      <div className="App">
-        <Topbar />
-        <div className="main-layout">
-          <Sidebar />
-          <div className="main-content">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/graphs" element={<Graphs />} />
-            </Routes>
-          </div>
+    <div className="app">
+      {!isAuthRoute && <Topbar />}
+      <div className="main-layout">
+        {!isAuthRoute && <Sidebar />}
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+            <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+            <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
+            <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+            <Route path="/graphs" element={user ? <Graphs /> : <Navigate to="/login" />} />
+            <Route path="/presets" element={user ? <Presets /> : <Navigate to="/login" />} />
+            <Route path="/settings" element={user ? <Settings /> : <Navigate to="/login" />} />
+            <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+          </Routes>
         </div>
       </div>
-    </Router>
+    </div>
   );
-}
+};
 
-export default App;
+const AppWrapper = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWrapper;
