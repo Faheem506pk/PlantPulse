@@ -5,6 +5,8 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function EditProfile() {
   const [userDetails, setUserDetails] = useState({
@@ -84,9 +86,10 @@ function EditProfile() {
         setUserDetails((prevDetails) => ({ ...prevDetails, photo: photoURL }));
         setCroppedImage(null); // Clear cropped image
         setShowUploadPopup(false); // Hide upload popup
-        alert("Profile photo updated successfully!");
+        toast.success("Profile photo updated successfully!");
       } catch (error) {
         console.error("Error updating profile photo:", error);
+        toast.error("Error updating profile photo.");
       }
     }
   };
@@ -103,9 +106,10 @@ function EditProfile() {
           city: userDetails.city,
           address: userDetails.address,
         });
-        alert("Profile details updated successfully!");
+        toast.success("Profile details updated successfully!");
       } catch (error) {
         console.error("Error updating profile details:", error);
+        toast.error("Error updating profile details.");
       }
     }
   };
@@ -125,31 +129,31 @@ function EditProfile() {
 
   return (
     <main className="main-wrapper">
-      <div className="container profile-container">
+      <div className="container ">
         <div className="row gutters-sm">
-          <div className="col-md-8 offset-md-2">
-            <div className="card profile-card">
-              <div className="card-body">
+          <div className="col-lg-4 col-md-5 profile-n">
+            <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center ">
+              <div className="card-body d-flex align-items-center flex-column justify-content-center">
                 <div className="text-center mb-4">
                   <img
                     src={userDetails.photo || './assets/images/default-photo.png'}
                     alt="Profile"
-                    className="img-fluid rounded-circle"
-                    style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+                    className="img-fluid rounded-circle profile-image"
                   />
                 </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-8 col-md-7">
+            <div className="card profile-card glass-effect">
+              <div className="card-body">
                 <form onSubmit={handleSubmit}>
-                  <div className="row mb-3">
-                    <label className="col-sm-3 col-form-label">Photo</label>
-                    <div className="col-sm-9">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
                   {showCropper && selectedImage && (
                     <div className="cropper-popup">
                       <Cropper
@@ -246,6 +250,7 @@ function EditProfile() {
           </div>
         </div>
       </div>
+      <ToastContainer /> {/* Add ToastContainer to display toasts */}
     </main>
   );
 }
