@@ -47,13 +47,11 @@ body::before {
   z-index: 1; /* Ensure content appears above the background */
 }
 
-/* Glass effect */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 
 /* Profile card image */
 .profile-image {
@@ -71,7 +69,7 @@ body::before {
 
 .profile-card {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
 }
  
 
@@ -152,12 +150,13 @@ body::before {
 
 form {
   width: 100%;
-  max-width: 450px;
+  max-width: 600px;
   background: #ffffff;
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
   transition: all 0.3s;
 }
+
 
 h3 {
   text-align: center;
@@ -203,17 +202,17 @@ h3 {
   margin-left: 20px;
   margin-right: 20px;
 }
-/* Add these styles to your CSS file */
-.cropper-popup, .upload-popup {
+/* Add or adjust styles in your CSS */
+.cropper-popup,
+.upload-popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1050; /* Make sure it is above other content */
-  background: white;
-  border: 1px solid #ccc;
+  background: rgba(0, 0, 0, 0.8);
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  z-index: 9999; /* Ensure it appears above other elements */
 }
 
 
@@ -236,11 +235,14 @@ h3 {
 
 /* Profile Card */
 .profile-card {
-  margin-top: 20px;
+  
   height: 100%; /* Ensure both cards have the same height */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.profile-card {
+  border-radius: 15px;
 }
 
 /* Profile Image */
@@ -481,11 +483,18 @@ border-radius: 50%;
 }
 
 /* For laptops and larger devices */
+@media (min-width: 1200px) {
+  
+
+  
+}
 @media (max-width: 1200px) {
   .sidebar {
     max-height: 1000px; /* Adjust this value for laptops */
     margin-bottom: 50px;
   }
+
+ 
 }
 
 /* For tablets */
@@ -532,6 +541,11 @@ border-radius: 50%;
   }
   .dp-img-2{
     margin-bottom: 15px;
+  }
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
   }
 
 
@@ -652,7 +666,7 @@ border-radius: 50%;
   }
 
   .cropper-popup, .upload-popup {
-    width: 100%;
+    width: 90%;
     height: auto;
   }
 

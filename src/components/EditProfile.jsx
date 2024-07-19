@@ -20,12 +20,13 @@ function EditProfile() {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
-  const [showCropper, setShowCropper] = useState(false); // Manage cropper visibility
-  const [showUploadPopup, setShowUploadPopup] = useState(false); // Manage upload popup visibility
+  const [showCropper, setShowCropper] = useState(false);
+  const [showUploadPopup, setShowUploadPopup] = useState(false);
   const cropperRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isMounted = true;
     const fetchUserData = async () => {
       const user = auth.currentUser;
       if (user) {
@@ -33,30 +34,36 @@ function EditProfile() {
           const docRef = doc(db, "users", user.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-            setUserDetails(docSnap.data());
+            if (isMounted) {
+              setUserDetails(docSnap.data());
+            }
           } else {
             console.log("No such document!");
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
+          toast.error("Error fetching user data.");
         } finally {
-          setLoading(false);
+          if (isMounted) {
+            setLoading(false);
+          }
         }
       }
     };
 
     fetchUserData();
+    return () => { isMounted = false; };
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserDetails({ ...userDetails, [name]: value });
+    setUserDetails(prevDetails => ({ ...prevDetails, [name]: value }));
   };
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(URL.createObjectURL(e.target.files[0]));
-      setShowCropper(true); // Show cropper
+      setShowCropper(true);
     }
   };
 
@@ -65,8 +72,8 @@ function EditProfile() {
       const cropper = cropperRef.current.cropper;
       const croppedImageUrl = cropper.getCroppedCanvas().toDataURL("image/jpeg");
       setCroppedImage(croppedImageUrl);
-      setShowCropper(false); // Hide cropper after cropping
-      setShowUploadPopup(true); // Show upload popup
+      setShowCropper(false);
+      setShowUploadPopup(true);
     }
   };
 
@@ -74,18 +81,16 @@ function EditProfile() {
     const user = auth.currentUser;
     if (user && croppedImage) {
       const storageRef = ref(storage, `profilePictures/${user.uid}.jpg`);
-      const response = await fetch(croppedImage);
-      const blob = await response.blob();
-      await uploadBytes(storageRef, blob);
-      const photoURL = await getDownloadURL(storageRef);
-
-      // Update photo URL in Firestore
       try {
-        const docRef = doc(db, "users", user.uid);
-        await updateDoc(docRef, { photo: photoURL });
-        setUserDetails((prevDetails) => ({ ...prevDetails, photo: photoURL }));
-        setCroppedImage(null); // Clear cropped image
-        setShowUploadPopup(false); // Hide upload popup
+        const response = await fetch(croppedImage);
+        const blob = await response.blob();
+        await uploadBytes(storageRef, blob);
+        const photoURL = await getDownloadURL(storageRef);
+
+        await updateDoc(doc(db, "users", user.uid), { photo: photoURL });
+        setUserDetails(prevDetails => ({ ...prevDetails, photo: photoURL }));
+        setCroppedImage(null);
+        setShowUploadPopup(false);
         toast.success("Profile photo updated successfully!");
       } catch (error) {
         console.error("Error updating profile photo:", error);
@@ -98,8 +103,7 @@ function EditProfile() {
     const user = auth.currentUser;
     if (user) {
       try {
-        const docRef = doc(db, "users", user.uid);
-        await updateDoc(docRef, {
+        await updateDoc(doc(db, "users", user.uid), {
           firstName: userDetails.firstName,
           lastName: userDetails.lastName,
           phone: userDetails.phone,
@@ -116,11 +120,16 @@ function EditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (croppedImage) {
-      await updatePhoto();
+    try {
+      if (croppedImage) {
+        await updatePhoto();
+      }
+      await updateDetails();
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error during submission:", error);
+      toast.error("Error saving changes.");
     }
-    await updateDetails();
-    navigate("/profile"); // Redirect to /profile after update
   };
 
   if (loading) {
@@ -129,11 +138,11 @@ function EditProfile() {
 
   return (
     <main className="main-wrapper">
-      <div className="container ">
-        <div className="row gutters-sm">
-          <div className="col-lg-4 col-md-5 profile-n">
-            <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center ">
-              <div className="card-body d-flex align-items-center flex-column justify-content-center">
+      <div className="container d-flex justify-content-center align-items-center">
+        <div className="row w-100">
+          <div className="col-lg-5 col-md-5 profile-n">
+            <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center">
+              <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
                 <div className="text-center mb-4">
                   <img
                     src={userDetails.photo || './assets/images/default-photo.png'}
@@ -150,7 +159,7 @@ function EditProfile() {
               </div>
             </div>
           </div>
-          <div className="col-lg-8 col-md-7">
+          <div className="col-lg-7 col-md-7">
             <div className="card profile-card glass-effect">
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
@@ -180,77 +189,72 @@ function EditProfile() {
                       </button>
                     </div>
                   )}
-                  <div className="row mb-3">
-                    <label className="col-sm-3 col-form-label">First Name</label>
-                    <div className="col-sm-9">
-                      <input
-                        type="text"
-                        name="firstName"
-                        value={userDetails.firstName}
-                        onChange={handleChange}
-                        className="form-control"
-                      />
-                    </div>
+                  <div className="form-group mb-3">
+                    <label htmlFor="firstName">First Name</label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={userDetails.firstName}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
                   </div>
-                  <div className="row mb-3">
-                    <label className="col-sm-3 col-form-label">Last Name</label>
-                    <div className="col-sm-9">
-                      <input
-                        type="text"
-                        name="lastName"
-                        value={userDetails.lastName}
-                        onChange={handleChange}
-                        className="form-control"
-                      />
-                    </div>
+                  <div className="form-group mb-3">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={userDetails.lastName}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
                   </div>
-                  <div className="row mb-3">
-                    <label className="col-sm-3 col-form-label">Phone</label>
-                    <div className="col-sm-9">
-                      <input
-                        type="text"
-                        name="phone"
-                        value={userDetails.phone}
-                        onChange={handleChange}
-                        className="form-control"
-                        maxLength="11"
-                      />
-                    </div>
+                  <div className="form-group mb-3">
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                      type="text"
+                      id="phone"
+                      name="phone"
+                      value={userDetails.phone}
+                      onChange={handleChange}
+                      className="form-control"
+                      maxLength="11"
+                    />
                   </div>
-                  <div className="row mb-3">
-                    <label className="col-sm-3 col-form-label">City</label>
-                    <div className="col-sm-9">
-                      <input
-                        type="text"
-                        name="city"
-                        value={userDetails.city}
-                        onChange={handleChange}
-                        className="form-control"
-                      />
-                    </div>
+                  <div className="form-group mb-3">
+                    <label htmlFor="city">City</label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      value={userDetails.city}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
                   </div>
-                  <div className="row mb-3">
-                    <label className="col-sm-3 col-form-label">Address</label>
-                    <div className="col-sm-9">
-                      <input
-                        type="text"
-                        name="address"
-                        value={userDetails.address}
-                        onChange={handleChange}
-                        className="form-control"
-                      />
-                    </div>
+                  <div className="form-group mb-3">
+                    <label htmlFor="address">Address</label>
+                    <input
+                      type="text"
+                      id="address"
+                      name="address"
+                      value={userDetails.address}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
                   </div>
-                  <button type="submit" className="btn btn-primary">
-                    Save Changes
-                  </button>
+                  <div className="text-center">
+                    <button type="submit" className="btn btn-primary">Save Changes</button>
+                  </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <ToastContainer /> {/* Add ToastContainer to display toasts */}
+      <ToastContainer />
     </main>
   );
 }

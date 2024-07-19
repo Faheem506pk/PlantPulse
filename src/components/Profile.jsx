@@ -51,12 +51,13 @@ function Profile() {
 
   return (
     <main className="main-wrapper">
-    <div className="container profile-container">
-      <div className="row gutters-sm">
-        <div className="col-md-4 profile-n">
-          <div className="card profile-card ">
-            <div className="card-body text-center d-flex justify-content-center flex-column justify-content-center align-items-center ">
-              <img
+   <div className="container d-flex justify-content-center align-items-center">
+        <div className="row w-100">
+          <div className="col-lg-5 col-md-5 profile-n">
+            <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center">
+              <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
+                <div className="text-center mb-4">
+                   <img
                 src={userDetails?.photo || './assets/images/default-photo.png'}
                 alt="User Profile"
                 className="rounded-circle profile-img"
@@ -68,9 +69,12 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div className="col-md-8">
-          <div className="card profile-card">
-            <div className="card-body">
+          </div>
+        
+          <div className="col-lg-7 col-md-7">
+            <div className="card profile-card glass-effect">
+              <div className="card-body">
+              <form >
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">Full Name</h6>
@@ -124,6 +128,7 @@ function Profile() {
     </Link>
                 </div>
               </div>
+              </form >
             </div>
           </div>
         </div>
