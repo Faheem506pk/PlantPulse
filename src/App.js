@@ -13,6 +13,8 @@ import { auth } from "./hooks/useFirebaseData"; // Import auth from your Firebas
 
 const App = () => {
   const [user, setUser] = useState(null); // Initial state is null to indicate no user is authenticated
+  const location = useLocation();
+  const isAuthRoute = ['/login', '/register'].includes(location.pathname);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -21,9 +23,6 @@ const App = () => {
 
     return () => unsubscribe(); // Cleanup subscription on unmount
   }, []);
-
-  const location = useLocation();
-  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <div className="app">
