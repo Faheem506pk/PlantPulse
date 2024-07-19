@@ -6,7 +6,7 @@ import Presets from './components/Presets';
 import Settings from './components/Settings';
 import Sidebar from './components/sidebar';
 import Topbar from './components/Topbar';
-import Profile from './components/profile';
+import Profile from './components/Profile';
 import Register from './components/register';
 import Login from './components/login';
 import { auth } from "./hooks/useFirebaseData"; // Import auth from your Firebase configuration
