@@ -72,7 +72,7 @@ const Topbar = () => {
       <div className="dp-img-2">  
       <Link to="/profile" >
         <img
-          src={userDetails?.photo || "default-photo-url"} // Provide a default image URL if photo is not available
+          src={userDetails?.photo || "./assets/images/default-photo.png"} // Provide a default image URL if photo is not available
           className="dp-img"
           alt="User Profile"
         />

@@ -7,6 +7,7 @@ export default function Sidebar() {
  
 
   return (
+   
     <div className="sidebar" >
       <aside className="side-navbar">
         <ul className="nav">

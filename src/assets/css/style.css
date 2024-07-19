@@ -180,6 +180,15 @@ h3 {
   margin-right: 20px;
 }
 
+.registerpage{
+  display: flex;
+  justify-content: center;
+  margin-top: 6em;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 
 /* Profile Container */
 .profile-container {
@@ -271,10 +280,7 @@ h3 {
   transform: translateY(0); /* Show the Topbar */
 }
 
-/* Ensure content goes under the Topbar */
-.main-content {
-  margin-top: 150px; /* Adjust this value based on Topbar height */
-}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -299,6 +305,7 @@ justify-content: right;
 }
 .dp-img{
 width: 60%;
+max-width: 120px;
 height: auto;
 border-radius: 50%;
 }
@@ -365,8 +372,10 @@ border-radius: 50%;
 }
 
 .main-wrapper {
+  margin-top: 150px;
   min-height: 100vh;
   position: relative;
+  overflow-y: auto;
   
 }
 
@@ -455,10 +464,11 @@ border-radius: 50%;
     margin-top: 150px;
     padding: 10px;
     max-height: 810px; /* Adjust this value for tablets */
+    
   }
 
   .main-content {
-    margin-top: 150px;
+    
     padding: 0px 35px 190px 2px;
   }
 
@@ -525,9 +535,13 @@ border-radius: 50%;
   }
 
   .main-content {
-    margin-top: 150px;
+    
     padding: 0px 2px 190px 2px;
     
+  }
+  .profile-n{
+    margin-bottom: 20px;
+
   }
 
   
@@ -576,6 +590,10 @@ border-radius: 50%;
     padding: 0px 30px 190px 30px;
     
   }
+  .profile-n{
+    margin-bottom: 20px;
+
+  }
 
   
 
@@ -592,5 +610,9 @@ border-radius: 50%;
 
   .profile-container img {
     max-width: 100px;
+  }
+  .profile-n{
+    margin-bottom: 20px;
+
   }
 }

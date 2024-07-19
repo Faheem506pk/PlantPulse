@@ -9,6 +9,7 @@ const Dashboard = () => {
     ldr, moisture, moistureUp, moistureDown, servo, servoAngle, setData } = useFirebaseData();
 
   return (
+    
     <main className="main-wrapper">
       <div className="container">
         <div className="dashboard">

@@ -49,13 +49,14 @@ function Profile() {
   }
 
   return (
+    <main className="main-wrapper">
     <div className="container profile-container">
       <div className="row gutters-sm">
-        <div className="col-md-4 ">
+        <div className="col-md-4 profile-n">
           <div className="card profile-card ">
             <div className="card-body text-center d-flex justify-content-center flex-column justify-content-center align-items-center ">
               <img
-                src={userDetails?.photo || 'default-photo-url'}
+                src={userDetails?.photo || './assets/images/default-photo.png'}
                 alt="User Profile"
                 className="rounded-circle profile-img"
               />
@@ -127,6 +128,7 @@ function Profile() {
         </div>
       </div>
     </div>
+    </main>
   );
 }
 
