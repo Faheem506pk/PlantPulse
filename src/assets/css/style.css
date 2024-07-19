@@ -1,34 +1,121 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
+  overflow: auto; /* Allow scrolling */
   position: relative;
-  background-color: rgba(255, 255, 255, 0.2); /* Fallback background color */
+  background: url('../images/bg-1.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 body::before {
   content: "";
-  position: absolute;
+  position: fixed; /* Ensure it covers the viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('../images/bg-1.jpg') no-repeat center center fixed;
-  background-size: cover;
-  z-index: -2;
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent overlay */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  z-index: -1; /* Ensure it is behind the content */
 }
 
-body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Ensure content is on top of the pseudo-element */
+.auth-wrapper,
+.auth-inner,
+.form-container,
+.App,
+.Topbar,
+.main-layout,
+.sidebar,
+.side-navbar,
+.nav,
+.main-content,
+.main-wrapper,
+.today-weather,
+.ui-card,
+.dashboard,
+.hour-list,
+.weather-data {
+  position: relative;
+  z-index: 1; /* Ensure content appears above the background */
+}
+
+
+ 
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-inner {
   width: 100%;
-  height: 100%;
-  background-color: rgba(90, 90, 90, 0.4);
-  z-index: -1;
+  max-width: 450px;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 15px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+
+.continue-p {
+  font-size: 12px;
+  color: #b2b2b2;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .form-container {
@@ -40,12 +127,13 @@ body::after {
 }
 
 form {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
 }
 
 h3 {
@@ -279,13 +367,7 @@ h3 {
     padding: 0px 2px 190px 2px;
   }
 
-  .form-container {
-    padding: 15px;
-  }
-
-  form {
-    padding: 15px;
-  }
+  
 
 }
 
@@ -333,13 +415,7 @@ h3 {
     
   }
 
-  .form-container {
-    padding: 10px;
-  }
-
-  form {
-    padding: 10px;
-  }
+  
 
 }
 
@@ -383,12 +459,6 @@ h3 {
     
   }
 
-  .form-container {
-    padding: 5px;
-  }
-
-  form {
-    padding: 5px;
-  }
+  
 
 }
