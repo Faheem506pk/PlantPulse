@@ -80,6 +80,7 @@ function Profile() {
                   <h6 className="mb-0">Full Name</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
+                
                   <span>{userDetails?.firstName || "Kenneth"}</span>
                   <span className="last-name">{userDetails?.lastName || "Valdez"}</span>
                 </div>
