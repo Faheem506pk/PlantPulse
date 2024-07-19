@@ -18,8 +18,10 @@ function EditProfile() {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
+  const [showCropper, setShowCropper] = useState(false); // Manage cropper visibility
+  const [showUploadPopup, setShowUploadPopup] = useState(false); // Manage upload popup visibility
   const cropperRef = useRef(null);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -52,6 +54,7 @@ function EditProfile() {
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(URL.createObjectURL(e.target.files[0]));
+      setShowCropper(true); // Show cropper
     }
   };
 
@@ -60,6 +63,8 @@ function EditProfile() {
       const cropper = cropperRef.current.cropper;
       const croppedImageUrl = cropper.getCroppedCanvas().toDataURL("image/jpeg");
       setCroppedImage(croppedImageUrl);
+      setShowCropper(false); // Hide cropper after cropping
+      setShowUploadPopup(true); // Show upload popup
     }
   };
 
@@ -77,6 +82,8 @@ function EditProfile() {
         const docRef = doc(db, "users", user.uid);
         await updateDoc(docRef, { photo: photoURL });
         setUserDetails((prevDetails) => ({ ...prevDetails, photo: photoURL }));
+        setCroppedImage(null); // Clear cropped image
+        setShowUploadPopup(false); // Hide upload popup
         alert("Profile photo updated successfully!");
       } catch (error) {
         console.error("Error updating profile photo:", error);
@@ -143,8 +150,8 @@ function EditProfile() {
                       />
                     </div>
                   </div>
-                  {selectedImage && (
-                    <div>
+                  {showCropper && selectedImage && (
+                    <div className="cropper-popup">
                       <Cropper
                         src={selectedImage}
                         style={{ height: 400, width: '100%' }}
@@ -157,8 +164,8 @@ function EditProfile() {
                       </button>
                     </div>
                   )}
-                  {croppedImage && (
-                    <div>
+                  {showUploadPopup && croppedImage && (
+                    <div className="upload-popup">
                       <img
                         src={croppedImage}
                         alt="Cropped"
