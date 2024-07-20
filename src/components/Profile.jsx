@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../hooks/useFirebaseData";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 
 function Profile() {
