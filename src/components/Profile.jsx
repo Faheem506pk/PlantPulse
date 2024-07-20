@@ -76,48 +76,48 @@ function Profile() {
               <div className="card-body">
                 <form>
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-12">
                       <h6 className="mb-0">Full Name</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      <span>{userDetails?.firstName || "Kenneth"}</span>
-                      <span className="last-name">{userDetails?.lastName || "Valdez"}</span>
+                      <div className="text-secondary">
+                        <span>{userDetails?.firstName || "Kenneth"}</span>
+                        <span className="last-name">{userDetails?.lastName || "Valdez"}</span>
+                      </div>
                     </div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-12">
                       <h6 className="mb-0">Email</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userDetails?.email || "Email"}
+                      <div className="text-secondary">
+                        {userDetails?.email || "Email"}
+                      </div>
                     </div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-12">
                       <h6 className="mb-0">Phone</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userDetails?.phone || "Phone"}
+                      <div className="text-secondary">
+                        {userDetails?.phone || "Phone"}
+                      </div>
                     </div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-12">
                       <h6 className="mb-0">City</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userDetails?.city || "City"}
+                      <div className="text-secondary">
+                        {userDetails?.city || "City"}
+                      </div>
                     </div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-12">
                       <h6 className="mb-0">Address</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userDetails?.address || "Address"}
+                      <div className="text-secondary">
+                        {userDetails?.address || "Address"}
+                      </div>
                     </div>
                   </div>
                   <hr />
