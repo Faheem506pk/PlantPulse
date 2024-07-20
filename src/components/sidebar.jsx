@@ -16,7 +16,7 @@ export default function Sidebar() {
   }, [location.pathname]);
 
   return (
-    <div className="sidebar">
+    <div className="usersidebar">
       <aside className="side-navbar">
         <ul className="nav">
           <li className="nav-item">

@@ -91,7 +91,7 @@ function Profile() {
                   <h6 className="mb-0">Email</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {userDetails?.email || "fip@jukmuh.al"}
+                  {userDetails?.email || "Email"}
                 </div>
               </div>
               <hr />
@@ -100,7 +100,7 @@ function Profile() {
                   <h6 className="mb-0">Phone</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {userDetails?.phone || "(239) 816-9029"}
+                  {userDetails?.phone || "Phone"}
                 </div>
               </div>
               <hr />
@@ -109,7 +109,7 @@ function Profile() {
                   <h6 className="mb-0">City</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {userDetails?.mobile || "Chakwal"}
+                  {userDetails?.city || "City"}
                 </div>
               </div>
               <hr />
@@ -118,7 +118,7 @@ function Profile() {
                   <h6 className="mb-0">Address</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {userDetails?.address || "Bay Area, San Francisco, CA"}
+                  {userDetails?.address || "Address"}
                 </div>
               </div>
               <hr />

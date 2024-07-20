@@ -1,0 +1,164 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background: url('../images/bg-1.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Ensure the main layout is a flex container */
+.main-layout-admin {
+  display: flex;
+  height: 100vh; /* Full height for the layout */
+  overflow: hidden;
+}
+
+.adminsidebar {
+  flex: 0 0 80px; /* Fixed width for the sidebar */
+  
+  height: 100%; /* Full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar {
+  flex-grow: 1;
+  overflow-y: auto; /* Ensure sidebar content is scrollable if needed */
+}
+
+.main-content-admin {
+  flex: 1;
+  overflow-y: auto; /* Allow scrolling for the main content */
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.admin-btn{
+margin-left: 20px;
+  z-index: 5;
+}
+
+.admin-Topbar {
+  width: 100%;
+  padding: 30px 10px 30px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent; /* Make the background transparent */
+  position: fixed; /* Fixed position */
+  top: 0; /* Stick to the top */
+  left: 0;
+  z-index: 1000; /* Ensure it is on top */
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+  color: #ffffff;
+}
+
+.admin-Topbar .admin-today-weather h1 {
+  margin: 0;
+}
+
+
+@media (min-width: 992px) {
+  .admin-Topbar {
+    display: none;
+  }
+}
+@media (max-width: 992px) {
+  .admin-btn-container{
+margin-right: 50px;
+
+  }
+
+  .adminsidebar{
+  flex: 0 0 0px;
+ }
+ 
+  .main-content-admin {
+    margin-top: 100px;
+    margin-left: 0; /* Reset margin on mobile */
+    width: 100%; /* Full width on mobile */
+  }
+}
+
+/* Hide sidebar on mobile */
+@media (max-width: 768px) {
+  .main-content-admin {
+    margin-top: 100px;
+    margin-left: 0; /* Reset margin on mobile */
+    width: 100%; /* Full width on mobile */
+  }
+}
+
+/* Style the offcanvas */
+.offcanvas {
+  width: 280px; /* Width of the offcanvas on mobile */
+}
+
+/* Ensure the offcanvas has a dark theme */
+.offcanvas.bg-dark {
+  background-color: #343a40;
+}
+
+/* Style the offcanvas menu items */
+.offcanvas .nav-link {
+  color: #ffffff;
+}
+
+.offcanvas .nav-link.active {
+  background-color: #495057;
+}
+
+.offcanvas .dropdown-menu {
+  background-color: #343a40; /* Dark background */
+  border: none; /* Remove border if desired */
+}
+
+.offcanvas .dropdown-item:hover {
+  background-color: #495057;
+}
+
+/* Ensure the button to open offcanvas is visible on mobile */
+.btn-primary.d-md-none {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001; /* Ensure it's on top of other content */
+}
+
+/* Ensure the sidebar and offcanvas menu items are aligned */
+.nav-link {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.nav-link .bi {
+  font-size: 16px; /* Adjust the icon size if needed */
+}
+
+.nav-link span {
+  margin-left: 8px; /* Space between the icon and text */
+}
+
+/* Align icons and text in the dropdown menu */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item .bi {
+  font-size: 16px; /* Adjust the icon size if needed */
+  margin-right: 8px; /* Space between the icon and text */
+}
+
+/* Add styles for dropdown items */
+.dropdown-item {
+  padding: 0.5rem 1rem; /* Padding for better click area */
+}
+
+.dropdown-item:hover {
+  background-color: #495057; /* Background color on hover */
+}

@@ -34,7 +34,7 @@ body::before {
 .form-container,
 .App,
 .main-layout,
-.sidebar,
+.usersidebar,
 .side-navbar,
 .nav,
 .main-content,
@@ -321,7 +321,7 @@ h3 {
 
 
 
-.sidebar {
+.usersidebar {
   display: flex;
   flex: 0 0 auto;
   background-color: rgba(255, 255, 255, 0.2);
@@ -493,7 +493,7 @@ h3 {
   
 }
 @media (max-width: 1200px) {
-  .sidebar {
+  .usersidebar {
     max-height: 1000px; /* Adjust this value for laptops */
     margin-bottom: 50px;
   }
@@ -508,7 +508,7 @@ h3 {
     
   }
 
-  .sidebar {
+  .usersidebar {
     margin: 0px 20px 0px 40px;
     margin-bottom: 50px;
     margin-top: 150px;
@@ -592,7 +592,7 @@ h3 {
     height: auto;
   }
 
-  .sidebar {
+  .usersidebar {
     background-color: rgba(97, 97, 97, 0.7);
     position: fixed;
     bottom: 0;
@@ -677,7 +677,7 @@ h3 {
   }
 
 
-  .sidebar {
+  .usersidebar {
     background-color: rgba(97, 97, 97, 0.7);
     margin: 0;
     padding: 10px;
