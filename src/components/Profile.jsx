@@ -51,90 +51,89 @@ function Profile() {
 
   return (
     <main className="main-wrapper">
-   <div className="profile-cd d-flex justify-content-center align-items-center">
+      <div className="profile-cd d-flex justify-content-center align-items-center">
         <div className="row w-100">
           <div className="col-lg-5 col-md-5 profile-n">
             <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center">
               <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
                 <div className="text-center mb-4">
-                   <img
-                src={userDetails?.photo || './assets/images/default-photo.png'}
-                alt="User Profile"
-                className="rounded-circle profile-img"
-              />
-              <h4>{userDetails?.firstName || "John"} {userDetails?.lastName || "Doe"}</h4>
-              <button className="btn btn-primary" onClick={handleLogout}>
-                Logout
-              </button>
+                  <img
+                    src={userDetails?.photo || './assets/images/default-photo.png'}
+                    alt="User Profile"
+                    className="rounded-circle profile-img"
+                  />
+                  <h4>{userDetails?.firstName || "John"} {userDetails?.lastName || "Doe"}</h4>
+                  <button className="btn btn-primary" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
           </div>
         
           <div className="col-lg-7 col-md-7">
             <div className="card profile-card glass-effect">
               <div className="card-body">
-              <form >
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Full Name</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                
-                  <span>{userDetails?.firstName || "Kenneth"}</span>
-                  <span className="last-name">{userDetails?.lastName || "Valdez"}</span>
-                </div>
+                <form>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Full Name</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      <span>{userDetails?.firstName || "Kenneth"}</span>
+                      <span className="last-name">{userDetails?.lastName || "Valdez"}</span>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Email</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {userDetails?.email || "Email"}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Phone</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {userDetails?.phone || "Phone"}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">City</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {userDetails?.city || "City"}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Address</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {userDetails?.address || "Address"}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-12">
+                      <Link to="/edit-profile" className="btn btn-info">
+                        Edit Profile
+                      </Link>
+                    </div>
+                  </div>
+                </form>
               </div>
-              <hr />
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Email</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {userDetails?.email || "Email"}
-                </div>
-              </div>
-              <hr />
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Phone</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {userDetails?.phone || "Phone"}
-                </div>
-              </div>
-              <hr />
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">City</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {userDetails?.city || "City"}
-                </div>
-              </div>
-              <hr />
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Address</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {userDetails?.address || "Address"}
-                </div>
-              </div>
-              <hr />
-              <div className="row">
-                <div className="col-sm-12">
-                <Link to="/edit-profile" className="btn btn-info">
-      Edit Profile
-    </Link>
-                </div>
-              </div>
-              </form >
             </div>
           </div>
         </div>
       </div>
-    </div>
     </main>
   );
 }

@@ -46,7 +46,7 @@ const AppSidebar = ({ userDetails }) => {
           className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         >
           <i className="bi bi-bootstrap" style={{ fontSize: 40 }}></i>
-          <span className="fs-4 ms-2">Sidebar</span>
+          <span className="fs-4 ms-2">Plant Pulse</span>
         </a>
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">
