@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Sidebar() {
-  
+  const location = useLocation();
 
- 
+  // Function to check if the link is active
+  const isActive = (path) => {
+    return location.pathname === path ? 'nav-link active' : 'nav-link';
+  };
+
+  // Scroll to the top when the location pathname changes
+  useEffect(() => {
+    console.log('Navigating to:', location.pathname); // Debugging line
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
-   
-    <div className="sidebar" >
+    <div className="sidebar">
       <aside className="side-navbar">
         <ul className="nav">
           <li className="nav-item">
-            <Link to="/" className="nav-link active" aria-current="page">
+            <Link to="/" className={isActive('/dashboard')} aria-current="page">
               <span className="nav-icon">
                 <i className="bi bi-cloud-sun-fill"></i>
               </span>
@@ -20,7 +28,7 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/graphs">
+            <Link to="/graphs" className={isActive('/graphs')}>
               <span className="nav-icon">
                 <i className="bi bi-map-fill"></i>
               </span>
@@ -28,20 +36,20 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" >
+            <Link to="/presets" className={isActive('/presets')}>
               <span className="nav-icon">
                 <i className="bi bi-list-task"></i>
               </span>
               Presets
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-          <Link to="/profile" className="nav-link" >
+            <Link to="/profile" className={isActive('/profile')}>
               <span className="nav-icon">
                 <i className="bi bi-gear-fill"></i>
               </span>
               Settings
-              </Link>
+            </Link>
           </li>
         </ul>
       </aside>

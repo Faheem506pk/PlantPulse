@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { useFirebaseData } from '../hooks/useFirebaseData';
@@ -67,61 +67,17 @@ export default function Graphs() {
     ]
   };
 
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main className="main-wrapper">
       <div className="container">
-        <div className="dashboard">
+        <div className="Graphs">
           <section className="content">
             <div className="row g-4">
-              {/* <div className="col-lg-4 col-md-6 col-sm-12">
-                <div className="card ui-card h-100">
-                  <div className="card-body">
-                    <h5 className="card-title">Humidity</h5>
-                    <div className="d-flex justify-content-center">
-                      <div className="weather-data">
-                        <div className="weather-icon">
-                          <i className="bi bi-water"></i>
-                        </div>
-                        <h4 className="value" id="humidity">
-                          {humidity}%
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-12">
-                <div className="card ui-card h-100">
-                  <div className="card-body">
-                    <h5 className="card-title">Temperature</h5>
-                    <div className="d-flex justify-content-center">
-                      <div className="weather-data">
-                        <div className="weather-icon">
-                          <i className="bi bi-droplet-half"></i>
-                        </div>
-                        <h4 className="value" id="temperature">
-                          {temperature} &deg;C
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-12">
-                <div className="card ui-card h-100">
-                  <div className="card-body">
-                    <h5 className="card-title">Dew Point</h5>
-                    <div className="d-flex justify-content-center">
-                      <div className="weather-data">
-                        <div className="weather-icon">
-                          <i className="bi bi-wind"></i>
-                        </div>
-                        <h4>5 mph</h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
               <div className="col-lg-4 col-md-6 col-sm-12">
                 <div className="card ui-card p-3">
                   <div className="card-body-2 p-0">

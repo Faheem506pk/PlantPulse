@@ -320,17 +320,17 @@ h3 {
 }
 
 
+
 .sidebar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 50px; 
-  margin-left: 50px; 
-  margin-bottom: 50px;
-  margin-top: 150px;
+  flex: 0 0 auto;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 24px;
   padding: 20px;
+  margin-left: 50px; 
+  margin-bottom: 20px;
+  margin-top: 150px;
+  max-height: 550px;
   justify-content: center;
   z-index: 5;
 }
@@ -593,6 +593,7 @@ h3 {
   }
 
   .sidebar {
+    background-color: rgba(97, 97, 97, 0.7);
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -677,6 +678,7 @@ h3 {
 
 
   .sidebar {
+    background-color: rgba(97, 97, 97, 0.7);
     margin: 0;
     padding: 10px;
     max-height: 200px; /* Adjust this value for smaller screens */
