@@ -85,7 +85,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-8 col-md-12 col-sm-12">
+              <div className="col-lg-8 col-md-12 col-sm-12 mb-last">
                 <div className="card ui-card h-100 overflow-hidden">
                   <div className="card-body">
                     <h5 className="card-title">LDR</h5>

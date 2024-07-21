@@ -64,7 +64,17 @@ body::before {
   backdrop-filter: blur(10px);
 }
 
+/* Dashboard */
 
+.dashboard {
+  grid-template-rows: 100%;
+  gap: 24px 24px;
+  grid-template-areas: ". .";
+}
+
+.mb-last{
+  margin-bottom: 150px;
+}
 
 
 
@@ -432,11 +442,7 @@ h3 {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.dashboard {
-  grid-template-rows: 100%;
-  gap: 24px 24px;
-  grid-template-areas: ". .";
-}
+
 
 .hour-list .list-group-item {
   background-color: transparent;
