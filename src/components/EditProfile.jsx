@@ -159,7 +159,7 @@ function EditProfile() {
               </div>
             </div>
           </div>
-          <div className="col-lg-7 col-md-7">
+          <div className="col-lg-7 col-md-7 mb-last-profile">
             <div className="card profile-card glass-effect">
               <div className="card-body">
                 <form onSubmit={handleSubmit}>

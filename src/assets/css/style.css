@@ -78,6 +78,7 @@ body::before {
 
 
 
+
 .auth-wrapper {
   display: flex;
   justify-content: center;
@@ -772,7 +773,9 @@ h3 {
 
   }
 
-  
+  .mb-last-profile{
+    margin-bottom: 150px;
+  }
 
 }
 
