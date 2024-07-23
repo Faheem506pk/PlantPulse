@@ -40,6 +40,77 @@ body::before {
   z-index: -1; /* Ensure it is behind the content */
 }
 
+
+/* login page */
+
+
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  color: #007bff;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.loginpage{
+  display: flex;
+  justify-content: center;
+  margin-top: 6em;
+  margin-bottom: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+
+.Sign-up {
+  text-align: right;
+  font-size: 20px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.Sign-up a {
+  
+  color: #167bff;
+}
+.forgot-password {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+
+.forgot-password-page {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-password-page h3 {
+  margin-bottom: 20px;
+}
+
+.forgot-password-page .form-control {
+  margin-bottom: 10px;
+}
+
+
+
 /* Ensure content is on top of the pseudo-element */
 .auth-wrapper,
 .auth-inner,
@@ -62,6 +133,7 @@ body::before {
 .glass-effect {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
+  border-radius: 5%;
 }
 
 /* Dashboard */
@@ -112,22 +184,6 @@ body::before {
   margin-bottom: 15px;
 }
 
-
-
-
-
-.forgot-password {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7f7d7d;
-  margin: 0;
-}
-
-.forgot-password a {
-  color: #167bff;
-}
-
 .continue-p {
   font-size: 12px;
   color: #b2b2b2;
@@ -165,27 +221,7 @@ h3 {
 
 
 
-.forgot-password {
-  text-align: center;
-  margin-top: 10px;
-}
 
-.forgot-password a {
-  color: #007bff;
-}
-
-.forgot-password a:hover {
-  text-decoration: underline;
-}
-
-.loginpage{
-  display: flex;
-  justify-content: center;
-  margin-top: 6em;
-  margin-bottom: auto;
-  margin-left: 20px;
-  margin-right: 20px;
-}
 /* Add or adjust styles in your CSS */
 .cropper-popup,
 .upload-popup {

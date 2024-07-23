@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { auth } from "../hooks/useFirebaseData";
 import { toast } from "react-toastify";
 import SignInwithGoogle from "./signInWIthGoogle";
+import { Link } from 'react-router-dom';
 import "../assets/css/style.css"; // Adjust the path as needed
 
 function Login() {
@@ -56,11 +57,14 @@ function Login() {
 
       <div className="d-grid">
         <button type="submit" className="btn btn-primary">
-          Submit
+          Login
         </button>
       </div>
       <p className="forgot-password text-right">
-        New user <a href="/register">Register Here</a>
+      <Link to="/forgotpassword" >Forget password?</Link >
+      </p>
+      <p className="Sign-up text-center">
+      <Link to="/register" >Sign up</Link >
       </p>
       <SignInwithGoogle/>
     </form>
