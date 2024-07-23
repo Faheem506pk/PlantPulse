@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth, db } from "../hooks/useFirebaseData";
 import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
+import "../assets/css/style.css"; // Make sure to create this file for custom styles
 
 function Profile() {
   const [userDetails, setUserDetails] = useState(null);
@@ -20,9 +21,27 @@ function Profile() {
             console.log("User data:", docSnap.data());
           } else {
             console.log("No such document!");
+            setUserDetails({
+              photo: "./assets/images/default-photo.png",
+              firstName: "First Name",
+              lastName: "Last Name",
+              email: "Email",
+              phone: "Phone",
+              city: "City",
+              address: "Address",
+            });
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
+          setUserDetails({
+            photo: "./assets/images/default-photo.png",
+            firstName: "First Name",
+            lastName: "Last Name",
+            email: "Email",
+            phone: "Phone",
+            city: "City",
+            address: "Address",
+          });
         } finally {
           setLoading(false);
         }
@@ -51,9 +70,9 @@ function Profile() {
 
   return (
     <main className="main-wrapper">
-      <div className="profile-cd d-flex justify-content-center align-items-center">
-        <div className="row w-100">
-          <div className="col-lg-5 col-md-5 profile-n">
+      <div className="profile-cd">
+        <div className="">
+          <div className="profile-n">
             <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center">
               <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
                 <div className="text-center mb-4">
@@ -62,7 +81,7 @@ function Profile() {
                     alt="User Profile"
                     className="rounded-circle profile-img"
                   />
-                  <h4>{userDetails?.firstName || "John"} {userDetails?.lastName || "Doe"}</h4>
+                  <h4>{userDetails?.firstName || "Full Name"} {userDetails?.lastName || ""}</h4>
                   <button className="btn btn-primary" onClick={handleLogout}>
                     Logout
                   </button>
@@ -71,7 +90,7 @@ function Profile() {
             </div>
           </div>
         
-          <div className="col-lg-7 col-md-7 mb-last-profile">
+          <div className="profile-details">
             <div className="card profile-card glass-effect">
               <div className="card-body">
                 <form>
@@ -79,8 +98,8 @@ function Profile() {
                     <div className="col-sm-12">
                       <h6 className="mb-0">Full Name</h6>
                       <div className="text-secondary">
-                        <span>{userDetails?.firstName || "Kenneth"}</span>
-                        <span className="last-name">{userDetails?.lastName || "Valdez"}</span>
+                        <span>{userDetails?.firstName || "Name"}</span>
+                        <span className="last-name">{userDetails?.lastName || ""}</span>
                       </div>
                     </div>
                   </div>

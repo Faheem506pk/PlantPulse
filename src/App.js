@@ -15,6 +15,7 @@ import Login from './components/login';
 import EditProfile from './components/EditProfile';
 import ScrollToTop from './components/ScrollToTop';
 import { auth } from "./hooks/useFirebaseData"; // Import auth from your Firebase configuration
+import { UserProvider } from './components/UserContext'; // Import UserProvider
 
 // Admin components
 import DefaultLayout from './admin/DefaultLayout';
@@ -36,34 +37,36 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      {/* Admin Routes */}
-      <Routes>
-        <Route path="/admin/*" element={isAdminRoute ? <DefaultLayout /> : <Navigate to="/" />} />
-      </Routes>
+    <UserProvider>
+      <div className="App">
+        {/* Admin Routes */}
+        <Routes>
+          <Route path="/admin/*" element={isAdminRoute ? <DefaultLayout /> : <Navigate to="/" />} />
+        </Routes>
 
-      {/* User Routes */}
-      {!isAdminRoute && (
-        <div className="main-layout">
-          {!isAuthRoute && <Topbar />}
-          {!isAuthRoute && <Sidebar />}
-          <div className="main-content">
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-              <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
-              <Route path="/graphs" element={user ? <Graphs /> : <Navigate to="/login" />} />
-              <Route path="/presets" element={user ? <Presets /> : <Navigate to="/login" />} />
-              <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
-              <Route path="/settings" element={user ? <Settings /> : <Navigate to="/login" />} />
-              <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
-              <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
-              <Route path="/edit-profile" element={user ? <EditProfile /> : <Navigate to="/login" />} />
-            </Routes>
+        {/* User Routes */}
+        {!isAdminRoute && (
+          <div className="main-layout">
+            {!isAuthRoute && <Topbar />}
+            {!isAuthRoute && <Sidebar />}
+            <div className="main-content">
+              <ScrollToTop />
+              <Routes>
+                <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+                <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+                <Route path="/graphs" element={user ? <Graphs /> : <Navigate to="/login" />} />
+                <Route path="/presets" element={user ? <Presets /> : <Navigate to="/login" />} />
+                <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+                <Route path="/settings" element={user ? <Settings /> : <Navigate to="/login" />} />
+                <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
+                <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
+                <Route path="/edit-profile" element={user ? <EditProfile /> : <Navigate to="/login" />} />
+              </Routes>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </UserProvider>
   );
 };
 

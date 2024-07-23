@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { auth, db, storage } from "../hooks/useFirebaseData";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -7,9 +7,11 @@ import "cropperjs/dist/cropper.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from "./UserContext";
 
 function EditProfile() {
-  const [userDetails, setUserDetails] = useState({
+  const { userDetails, setUserDetails, loading } = useContext(UserContext);
+  const [localUserDetails, setLocalUserDetails] = useState({
     photo: "",
     firstName: "",
     lastName: "",
@@ -17,7 +19,6 @@ function EditProfile() {
     city: "",
     address: ""
   });
-  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
   const [showCropper, setShowCropper] = useState(false);
@@ -26,38 +27,14 @@ function EditProfile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let isMounted = true;
-    const fetchUserData = async () => {
-      const user = auth.currentUser;
-      if (user) {
-        try {
-          const docRef = doc(db, "users", user.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            if (isMounted) {
-              setUserDetails(docSnap.data());
-            }
-          } else {
-            console.log("No such document!");
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-          toast.error("Error fetching user data.");
-        } finally {
-          if (isMounted) {
-            setLoading(false);
-          }
-        }
-      }
-    };
-
-    fetchUserData();
-    return () => { isMounted = false; };
-  }, []);
+    if (userDetails) {
+      setLocalUserDetails(userDetails);
+    }
+  }, [userDetails]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserDetails(prevDetails => ({ ...prevDetails, [name]: value }));
+    setLocalUserDetails(prevDetails => ({ ...prevDetails, [name]: value }));
   };
 
   const handleImageChange = (e) => {
@@ -76,7 +53,7 @@ function EditProfile() {
       setShowUploadPopup(true);
     }
   };
-
+  
   const updatePhoto = async () => {
     const user = auth.currentUser;
     if (user && croppedImage) {
@@ -86,7 +63,7 @@ function EditProfile() {
         const blob = await response.blob();
         await uploadBytes(storageRef, blob);
         const photoURL = await getDownloadURL(storageRef);
-
+  
         await updateDoc(doc(db, "users", user.uid), { photo: photoURL });
         setUserDetails(prevDetails => ({ ...prevDetails, photo: photoURL }));
         setCroppedImage(null);
@@ -98,18 +75,20 @@ function EditProfile() {
       }
     }
   };
+  
 
   const updateDetails = async () => {
     const user = auth.currentUser;
     if (user) {
       try {
         await updateDoc(doc(db, "users", user.uid), {
-          firstName: userDetails.firstName,
-          lastName: userDetails.lastName,
-          phone: userDetails.phone,
-          city: userDetails.city,
-          address: userDetails.address,
+          firstName: localUserDetails.firstName,
+          lastName: localUserDetails.lastName,
+          phone: localUserDetails.phone,
+          city: localUserDetails.city,
+          address: localUserDetails.address,
         });
+        setUserDetails(localUserDetails);
         toast.success("Profile details updated successfully!");
       } catch (error) {
         console.error("Error updating profile details:", error);
@@ -145,7 +124,7 @@ function EditProfile() {
               <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
                 <div className="text-center mb-4">
                   <img
-                    src={userDetails.photo || './assets/images/default-photo.png'}
+                    src={localUserDetails.photo || './assets/images/default-photo.png'}
                     alt="Profile"
                     className="img-fluid rounded-circle profile-image"
                   />
@@ -195,7 +174,7 @@ function EditProfile() {
                       type="text"
                       id="firstName"
                       name="firstName"
-                      value={userDetails.firstName}
+                      value={localUserDetails.firstName}
                       onChange={handleChange}
                       className="form-control"
                     />
@@ -206,7 +185,7 @@ function EditProfile() {
                       type="text"
                       id="lastName"
                       name="lastName"
-                      value={userDetails.lastName}
+                      value={localUserDetails.lastName}
                       onChange={handleChange}
                       className="form-control"
                     />
@@ -217,7 +196,7 @@ function EditProfile() {
                       type="text"
                       id="phone"
                       name="phone"
-                      value={userDetails.phone}
+                      value={localUserDetails.phone}
                       onChange={handleChange}
                       className="form-control"
                       maxLength="11"
@@ -229,7 +208,7 @@ function EditProfile() {
                       type="text"
                       id="city"
                       name="city"
-                      value={userDetails.city}
+                      value={localUserDetails.city}
                       onChange={handleChange}
                       className="form-control"
                     />
@@ -240,21 +219,19 @@ function EditProfile() {
                       type="text"
                       id="address"
                       name="address"
-                      value={userDetails.address}
+                      value={localUserDetails.address}
                       onChange={handleChange}
                       className="form-control"
                     />
                   </div>
-                  <div className="text-center">
-                    <button type="submit" className="btn btn-primary">Save Changes</button>
-                  </div>
+                  <button type="submit" className="btn btn-primary">Save Changes</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </main>
   );
 }
