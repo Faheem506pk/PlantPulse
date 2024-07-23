@@ -17,12 +17,22 @@ function SignInwithGoogle() {
         const userDoc = await getDoc(userDocRef);
 
         if (!userDoc.exists()) {
+          const registrationDate = new Date().toLocaleString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+          });
+
           await setDoc(userDocRef, {
             email: user.email,
             firstName: user.displayName?.split(' ')[0] || "",
             lastName: user.displayName?.split(' ')[1] || "",
             photo: user.photoURL,
-            createdAt: new Date().toISOString(),
+            registrationDate,
           });
         }
 
