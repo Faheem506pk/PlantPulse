@@ -115,7 +115,7 @@ body::before {
   margin-bottom: 10px;
   border: auto;
   border-radius: 12px;
-  color: #ffffff;
+  color: #000000;
 }
 
 
@@ -134,6 +134,7 @@ body::before {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #ffffff;
 }
+
 .Sign-Up-password-page {
   align-content: center;
   max-width: 500px;
@@ -149,6 +150,37 @@ body::before {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #ffffff;
 }
+.profile-page {
+  align-content: center;
+  max-width: 500px;
+  height: auto;
+  height: 500px;
+  margin: 0 auto ;
+  
+  padding: 0px 30px 0px 30px !important;
+  border-radius: 10% !important;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+.edit-profile-page{
+  align-content: center;
+  max-width: 500px;
+  height: auto;
+  height: 500px;
+  margin: 0 auto ;
+  
+  padding: 0px 30px 0px 30px !important;
+  border-radius: 10% !important;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
 /* Ensure content is on top of the pseudo-element */
 .auth-wrapper,
 .auth-inner,
@@ -168,11 +200,7 @@ body::before {
   z-index: 1; /* Ensure content appears above the background */
 }
 
-.glass-effect {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 5%;
-}
+
 
 /* Dashboard */
 
@@ -330,6 +358,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #ffffff;
  
 }
 
@@ -708,13 +737,14 @@ h3 {
 
   .profile-n, .profile-details {
     width: 100%;
+    color: #ffffff;
   }
 
   .form-control {
     width: 100%;
     border: auto;
     border-radius: 12px;
-    color: #ffffff;
+    color: #000000;
   }
   
 
@@ -799,6 +829,7 @@ h3 {
   }
   .profile-n{
     margin-bottom: 20px;
+    color: #ffffff;
 
   }
 
@@ -872,6 +903,35 @@ h3 {
     color: #ffffff;
     padding: 2px 20px 2px 20px !important;
   }
+  .profile-page{
+    align-content: center;
+    max-width: 90%;
+    height: auto;
+    height: 500px;
+    margin: 0px auto;
+    border-radius: 8% !important;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    padding: 2px 20px 2px 20px !important;
+  }
+  .edit-profile-page{
+    align-content: center;
+    max-width: 90%;
+    height: auto;
+    height: 500px;
+    margin: 0px auto;
+    border-radius: 8% !important;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    padding: 2px 20px 2px 20px !important;
+  }
+ 
 
   .usersidebar {
     background-color: rgba(97, 97, 97, 0.7);
@@ -912,6 +972,7 @@ h3 {
   }
   .profile-n{
     margin-bottom: 20px;
+    color: #ffffff;
 
   }
 

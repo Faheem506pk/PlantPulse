@@ -109,8 +109,8 @@ function Profile() {
       <ToastContainer />
       <div className="profile-cd">
         <div className="">
-          <div className="profile-n">
-            <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center">
+          <div className="col-lg-5 col-md-5 profile-n">
+            <div className="d-flex justify-content-center flex-column align-items-center">
               <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
                 <div className="text-center mb-4">
                   <img
@@ -130,14 +130,14 @@ function Profile() {
             </div>
           </div>
         
-          <div className="profile-details">
-            <div className="card profile-card glass-effect">
+          <div className="col-lg-7 col-md-7 profile-details">
+            
               <div className="card-body">
-                <form>
+                <form className="profile-page">
                   <div className="row">
                     <div className="col-sm-12">
                       <h6 className="mb-0">Full Name</h6>
-                      <div className="text-secondary">
+                      <div className="text">
                         <span>{userDetails?.firstName || "Name"}</span>
                         <span className="last-name">{userDetails?.lastName || ""}</span>
                       </div>
@@ -147,7 +147,7 @@ function Profile() {
                   <div className="row">
                     <div className="col-sm-12">
                       <h6 className="mb-0">Email</h6>
-                      <div className="text-secondary">
+                      <div className="text">
                         {userDetails?.email || "Email"}
                       </div>
                     </div>
@@ -156,7 +156,7 @@ function Profile() {
                   <div className="row">
                     <div className="col-sm-12">
                       <h6 className="mb-0">Phone</h6>
-                      <div className="text-secondary">
+                      <div className="text" >
                         {userDetails?.phone || "Phone"}
                       </div>
                     </div>
@@ -165,7 +165,7 @@ function Profile() {
                   <div className="row">
                     <div className="col-sm-12">
                       <h6 className="mb-0">City</h6>
-                      <div className="text-secondary">
+                      <div className="text">
                         {userDetails?.city || "City"}
                       </div>
                     </div>
@@ -174,7 +174,7 @@ function Profile() {
                   <div className="row">
                     <div className="col-sm-12">
                       <h6 className="mb-0">Address</h6>
-                      <div className="text-secondary">
+                      <div className="text">
                         {userDetails?.address || "Address"}
                       </div>
                     </div>
@@ -192,7 +192,7 @@ function Profile() {
             </div>
           </div>
         </div>
-      </div>
+      
     </main>
   );
 }

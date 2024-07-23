@@ -120,7 +120,7 @@ function EditProfile() {
       <div className="profile-cd d-flex justify-content-center align-items-center">
         <div className="row w-100">
           <div className="col-lg-5 col-md-5 profile-n">
-            <div className="card profile-card glass-effect d-flex justify-content-center flex-column align-items-center">
+            <div className=" d-flex justify-content-center flex-column align-items-center">
               <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
                 <div className="text-center mb-4">
                   <img
@@ -139,9 +139,9 @@ function EditProfile() {
             </div>
           </div>
           <div className="col-lg-7 col-md-7 mb-last-profile">
-            <div className="card profile-card glass-effect">
+          
               <div className="card-body">
-                <form onSubmit={handleSubmit}>
+                <form className="edit-profile-page" onSubmit={handleSubmit}>
                   {showCropper && selectedImage && (
                     <div className="cropper-popup">
                       <Cropper
@@ -229,7 +229,7 @@ function EditProfile() {
               </div>
             </div>
           </div>
-        </div>
+        
         <ToastContainer />
       </div>
     </main>
