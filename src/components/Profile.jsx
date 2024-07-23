@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../hooks/useFirebaseData";
 import { Link } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import { GoogleAuthProvider, reauthenticateWithPopup, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/style.css"; // Make sure to create this file for custom styles
 
 function Profile() {
@@ -58,9 +61,42 @@ function Profile() {
     try {
       await auth.signOut();
       window.location.href = "/login";
-      console.log("User logged out successfully!");
+      toast.success("User logged out successfully!");
     } catch (error) {
-      console.error("Error logging out:", error.message);
+      toast.error(`Error logging out: ${error.message}`);
+    }
+  }
+
+  async function handleDeleteAccount() {
+    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      try {
+        const user = auth.currentUser;
+
+        if (user.providerData[0].providerId === "password") {
+          // Reauthenticate the user using password
+          const credential = EmailAuthProvider.credential(
+            user.email,
+            prompt("Please enter your password to confirm:")
+          );
+          await reauthenticateWithCredential(user, credential);
+        } else if (user.providerData[0].providerId === "google.com") {
+          // Reauthenticate the user using Google popup
+          const provider = new GoogleAuthProvider();
+          await reauthenticateWithPopup(user, provider);
+        }
+
+        // Delete user data from Firestore
+        const docRef = doc(db, "users", user.uid);
+        await deleteDoc(docRef);
+
+        // Delete user authentication record
+        await user.delete();
+
+        window.location.href = "/login";
+        toast.success("User account deleted successfully!");
+      } catch (error) {
+        toast.error(`Error deleting account: ${error.message}`);
+      }
     }
   }
 
@@ -70,6 +106,7 @@ function Profile() {
 
   return (
     <main className="main-wrapper">
+      <ToastContainer />
       <div className="profile-cd">
         <div className="">
           <div className="profile-n">
@@ -84,6 +121,9 @@ function Profile() {
                   <h4>{userDetails?.firstName || "Full Name"} {userDetails?.lastName || ""}</h4>
                   <button className="btn btn-primary" onClick={handleLogout}>
                     Logout
+                  </button>
+                  <button className="btn btn-danger" onClick={handleDeleteAccount}>
+                    Delete Account
                   </button>
                 </div>
               </div>

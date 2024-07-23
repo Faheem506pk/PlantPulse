@@ -53,7 +53,7 @@ function EditProfile() {
       setShowUploadPopup(true);
     }
   };
-  
+
   const updatePhoto = async () => {
     const user = auth.currentUser;
     if (user && croppedImage) {
@@ -63,9 +63,10 @@ function EditProfile() {
         const blob = await response.blob();
         await uploadBytes(storageRef, blob);
         const photoURL = await getDownloadURL(storageRef);
-  
+
         await updateDoc(doc(db, "users", user.uid), { photo: photoURL });
         setUserDetails(prevDetails => ({ ...prevDetails, photo: photoURL }));
+        setLocalUserDetails(prevDetails => ({ ...prevDetails, photo: photoURL }));
         setCroppedImage(null);
         setShowUploadPopup(false);
         toast.success("Profile photo updated successfully!");
@@ -75,7 +76,6 @@ function EditProfile() {
       }
     }
   };
-  
 
   const updateDetails = async () => {
     const user = auth.currentUser;
