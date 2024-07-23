@@ -177,6 +177,7 @@ function EditProfile() {
                       value={localUserDetails.firstName}
                       onChange={handleChange}
                       className="form-control"
+                      placeholder="Enter your first name"
                     />
                   </div>
                   <div className="form-group mb-3">
@@ -188,6 +189,7 @@ function EditProfile() {
                       value={localUserDetails.lastName}
                       onChange={handleChange}
                       className="form-control"
+                      placeholder="Enter your last name"
                     />
                   </div>
                   <div className="form-group mb-3">
@@ -200,6 +202,7 @@ function EditProfile() {
                       onChange={handleChange}
                       className="form-control"
                       maxLength="11"
+                      placeholder="Enter your phone number"
                     />
                   </div>
                   <div className="form-group mb-3">
@@ -211,6 +214,7 @@ function EditProfile() {
                       value={localUserDetails.city}
                       onChange={handleChange}
                       className="form-control"
+                      placeholder="Enter your city"
                     />
                   </div>
                   <div className="form-group mb-3">
@@ -222,6 +226,7 @@ function EditProfile() {
                       value={localUserDetails.address}
                       onChange={handleChange}
                       className="form-control"
+                      placeholder="Enter your address"
                     />
                   </div>
                   <button type="submit" className="btn btn-primary">Save Changes</button>

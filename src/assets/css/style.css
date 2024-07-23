@@ -181,6 +181,10 @@ body::before {
   color: #ffffff;
 }
 
+input::placeholder {
+  color: #888; /* Change this to your desired placeholder color */
+}
+
 /* Ensure content is on top of the pseudo-element */
 .auth-wrapper,
 .auth-inner,
