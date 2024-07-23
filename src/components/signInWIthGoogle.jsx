@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, db } from "../hooks/useFirebaseData";
 import { toast } from "react-toastify";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 
 function SignInwithGoogle() {
@@ -13,13 +13,19 @@ function SignInwithGoogle() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       if (user) {
-        await setDoc(doc(db, "users", user.uid), {
-          email: user.email,
-          firstName: user.displayName?.split(' ')[0] || "",
-          lastName: user.displayName?.split(' ')[1] || "",
-          photo: user.photoURL,
-          createdAt: new Date().toISOString(),
-        });
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (!userDoc.exists()) {
+          await setDoc(userDocRef, {
+            email: user.email,
+            firstName: user.displayName?.split(' ')[0] || "",
+            lastName: user.displayName?.split(' ')[1] || "",
+            photo: user.photoURL,
+            createdAt: new Date().toISOString(),
+          });
+        }
+
         toast.success("User logged in Successfully", {
           position: "top-center",
         });
