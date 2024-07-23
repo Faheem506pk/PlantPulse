@@ -983,7 +983,9 @@ h3 {
 }
 
 @media (max-width: 480px) {
-
+  .upload-input{
+    width: 92%;
+  }
   
   .usersidebar {
     background-color: rgba(97, 97, 97, 0.7);

@@ -133,7 +133,7 @@ function EditProfile() {
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
-                  className="form-control"
+                  className="form-control upload-input"
                 />
               </div>
             </div>
