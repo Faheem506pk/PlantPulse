@@ -11,14 +11,33 @@ const Topbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      setShowTopbar(scrollTop < lastScrollTop || scrollTop < 100); // Show Topbar if scrolling up or at the top
-      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop); // For Mobile or negative scrolling
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        setShowTopbar(false);
+      } else {
+        setShowTopbar(true);
+      }
+      setLastScrollTop(scrollTop);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const debounce = (func, wait) => {
+      let timeout;
+      return () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(), wait);
+      };
+    };
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    const debouncedHandleScroll = debounce(handleScroll, 50);
+    window.addEventListener('scroll', debouncedHandleScroll);
+
+    return () => window.removeEventListener('scroll', debouncedHandleScroll);
   }, [lastScrollTop]);
+
+  useEffect(() => {
+    if (userDetails) {
+      // Force re-render to update profile picture
+    }
+  }, [userDetails]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -29,10 +48,10 @@ const Topbar = () => {
       <div className="today-weather">
         <h1>Plant Pulse</h1>
       </div>
-      <div className="dp-img-2">  
-        <Link to="/profile" >
+      <div className="dp-img-2">
+        <Link to="/profile">
           <img
-            src={userDetails?.photo || "./assets/images/default-photo.png"} // Provide a default image URL if photo is not available
+            src={userDetails?.photo || "./assets/images/default-photo.png"}
             className="dp-img"
             alt="User Profile"
           />
