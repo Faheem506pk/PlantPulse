@@ -37,8 +37,8 @@ function ForgotPassword() {
 
   return (
     <div className="loginpage">
-      <div className="forgot-password-page glass-effect">
-        <form onSubmit={handleResetPassword}>
+      
+        <form className="forgot-password-page " onSubmit={handleResetPassword}>
           <h3>Forgot Password</h3>
           <div className="mb-3">
             <label>Email address</label>
@@ -57,10 +57,10 @@ function ForgotPassword() {
             </button>
           </div>
           <p className="text-center mt-3">
-            Remembered your password?<Link to="/login">Login here</Link>
+            Remembered your password? <Link to="/login"> Login here</Link>
           </p>
         </form>
-      </div>
+     
     </div>
   );
 }

@@ -93,12 +93,17 @@ body::before {
 }
 
 .forgot-password-page {
-  max-width: 400px;
+  align-content: center;
+  max-width: 500px;
+  height: auto;
+  height: 500px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
+  border-radius: 10% !important;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
 }
 
 .forgot-password-page h3 {
@@ -785,8 +790,22 @@ h3 {
     height: auto;
   }
 
+  /* forgot password */
 
-
+  .forgot-password-page {
+    align-content: center;
+    max-width: 340px;
+    height: auto;
+    height: 350px;
+    margin: 80px auto;
+    border-radius: 10% !important;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    padding: 2px 20px 2px 20px !important;
+  }
 
   .usersidebar {
     background-color: rgba(97, 97, 97, 0.7);
@@ -822,7 +841,7 @@ h3 {
   }
 
   .main-content {
-    padding: 0px 30px 190px 30px;
+    padding: 0px 0px 190px 0px;
     
   }
   .profile-n{
