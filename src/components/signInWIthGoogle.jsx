@@ -3,6 +3,8 @@ import { auth, db } from "../hooks/useFirebaseData";
 import { toast } from "react-toastify";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import googleImage from "../assets/images/google.png";
+
 
 function SignInwithGoogle() {
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ function SignInwithGoogle() {
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
         onClick={googleLogin}
       >
-        <img src={require("../google.png")} width={"60%"} alt="Google Sign In" />
+        <img src={googleImage} width={"50%"} alt="Google Sign In" />
       </div>
     </div>
   );

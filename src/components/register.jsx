@@ -38,7 +38,7 @@ function Register() {
 
   return (
     <div className="registerpage">
-    <form onSubmit={handleRegister}>
+    <form  className="Sign-Up-password-page" onSubmit={handleRegister}>
       <h3>Sign Up</h3>
 
       <div className="mb-3">

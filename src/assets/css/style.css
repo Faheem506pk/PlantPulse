@@ -50,7 +50,7 @@ body::before {
 }
 
 .forgot-password a {
-  color: #007bff;
+  color: #ececec;
 }
 
 .forgot-password a:hover {
@@ -72,24 +72,24 @@ body::before {
   text-align: right;
   font-size: 20px;
   padding-top: 10px;
-  color: #7f7d7d;
+  color: #ececec;
   margin: 0;
 }
 
 .Sign-up a {
   
-  color: #167bff;
+  color: #ffffff;
 }
 .forgot-password {
   text-align: right;
   font-size: 13px;
   padding-top: 10px;
-  color: #7f7d7d;
+  color: #ececec;
   margin: 0;
 }
 
 .forgot-password a {
-  color: #167bff;
+  color: #ececec;
 }
 
 .forgot-password-page {
@@ -106,16 +106,49 @@ body::before {
   color: #ffffff;
 }
 
+
 .forgot-password-page h3 {
   margin-bottom: 20px;
 }
 
 .forgot-password-page .form-control {
   margin-bottom: 10px;
+  border: auto;
+  border-radius: 12px;
+  color: #ffffff;
 }
 
 
+/* login page */
 
+.login-password-page {
+  align-content: center;
+  max-width: 500px;
+  height: auto;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 10% !important;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+.Sign-Up-password-page {
+  align-content: center;
+  max-width: 500px;
+  height: auto;
+  height: 500px;
+  margin: 0 auto ;
+  
+  padding: 0px 30px 0px 30px !important;
+  border-radius: 10% !important;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
 /* Ensure content is on top of the pseudo-element */
 .auth-wrapper,
 .auth-inner,
@@ -174,7 +207,7 @@ body::before {
 }
 
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
+  border-color: #8ab9f7;
   box-shadow: none;
 }
 
@@ -213,6 +246,7 @@ form {
   border-radius: 15px;
   transition: all 0.3s;
 }
+
 
 
 h3 {
@@ -678,8 +712,11 @@ h3 {
 
   .form-control {
     width: 100%;
+    border: auto;
+    border-radius: 12px;
+    color: #ffffff;
   }
-
+  
 
 /* Cropper popup */
 .cropper-popup {
@@ -802,6 +839,35 @@ h3 {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    padding: 2px 20px 2px 20px !important;
+  }
+
+  .login-password-page {
+    align-content: center;
+    max-width: 98%;
+    height: auto;
+    height: 500px;
+    margin: 0px auto;
+    border-radius: 8% !important;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    padding: 2px 20px 2px 20px !important;
+  }
+  .Sign-Up-password-page {
+    align-content: center;
+    max-width: 98%;
+    height: auto;
+    height: 500px;
+    margin: 0px auto;
+    border-radius: 8% !important;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: #ffffff;
     padding: 2px 20px 2px 20px !important;
