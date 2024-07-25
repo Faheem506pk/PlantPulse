@@ -1,44 +1,54 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { auth } from "../hooks/useFirebaseData";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../hooks/useFirebaseData"; // Import Firestore
 import { toast } from "react-toastify";
 import SignInwithGoogle from "./signInWIthGoogle";
 import { Link } from 'react-router-dom';
-import "../assets/css/style.css"; // Adjust the path as needed
+import { doc, getDoc } from "firebase/firestore"; // Import Firestore functions
+import "../assets/css/style.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
-
-  // Hardcoded admin credentials
-  const adminEmail = "admin@gmail.com";
-  const adminPassword = "Admin121450";
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Check if the entered credentials match the admin credentials
-    if (email === adminEmail && password === adminPassword) {
-      console.log("Admin logged in Successfully");
-      navigate("/admin"); // Use navigate to redirect
-      toast.success("Admin logged in Successfully", {
-        position: "top-center",
-      });
-      return;
-    }
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("User logged in Successfully");
-      navigate("/profile"); // Use navigate to redirect
-      toast.success("User logged in Successfully", {
-        position: "top-center",
-      });
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Fetch role from Firestore
+      const userDocRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const role = userData.role;
+
+        if (role === 'admin') {
+          console.log("Admin logged in Successfully");
+          toast.success("Admin logged in Successfully", {
+            position: "top-center",
+          });
+          navigate("/admin");
+        } else {
+          console.log("User logged in Successfully");
+          toast.success("User logged in Successfully", {
+            position: "top-center",
+          });
+          navigate("/profile");
+        }
+      } else {
+        console.log("No such document!");
+        toast.error("No user data found", {
+          position: "bottom-center",
+        });
+      }
     } catch (error) {
       console.log(error.message);
-
       toast.error(error.message, {
         position: "bottom-center",
       });
@@ -49,7 +59,6 @@ function Login() {
     <div className="loginpage">
       <form className="login-password-page" onSubmit={handleSubmit}>
         <h3>Login</h3>
-
         <div className="mb-3">
           <label>Email address</label>
           <input
@@ -60,7 +69,6 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
         <div className="mb-3">
           <label>Password</label>
           <input
@@ -71,7 +79,6 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
             Login

@@ -16,61 +16,71 @@ import ForgotPassword from './components/ForgotPassword';
 import Login from './components/login';
 import EditProfile from './components/EditProfile';
 import ScrollToTop from './components/ScrollToTop';
-import { auth } from "./hooks/useFirebaseData";
+import { auth, db } from "./hooks/useFirebaseData";
 import { UserProvider } from './components/UserContext';
 import DefaultLayout from './admin/DefaultLayout';
+import { doc, getDoc } from 'firebase/firestore';
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  const adminEmail = "admin@gmail.com";
-
-  // Determine if the current route is for admin
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isAuthRoute = ['/login', '/register', '/forgotpassword'].includes(location.pathname);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      console.log("Auth state changed:", user);
-      setUser(user);
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        setIsAdmin(user.email === adminEmail);
+        // Fetch role from Firestore
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setIsAdmin(userData.role === 'admin');
+        } else {
+          setIsAdmin(false);
+        }
+        setUser(user);
       } else {
         setIsAdmin(false);
+        setUser(null);
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <UserProvider>
       <div className="App">
-        {/* Admin Routes */}
         {isAdminRoute ? (
           <Routes>
-            <Route path="/admin/*" element={isAdmin ? <Login /> : <DefaultLayout /> } />
+            <Route path="/admin/*" element={isAdmin ? <DefaultLayout /> : <Navigate to="/login" />} />
           </Routes>
         ) : (
           <div className="main-layout">
-            {/* Conditionally render Topbar and Sidebar based on route */}
             {!isAuthRoute && <Topbar />}
             {!isAuthRoute && <Sidebar />}
             <div className="main-content">
               <ScrollToTop />
               <Routes>
-                <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-                <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
-                <Route path="/graphs" element={user ? <Graphs /> : <Navigate to="/login" />} />
-                <Route path="/presets" element={user ? <Presets /> : <Navigate to="/login" />} />
-                <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
-                <Route path="/settings" element={user ? <Settings /> : <Navigate to="/login" />} />
-                <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
-                <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
+                <Route path="/" element={user ? <Navigate to={isAdmin ? "/admin" : "/dashboard"} /> : <Navigate to="/login" />} />
+                <Route path="/dashboard" element={user && !isAdmin ? <Dashboard /> : <Navigate to="/login" />} />
+                <Route path="/graphs" element={user && !isAdmin ? <Graphs /> : <Navigate to="/login" />} />
+                <Route path="/presets" element={user && !isAdmin ? <Presets /> : <Navigate to="/login" />} />
+                <Route path="/profile" element={user && !isAdmin ? <Profile /> : <Navigate to="/login" />} />
+                <Route path="/settings" element={user && !isAdmin ? <Settings /> : <Navigate to="/login" />} />
+                <Route path="/login" element={!user ? <Login /> : <Navigate to={isAdmin ? "/admin" : "/dashboard"} />} />
+                <Route path="/register" element={!user ? <Register /> : <Navigate to={isAdmin ? "/admin" : "/dashboard"} />} />
                 <Route path="/forgotpassword" element={!user ? <ForgotPassword /> : <Navigate to="/login" />} />
-                <Route path="/edit-profile" element={user ? <EditProfile /> : <Navigate to="/login" />} />
+                <Route path="/edit-profile" element={user && !isAdmin ? <EditProfile /> : <Navigate to="/login" />} />
               </Routes>
               <ToastContainer />
             </div>

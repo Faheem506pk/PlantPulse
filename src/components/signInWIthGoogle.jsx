@@ -5,7 +5,6 @@ import { setDoc, doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import googleImage from "../assets/images/google.png";
 
-
 function SignInwithGoogle() {
   const navigate = useNavigate();
 
@@ -35,6 +34,7 @@ function SignInwithGoogle() {
             lastName: user.displayName?.split(' ')[1] || "",
             photo: user.photoURL,
             registrationDate,
+            role: "user" // Add role field here
           });
         }
 
