@@ -2,15 +2,28 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
 import "../assets/css/admin.css"; // Adjust the path as needed
-import { Link, useLocation } from 'react-router-dom';
+import { auth } from "../hooks/useFirebaseData"; // Ensure correct path
+import { toast } from 'react-toastify'; // Import toast for notifications
 
 const AppSidebar = ({ userDetails }) => {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate
   const [show, setShow] = useState(false); // Define show state
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  async function handleLogout() {
+    try {
+      await auth.signOut();
+      navigate("/login"); // Use navigate for redirection
+      toast.success("User logged out successfully!");
+    } catch (error) {
+      toast.error(`Error logging out: ${error.message}`);
+    }
+  }
 
   // Function to check if the link is active
   const isActive = (path) => {
@@ -33,7 +46,7 @@ const AppSidebar = ({ userDetails }) => {
           <h1>Plant Pulse</h1>
         </div>
        <div className="admin-btn-container">
-        <button type="button" className="btn btn-primary admin-btn " onClick={handleShow}>
+        <button type="button" className="btn btn-primary admin-btn" onClick={handleShow}>
           <i className="bi bi-list"></i>
         </button>
         </div>
@@ -75,10 +88,9 @@ const AppSidebar = ({ userDetails }) => {
             </Link>
           </li>
           <li>
-            <Link to="/customers" className={isActive('/customers')}>
-              <i className="bi bi-people me-2" style={{ fontSize: 16 }}></i>
-              <span className="d-inline">Customers</span>
-            </Link>
+          <a className="dropdown-item" onClick={handleLogout}>
+                  <i className="bi bi-box-arrow-right me-2"></i> Sign out
+                </a>
           </li>
         </ul>
         <hr />
@@ -122,9 +134,9 @@ const AppSidebar = ({ userDetails }) => {
               <hr className="dropdown-divider" />
             </li>
             <li>
-              <a className="dropdown-item" href="#">
-                <i className="bi bi-box-arrow-right me-2"></i> Sign out
-              </a>
+              <button className="btn btn-primary" onClick={handleLogout}>
+                Logout
+              </button>
             </li>
           </ul>
         </div>
@@ -162,10 +174,9 @@ const AppSidebar = ({ userDetails }) => {
               </Link>
             </li>
             <li>
-              <Link to="/customers" className={isActive('/customers')}>
-                <i className="bi bi-people me-2"></i>
-                <span className="d-inline">Customers</span>
-              </Link>
+            <a className="dropdown-item" onClick={handleLogout}>
+                  <i className="bi bi-box-arrow-right me-2"></i> Sign out
+                </a>
             </li>
           </ul>
           <hr />
@@ -209,7 +220,7 @@ const AppSidebar = ({ userDetails }) => {
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" onClick={handleLogout}>
                   <i className="bi bi-box-arrow-right me-2"></i> Sign out
                 </a>
               </li>
