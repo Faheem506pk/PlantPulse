@@ -216,9 +216,7 @@ input::placeholder {
   grid-template-areas: ". .";
 }
 
-.mb-last{
-  margin-bottom: 150px;
-}
+
 
 
 
@@ -636,7 +634,7 @@ h3 {
   background-color: var(--btn-bg-color);
   border: none;
   color: white;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
 }
@@ -664,7 +662,7 @@ h3 {
 }
 @media (max-width: 1200px) {
   .usersidebar {
-    max-height: 1000px; /* Adjust this value for laptops */
+    
     margin-bottom: 50px;
   }
 
@@ -687,14 +685,7 @@ h3 {
   margin-bottom: 20px;
 }
 
-  .usersidebar {
-    margin: 0px 20px 0px 40px;
-    margin-bottom: 50px;
-    margin-top: 150px;
-    padding: 10px;
-    max-height: 810px; /* Adjust this value for tablets */
-    
-  }
+ 
 
   .main-content {
     
@@ -718,6 +709,11 @@ h3 {
 
 /* For mobile devices */
 @media (max-width: 768px) {
+  
+  .mb-last{
+    margin-bottom: 150px;
+  }
+
   .Topbar {
     padding: 20px 40px 20px 40px;
     
@@ -847,6 +843,11 @@ h3 {
 
 /* For smaller screens */
 @media (max-width: 576px) {
+
+  .mb-last{
+    margin-bottom: 150px;
+  }
+
   .Topbar {
     padding: 20px 10px 20px 40px;
     
@@ -993,8 +994,9 @@ h3 {
     width: 92%;
   }
   
+  
   .usersidebar {
-    background-color: rgba(97, 97, 97, 0.7);
+    background-color: rgba(97, 97, 97, 0.1);
     position: fixed;
     bottom: 0;
     width: 100%;

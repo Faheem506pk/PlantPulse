@@ -106,9 +106,9 @@ function Profile() {
 
   return (
     <main className="main-wrapper">
-      <ToastContainer />
-      <div className="profile-cd">
-        <div className="">
+      
+      <div className="profile-cd d-flex justify-content-center align-items-center">
+        <div className="row w-100">
           <div className="col-lg-5 col-md-5 profile-n">
             <div className="d-flex justify-content-center flex-column align-items-center">
               <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
@@ -192,7 +192,7 @@ function Profile() {
             </div>
           </div>
         </div>
-      
+        <ToastContainer />
     </main>
   );
 }

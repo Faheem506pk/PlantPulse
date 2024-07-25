@@ -2,8 +2,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth, db } from "../hooks/useFirebaseData";
 import { setDoc, doc } from "firebase/firestore";
-import { toast } from "react-toastify";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -93,6 +93,7 @@ function Register() {
         Already registered <a href="/login">Login</a>
       </p>
     </form>
+    <ToastContainer />
     </div>
   );
 }
