@@ -1,25 +1,18 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons
-import { useLocation } from 'react-router-dom'; // Import useLocation
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation
 import "../assets/css/admin.css"; // Adjust the path as needed
 import {
     MDBCollapse,
     MDBListGroup,
-    MDBListGroupItem,
-    MDBIcon,
-    MDBRipple
+    MDBIcon
 } from 'mdb-react-ui-kit';
 
 const AppSidebar = ({ showShow }) => {
     const location = useLocation();
 
-    // Function to check if the link is active
-    const isActive = (path) => {
-        return location.pathname === path ? 'nav-link active' : 'nav-link';
-    };
-
-    // Conditional class for the sidebar visibility and height
+    const isActive = (path) => location.pathname === path ? 'nav-link active' : 'nav-link';
     const sidebarClass = showShow ? 'd-block full-height' : 'd-none';
 
     console.log('AppSidebar render:', { showShow });
@@ -30,90 +23,40 @@ const AppSidebar = ({ showShow }) => {
                 <MDBListGroup flush className="mx-3 mt-4">
                     <h3>Plant Pulse</h3>
                     
-                    <MDBRipple rippleTag='span'>
-                        <MDBListGroupItem
-                            tag='a'
-                            href='#'
-                            action
-                            className={isActive('/dashboard') + ' border-0 border-bottom rounded'}
-                            aria-current='true'
-                        >
-                            <MDBIcon fas icon="tachometer-alt me-3" />
-                            Main Dashboard
-                        </MDBListGroupItem>
-                    </MDBRipple>
+                    <Link to="/admin" className={`nav-link ${isActive('/admin')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                        <MDBIcon fas icon="tachometer-alt me-3" />
+                        Main Dashboard
+                    </Link>
 
-                    <MDBRipple rippleTag='span'>
-                        <MDBListGroupItem
-                            tag='a'
-                            href='#'
-                            action
-                            className={isActive('/website-traffic') + ' border-0 border-bottom rounded'}
-                        >
-                            <MDBIcon fas icon="chart-area me-3" />
-                            Website traffic
-                        </MDBListGroupItem>
-                    </MDBRipple>
+                    <Link to="/website-traffic" className={`nav-link ${isActive('/website-traffic')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                        <MDBIcon fas icon="chart-area me-3" />
+                        Website traffic
+                    </Link>
 
-                    <MDBRipple rippleTag='span'>
-                        <MDBListGroupItem
-                            tag='a'
-                            href='#'
-                            action
-                            className={isActive('/password') + ' border-0 border-bottom rounded'}
-                        >
-                            <MDBIcon fas icon="lock me-3" />
-                            Password
-                        </MDBListGroupItem>
-                    </MDBRipple>
+                    <Link to="/password" className={`nav-link ${isActive('/password')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                        <MDBIcon fas icon="lock me-3" />
+                        Password
+                    </Link>
 
-                    <MDBRipple rippleTag='span'>
-                        <MDBListGroupItem
-                            tag='a'
-                            href='#'
-                            action
-                            className={isActive('/analytics') + ' border-0 border-bottom rounded'}
-                        >
-                            <MDBIcon fas icon="chart-line me-3" />
-                            Analytics
-                        </MDBListGroupItem>
-                    </MDBRipple>
+                    <Link to="/analytics" className={`nav-link ${isActive('/analytics')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                        <MDBIcon fas icon="chart-line me-3" />
+                        Analytics
+                    </Link>
 
-                    <MDBRipple rippleTag='span'>
-                        <MDBListGroupItem
-                            tag='a'
-                            href='#'
-                            action
-                            className={isActive('/seo') + ' border-0 border-bottom rounded'}
-                        >
-                            <MDBIcon fas icon="chart-pie me-3" />
-                            SEO
-                        </MDBListGroupItem>
-                    </MDBRipple>
+                    <Link to="/seo" className={`nav-link ${isActive('/seo')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                        <MDBIcon fas icon="chart-pie me-3" />
+                        SEO
+                    </Link>
 
-                    <MDBRipple rippleTag='span'>
-                        <MDBListGroupItem
-                            tag='a'
-                            href='#'
-                            action
-                            className={isActive('/users') + ' border-0 border-bottom rounded'}
-                        >
-                            <MDBIcon fas icon="users me-3" />
-                            Users
-                        </MDBListGroupItem>
-                    </MDBRipple>
+                    <Link to="/users" className={`nav-link ${isActive('/users')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                        <MDBIcon fas icon="users me-3" />
+                        Users
+                    </Link>
 
-                    <MDBRipple rippleTag='span'>
-                        <MDBListGroupItem
-                            tag='a'
-                            href='#'
-                            action
-                            className={isActive('/sales') + ' border-0 rounded'}
-                        >
-                            <MDBIcon fas icon="money-bill me-3" />
-                            Sales
-                        </MDBListGroupItem>
-                    </MDBRipple>
+                    <Link to="/sales" className={`nav-link ${isActive('/sales')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                        <MDBIcon fas icon="money-bill me-3" />
+                        Sales
+                    </Link>
                 </MDBListGroup>
             </div>
         </MDBCollapse>

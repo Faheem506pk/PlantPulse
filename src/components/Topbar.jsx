@@ -44,7 +44,7 @@ const Topbar = () => {
   }
 
   return (
-    <div className={`Topbar ${showTopbar ? 'show' : 'hide'}`}>
+    <div className={`Topbar `}>
       <div className="today-weather">
         <h1>Plant Pulse</h1>
       </div>
