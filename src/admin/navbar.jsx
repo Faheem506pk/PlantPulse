@@ -51,13 +51,8 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
                     >
                         <i className="bi bi-list"></i>
                     </MDBNavbarToggler>
-                    <MDBNavbarBrand href='#'>
-                        <img
-                            src='https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp'
-                            height='30'
-                            alt=''
-                            loading='lazy'
-                        />
+                    <MDBNavbarBrand href='#' className="d-flex justify-content-center align-items-center ">
+                       <h4  className="title-name" >Plant Pulse</h4>
                     </MDBNavbarBrand>
                 </MDBNavbarNav>
                 <MDBNavbarNav className="d-flex flex-row justify-content-end w-auto">
