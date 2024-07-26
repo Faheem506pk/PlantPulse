@@ -89,4 +89,5 @@ export const useFirebaseData = () => {
 export { storage };
 export const auth=getAuth();
 export const db=getFirestore(app);
+export const rtdb = getDatabase(app);
 export default app;
