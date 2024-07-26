@@ -34,7 +34,8 @@ function SignInwithGoogle() {
             lastName: user.displayName?.split(' ')[1] || "",
             photo: user.photoURL,
             registrationDate,
-            role: "user" // Add role field here
+            role: "user", // Add role field here
+            access: false
           });
         }
 

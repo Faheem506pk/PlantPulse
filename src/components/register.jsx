@@ -22,7 +22,8 @@ function Register() {
           firstName: fname,
           lastName: lname,
           photo: "",
-          role: "user" // Add role field here
+          role: "user", // Add role field here
+          access: false
         });
       }
       toast.success("User Registered Successfully!!", {

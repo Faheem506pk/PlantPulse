@@ -12,10 +12,12 @@ export default function SearchUsers() {
   const [selectedRole, setSelectedRole] = useState('');
   const [confirmationVisible, setConfirmationVisible] = useState(false);
   const [password, setPassword] = useState('');
+  const [access, setAccess] = useState(false);
 
   useEffect(() => {
     if (userDetails) {
       setSelectedRole(userDetails.role || 'user'); // Default to 'user' if no role is set
+      setAccess(userDetails.access || false); // Set access boolean field
     }
   }, [userDetails]);
 
@@ -79,6 +81,25 @@ export default function SearchUsers() {
     }
   };
 
+  const toggleAccess = async () => {
+    if (!userDetails) return;
+
+    setLoading(true);
+
+    try {
+      const userRef = doc(db, 'users', userDetails.id); // Use document ID for the reference
+      await updateDoc(userRef, { access: !access }); // Toggle the access boolean in Firestore
+      toast.success('User access updated successfully.');
+      setUserDetails((prev) => ({ ...prev, access: !access })); // Update the local state
+      setAccess(!access); // Toggle the access state
+    } catch (error) {
+      toast.error('Error updating user access.');
+      console.error('Error updating user access:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="admin-container">
       <ToastContainer />
@@ -125,6 +146,7 @@ export default function SearchUsers() {
                 <p className="admin-card-text"><strong>Phone:</strong> {userDetails.phone}</p>
                 <p className="admin-card-text"><strong>Address:</strong> {userDetails.address}</p>
                 <p className="admin-card-text"><strong>City:</strong> {userDetails.city}</p>
+                <p className="admin-card-text"><strong>Access:</strong> {access ? "Yes" : "No"}</p>
                 <p className="admin-card-text"><strong>Role:</strong> {userDetails.role}</p>
                 <div className="admin-role-change">
                   <label htmlFor="role-select">Change Role:</label>
@@ -143,6 +165,15 @@ export default function SearchUsers() {
                     disabled={loading}
                   >
                     Change Role
+                  </button>
+                </div>
+                <div className="admin-access-toggle mt-3">
+                  <button
+                    className={`admin-btn ${access ? 'admin-btn-danger' : 'admin-btn-success'}`}
+                    onClick={toggleAccess}
+                    disabled={loading}
+                  >
+                    {access ? 'Revoke Access' : 'Grant Access'}
                   </button>
                 </div>
               </div>

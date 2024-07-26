@@ -102,6 +102,7 @@ export default function ViewAllUsers() {
                                                 <p className="card-text"><strong>Phone:</strong> {user.phone}</p>
                                                 <p className="card-text"><strong>Address:</strong> {user.address}</p>
                                                 <p className="card-text"><strong>City:</strong> {user.city}</p>
+                                                <p className="card-text"><strong>Access:</strong> {user.access ? "Yes" : "No"}</p>
                                                 <p className="card-text"><strong>Role:</strong> {user.role}</p>
                                             </div>
                                         </div>
