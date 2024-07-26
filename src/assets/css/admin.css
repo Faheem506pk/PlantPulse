@@ -197,7 +197,32 @@
     height: 100px;
   }
 }
+/* Add styling for the stats cards */
 
+.card-stats {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #f8f9fa;
+}
+
+.card-stats:hover {
+  background-color: #e9ecef;
+}
+
+.card-stats .card-body {
+  padding: 2rem;
+}
+
+.card-stats .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-stats .card-text {
+  font-size: 1.25rem;
+}
 
 
 
