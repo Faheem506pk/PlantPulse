@@ -785,3 +785,45 @@ margin-right: 50px;
 .add-new-presets-cropper {
   margin-top: 10px;
 }
+
+
+/* all presets */
+
+.presets-container {
+  padding: 20px;
+}
+
+.presets-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.preset-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: calc(33.333% - 20px); /* Adjust based on the number of cards per row */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preset-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.preset-card-body {
+  padding: 15px;
+}
+
+.preset-card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.preset-card-text {
+  margin: 5px 0;
+  font-size: 1rem;
+}
