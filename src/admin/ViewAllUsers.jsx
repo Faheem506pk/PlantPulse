@@ -64,7 +64,7 @@ export default function ViewAllUsers() {
                     <div className="row mb-4">
                         <div className="col-lg-4 col-md-12 mb-4">
                             <div className="card card-stats" onClick={handleAllUsersClick}>
-                                <div className="card-body text-center">
+                                <div className="admin-card-body text-center">
                                     <h5 className="card-title">Total Users</h5>
                                     <p className="card-text">{totalUserCount}</p>
                                 </div>
@@ -72,7 +72,7 @@ export default function ViewAllUsers() {
                         </div>
                         <div className="col-lg-4 col-md-12 mb-4">
                             <div className="card card-stats" onClick={handleAdminClick}>
-                                <div className="card-body text-center">
+                                <div className="admin-card-body text-center">
                                     <h5 className="card-title">Admins</h5>
                                     <p className="card-text">{adminCount}</p>
                                 </div>
@@ -80,7 +80,7 @@ export default function ViewAllUsers() {
                         </div>
                         <div className="col-lg-4 col-md-12 mb-4">
                             <div className="card card-stats" onClick={handleUserClick}>
-                                <div className="card-body text-center">
+                                <div className="admin-card-body text-center">
                                     <h5 className="card-title">Users</h5>
                                     <p className="card-text">{userCount}</p>
                                 </div>
@@ -95,7 +95,7 @@ export default function ViewAllUsers() {
                                 <div key={user.id} className="col-lg-4 col-md-6 col-sm-12 mb-4">
                                     <div className="card user-card">
                                         <img src={user.photo || "./assets/images/default-photo.png"} className="card-img-top rounded-circle mx-auto mt-3" alt={`${user.firstName} ${user.lastName}`} />
-                                        <div className="card-body">
+                                        <div className="admin-card-body">
                                             <h5 className="card-title text-center">{user.firstName} {user.lastName}</h5>
                                             <div className="user-info">
                                                 <p className="card-text"><strong>Email:</strong> {user.email}</p>

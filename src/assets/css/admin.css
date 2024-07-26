@@ -145,7 +145,7 @@
   margin: 0 auto;
 }
 
-.card-body {
+.admin-card-body {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -211,7 +211,7 @@
   background-color: #e9ecef;
 }
 
-.card-stats .card-body {
+.card-stats .admin-card-body {
   padding: 2rem;
 }
 
