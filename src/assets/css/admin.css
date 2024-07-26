@@ -712,3 +712,76 @@ margin-right: 50px;
 .dropdown-item:hover {
   background-color: #495057; /* Background color on hover */
 }
+
+
+/* add presets */
+
+/* Add this to your CSS file */
+
+/* Container for centering the form */
+.add-new-presets-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form styling */
+.add-new-presets-form {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Title styling */
+.add-new-presets-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Cropper button styling */
+.add-new-presets-crop-btn {
+  margin-top: 10px;
+}
+
+/* Upload popup styling */
+.add-new-presets-upload-popup {
+  text-align: center;
+}
+
+.add-new-presets-upload-img {
+  max-width: 100%;
+}
+
+.add-new-presets-upload-btn {
+  margin-top: 10px;
+}
+
+/* Input field and form control styling */
+.form-control {
+  border-radius: 0.25rem;
+}
+
+/* Center align buttons */
+.add-new-presets-buttons {
+  text-align: center;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .add-new-presets-container {
+    margin: 0 15px;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/* Cropper container styling */
+.add-new-presets-cropper {
+  margin-top: 10px;
+}
