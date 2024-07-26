@@ -3,7 +3,7 @@
 .main-layout-admin {
   display: flex;
   height: 100vh; /* Full height for the layout */
-  background-color: #000000;
+  background-color: #757575;
   overflow: hidden;
 }
 
@@ -15,14 +15,70 @@
   flex-direction: column;
   justify-content: space-between;
 }
+body {
+  background-color: #fbfbfb;
+}
 
+@media (min-width: 992px) {
+  .sidebar {
+    height: unset!important;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 5px 0 0;
+  /* Height of navbar */
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+  width: 240px;
+  /* z-index: 600; */
+  overflow: auto;
+}
+
+.sidebar.show {
+  height: 100vh;
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+
+.sidebar .active {
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+}
+
+
+
+.centered-text {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 .main-content-admin {
   flex: 1;
   overflow-y: auto; /* Allow scrolling for the main content */
-  padding: 20px;
-  margin-top: 80px;
+  padding: 80px 20px;
+ 
 }
 
 .admin-btn{
@@ -49,7 +105,40 @@ margin-left: 20px;
 .admin-Topbar .admin-today-weather h1 {
   margin: 0;
 }
+.hide {
+  display: none;
+}
+/* styles.css */
 
+.hidden {
+  display: none;
+}
+.full-height {
+  height: 100%;
+}
+
+@media (max-width: 992px) {
+  .hide-on-small {
+      display: none;
+  }
+}
+
+
+.show {
+  display: block;
+ 
+}
+
+.sidebar {
+  /* Ensure this is not conflicting with MDBCollapse */
+  display: block; /* This should allow visibility if 'show' prop is true */
+  
+}
+
+.sidebar.collapsing {
+  /* Ensure no unintended styles for collapsing effect */
+  display: none; /* This might conflict with MDBCollapse's show/hide logic */
+}
 
 @media (min-width: 992px) {
   .admin-Topbar {
