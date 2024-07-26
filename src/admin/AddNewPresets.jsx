@@ -47,19 +47,19 @@ export default function AddNewPresets() {
 
     switch (name) {
       case "tempup":
-        newValue = validateValue(newValue, 10, 50);
+       
         updatedFormData.tempup = newValue;
         updatedFormData.tempdown = newValue - 2;
         validationErrors.tempup = newValue < 10 || newValue > 50 ? "Temperature Up must be between 10 and 50." : "";
         break;
       case "moistureup":
-        newValue = validateValue(newValue, 10, 100);
+        
         updatedFormData.moistureup = newValue;
         updatedFormData.moisturedown = newValue - 10;
         validationErrors.moistureup = newValue < 10 || newValue > 100 ? "Moisture Up must be between 10 and 100." : "";
         break;
       case "humidup":
-        newValue = validateValue(newValue, 10, 100);
+        
         updatedFormData.humidup = newValue;
         updatedFormData.humiddown = newValue - 10;
         validationErrors.humidup = newValue < 10 || newValue > 100 ? "Humidity Up must be between 10 and 100." : "";
@@ -256,9 +256,13 @@ export default function AddNewPresets() {
               type="number"
               name="tempdown"
               value={formData.tempdown}
-              readOnly
+              onChange={handleChange}
               placeholder="Temperature Down"
               className="form-control"
+              min="8"
+              max="48"
+              step="1"
+              disabled
             />
           </div>
           <div className="add-new-presets-moistureup mb-3">
@@ -280,9 +284,13 @@ export default function AddNewPresets() {
               type="number"
               name="moisturedown"
               value={formData.moisturedown}
-              readOnly
+              onChange={handleChange}
               placeholder="Moisture Down"
               className="form-control"
+              min="0"
+              max="90"
+              step="1"
+              disabled
             />
           </div>
           <div className="add-new-presets-humidup mb-3">
@@ -304,22 +312,18 @@ export default function AddNewPresets() {
               type="number"
               name="humiddown"
               value={formData.humiddown}
-              readOnly
+              onChange={handleChange}
               placeholder="Humidity Down"
               className="form-control"
+              min="0"
+              max="90"
+              step="1"
+              disabled
             />
           </div>
-          <div className="add-new-presets-buttons text-center">
-            <button type="submit" className="btn btn-primary">
-              Add Preset
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary "
-              onClick={handleClear}
-            >
-              Clear
-            </button>
+          <div className="text-center">
+            <button type="submit" className="btn btn-primary me-2">Add Preset</button>
+            <button type="button" className="btn btn-secondary" onClick={handleClear}>Clear</button>
           </div>
         </form>
       </div>
