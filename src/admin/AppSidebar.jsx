@@ -43,7 +43,7 @@ const AppSidebar = ({ showShow }) => {
                     </Link>
 
                     <Link to="/admin/presets" className={`nav-link ${isActive('/admin/presets')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
-                        <i className="bi bi-graph-up me-3"></i>
+                    <i class="bi bi-card-list me-3"></i>
                         Presets
                     </Link>
 
@@ -60,7 +60,7 @@ const AppSidebar = ({ showShow }) => {
                         <MDBDropdownMenu>
                             <MDBDropdownItem tag={Link} to="/admin/addnewuser" className="list-group-item list-group-item-action border-0 border-bottom rounded">Add New User</MDBDropdownItem>
                             <MDBDropdownItem tag={Link} to="/admin/searchusers" className="list-group-item list-group-item-action border-0 border-bottom rounded">Search Users</MDBDropdownItem>
-                            <MDBDropdownItem tag={Link} to="/admin/resetuserpassword" className="list-group-item list-group-item-action border-0 border-bottom rounded">Reset User Password</MDBDropdownItem>
+                            <MDBDropdownItem tag={Link} to="/admin/resetuserpassword" className="list-group-item list-group-item-action border-0  rounded">Reset User Password</MDBDropdownItem>
                         </MDBDropdownMenu>
                     </MDBDropdown>
                 </MDBListGroup>
