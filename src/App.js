@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './components/Dashbord';
 import Graphs from './components/Graphs';
-import Presets from './components/Presets';
+
 import Settings from './components/Settings';
 import Sidebar from './components/sidebar';
 import Topbar from './components/Topbar';
@@ -29,7 +29,7 @@ import UserPasswordReset from './admin/UserPasswordReset';
 import ViewAllUsers from './admin/ViewAllUsers';
 import AppContent from './admin/AppContent';
 import EditAdminProfile from './admin/EditAdminProfile';
-
+import Presets from './admin/Presets';
 const App = () => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
