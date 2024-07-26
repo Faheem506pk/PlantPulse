@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect, useContext }  from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import "../assets/css/admin.css"; // Adjust the path as needed
 import { auth } from "../hooks/useFirebaseData"; // Ensure correct path
 import { toast } from 'react-toastify'; // Import toast for notifications
+import { Link } from 'react-router-dom';
+import { UserContext } from "../components/UserContext";
 import {
     MDBContainer,
     MDBNavbar,
@@ -24,7 +26,14 @@ import {
 
 export default function Navbar({ toggleSidebar, sidebarVisible }) {
     const navigate = useNavigate(); // Initialize useNavigate
+    const { userDetails, loading } = useContext(UserContext);
+    
 
+    useEffect(() => {
+        if (userDetails) {
+          // Force re-render to update profile picture
+        }
+      }, [userDetails]);
     async function handleLogout() {
         try {
             await auth.signOut();
@@ -39,7 +48,7 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
 
     return (
         <MDBNavbar expand='lg' light bgColor='light' className="app-navbar">
-            <MDBContainer fluid>
+            <MDBContainer fluid className="navbar-admin">
                 <MDBNavbarNav className="d-flex flex-row align-items-center w-auto">
                     <MDBNavbarToggler
                         type='button'
@@ -51,8 +60,8 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
                     >
                         <i className="bi bi-list"></i>
                     </MDBNavbarToggler>
-                    <MDBNavbarBrand href='#' className="d-flex justify-content-center align-items-center ">
-                       <h4  className="title-name" >Plant Pulse</h4>
+                    <MDBNavbarBrand  className="d-flex justify-content-center align-items-center ">
+                       <h3  className="title-name" >Plant Pulse</h3>
                     </MDBNavbarBrand>
                 </MDBNavbarNav>
                 <MDBNavbarNav className="d-flex flex-row justify-content-end w-auto">
@@ -60,7 +69,7 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
                     <MDBNavbarItem className='me-3 me-lg-0 d-flex align-items-center'>
                         <MDBDropdown>
                             <MDBDropdownToggle tag="a" href="#!" className="hidden-arrow nav-link">
-                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" className="rounded-circle" height="22" alt="" loading="lazy" />
+                                <img src={userDetails?.photo || "./assets/images/default-photo.png"} className="rounded-circle dp-img" height="22" alt="" loading="lazy" />
                             </MDBDropdownToggle>
 
                             <MDBDropdownMenu>

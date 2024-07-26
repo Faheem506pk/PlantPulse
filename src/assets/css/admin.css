@@ -10,6 +10,8 @@
   margin: 0 !important;
 }
 
+
+
 .adminsidebar {
   flex: 0 0 80px; /* Fixed width for the sidebar */
   
@@ -22,7 +24,13 @@ body {
   background-color: #fbfbfb;
 }
 
+
+
 @media (min-width: 992px) {
+  .navbar-admin{
+    padding: 0 50px;
+
+  }
   .sidebar {
     height: unset!important;
   }
@@ -95,7 +103,7 @@ body {
 .main-content-admin {
   flex: 1;
   overflow-y: auto; /* Allow scrolling for the main content */
-  padding: 80px 20px;
+  padding: 50px 20px;
  
 }
 
@@ -136,6 +144,9 @@ margin-left: 20px;
 }
 
 @media (max-width: 992px) {
+  .title-name{
+    margin: 0 !important;
+  }
   .hide-on-small {
       display: none;
   }
