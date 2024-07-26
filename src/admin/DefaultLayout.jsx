@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import AppSidebar from './AppSidebar';
 import Navbar from './navbar'; // Adjust path as needed
-import AppContent from './AppContent'; // Adjust the path as needed
 
-
-const DefaultLayout = () => {
+const DefaultLayout = ({ routes }) => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 992);
 
@@ -45,7 +44,7 @@ const DefaultLayout = () => {
             <div className="main-layout-admin">
                 <AppSidebar showShow={sidebarVisible} /> {/* Pass sidebarVisible as showShow */}
                 <div className={`main-content-admin ${sidebarVisible && !isLargeScreen ? 'hide-on-small' : ''}`}>
-                    <AppContent />
+                    {routes}
                 </div>
             </div>
         </>

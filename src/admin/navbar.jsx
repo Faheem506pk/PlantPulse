@@ -38,7 +38,7 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
         try {
             await auth.signOut();
             navigate("/login"); // Use navigate for redirection
-            toast.success("User logged out successfully!");
+            toast.success("Admin logged out successfully!");
         } catch (error) {
             toast.error(`Error logging out: ${error.message}`);
         }
@@ -73,9 +73,9 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
                             </MDBDropdownToggle>
 
                             <MDBDropdownMenu>
-                                <MDBDropdownItem link href="#">My profile</MDBDropdownItem>
-                                <MDBDropdownItem link href="#">Settings</MDBDropdownItem>
-                                <MDBDropdownItem link onClick={handleLogout}>Logout</MDBDropdownItem>
+                                <MDBDropdownItem tag={Link} to="/admin/profile" className="list-group-item list-group-item-action border-0 p-1 rounded">My profile</MDBDropdownItem>
+                                <MDBDropdownItem tag={Link} to="/admin/editprofile" className="list-group-item list-group-item-action border-0 p-1 rounded">Edit profile</MDBDropdownItem>
+                                <MDBDropdownItem tag={Link} onClick={handleLogout} className="list-group-item list-group-item-action border-0 p-1 rounded">Logout</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
                     </MDBNavbarItem>

@@ -46,7 +46,7 @@ function Settings() {
   }
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="loader">Loading...</p>;
   }
 
   return (

@@ -37,17 +37,17 @@ const AppSidebar = ({ showShow }) => {
                         Main Dashboard
                     </Link>
 
-                    <Link to="/analytics" className={`nav-link ${isActive('/analytics')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                    <Link to="/admin/graphs" className={`nav-link ${isActive('/admin/graphs')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
                         <i className="bi bi-graph-up me-3"></i>
                         Graphs
                     </Link>
 
-                    <Link to="/analytics" className={`nav-link ${isActive('/analytics')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                    <Link to="/admin/presets" className={`nav-link ${isActive('/admin/presets')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
                         <i className="bi bi-graph-up me-3"></i>
                         Presets
                     </Link>
 
-                    <Link to="/password" className={`nav-link ${isActive('/password')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
+                    <Link to="/admin/addnewpreset" className={`nav-link ${isActive('/admin/addnewpreset')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
                         <i className="bi bi-lock me-3"></i>
                         Add New Preset
                     </Link>
@@ -58,10 +58,9 @@ const AppSidebar = ({ showShow }) => {
                             Users
                         </MDBDropdownToggle>
                         <MDBDropdownMenu>
-                            <MDBDropdownItem tag={Link} to="/users/profile" className="list-group-item list-group-item-action border-0 border-bottom rounded">My Profile</MDBDropdownItem>
-                            <MDBDropdownItem tag={Link} to="/users/settings" className="list-group-item list-group-item-action border-0 border-bottom rounded">Settings</MDBDropdownItem>
-                            <MDBDropdownItem tag={Link} to="/users/manage" className="list-group-item list-group-item-action border-0 border-bottom rounded">Manage Users</MDBDropdownItem>
-                            <MDBDropdownItem tag={Link} to="/users/logout" className="list-group-item list-group-item-action border-0 border-bottom rounded">Logout</MDBDropdownItem>
+                            <MDBDropdownItem tag={Link} to="/admin/addnewuser" className="list-group-item list-group-item-action border-0 border-bottom rounded">Add New User</MDBDropdownItem>
+                            <MDBDropdownItem tag={Link} to="/admin/searchusers" className="list-group-item list-group-item-action border-0 border-bottom rounded">Search Users</MDBDropdownItem>
+                            <MDBDropdownItem tag={Link} to="/admin/resetuserpassword" className="list-group-item list-group-item-action border-0 border-bottom rounded">Reset User Password</MDBDropdownItem>
                         </MDBDropdownMenu>
                     </MDBDropdown>
                 </MDBListGroup>
