@@ -24,7 +24,7 @@ export default function AddNewUser() {
           lastName: lname,
           photo: "",
           role: "user", // Add role field here
-          access: false // Set access as boolean false
+          access: true // Set access as boolean false
         });
       }
       toast.success("User Registered Successfully!!", {
@@ -46,7 +46,7 @@ export default function AddNewUser() {
     <div className="container mt-5">
       <ToastContainer />
       <h2 className="text-center mb-4">Register New User</h2>
-      <form onSubmit={handleRegister} className="mx-auto" style={{ maxWidth: '400px' }}>
+      <form onSubmit={handleRegister} className="mx-auto admin-form-control" style={{ maxWidth: '400px' }}>
         <div className="form-group">
           <label htmlFor="fname">First Name</label>
           <input
