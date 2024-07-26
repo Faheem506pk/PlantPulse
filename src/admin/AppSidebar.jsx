@@ -28,10 +28,7 @@ const AppSidebar = ({ showShow }) => {
                         Main Dashboard
                     </Link>
 
-                    <Link to="/website-traffic" className={`nav-link ${isActive('/website-traffic')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
-                        <MDBIcon fas icon="chart-area me-3" />
-                        Website traffic
-                    </Link>
+                    
 
                     <Link to="/password" className={`nav-link ${isActive('/password')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
                         <MDBIcon fas icon="lock me-3" />
@@ -43,20 +40,14 @@ const AppSidebar = ({ showShow }) => {
                         Analytics
                     </Link>
 
-                    <Link to="/seo" className={`nav-link ${isActive('/seo')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
-                        <MDBIcon fas icon="chart-pie me-3" />
-                        SEO
-                    </Link>
+                    
 
                     <Link to="/users" className={`nav-link ${isActive('/users')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
                         <MDBIcon fas icon="users me-3" />
                         Users
                     </Link>
 
-                    <Link to="/sales" className={`nav-link ${isActive('/sales')} list-group-item list-group-item-action border-0 border-bottom rounded`}>
-                        <MDBIcon fas icon="money-bill me-3" />
-                        Sales
-                    </Link>
+                    
                 </MDBListGroup>
             </div>
         </MDBCollapse>
