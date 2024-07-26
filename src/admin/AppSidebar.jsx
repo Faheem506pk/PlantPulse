@@ -60,6 +60,7 @@ const AppSidebar = ({ showShow }) => {
                         <MDBDropdownMenu>
                             <MDBDropdownItem tag={Link} to="/admin/addnewuser" className="list-group-item list-group-item-action border-0 border-bottom rounded">Add New User</MDBDropdownItem>
                             <MDBDropdownItem tag={Link} to="/admin/searchusers" className="list-group-item list-group-item-action border-0 border-bottom rounded">Search Users</MDBDropdownItem>
+                            <MDBDropdownItem tag={Link} to="/admin/viewallusers" className="list-group-item list-group-item-action border-0 border-bottom rounded">View all Users</MDBDropdownItem>
                             <MDBDropdownItem tag={Link} to="/admin/resetuserpassword" className="list-group-item list-group-item-action border-0  rounded">Reset User Password</MDBDropdownItem>
                         </MDBDropdownMenu>
                     </MDBDropdown>

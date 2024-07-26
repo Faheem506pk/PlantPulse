@@ -124,6 +124,82 @@
 
 
 
+/* user card */
+
+.user-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #fff; /* Ensuring a white background for cards */
+}
+
+.user-card .card-img-top {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  margin: 0 auto;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center; /* Center the card title text */
+}
+
+.user-info p {
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.user-info strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Responsive design adjustments */
+@media (min-width: 1200px) {
+  .col-lg-4 {
+    flex: 0 0 33.3333%; /* 3 cards per row */
+    max-width: 33.3333%;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 50%; /* 2 cards per row */
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-sm-12 {
+    flex: 0 0 100%; /* 1 card per row */
+    max-width: 100%;
+  }
+
+  .user-card .card-img-top {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+
 
 
 .adminsidebar {
