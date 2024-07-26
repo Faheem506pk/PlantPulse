@@ -224,6 +224,190 @@
   font-size: 1.25rem;
 }
 
+/* search User */
+
+/* Add admin prefix to all class names */
+.topdetail{
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+}
+
+/* Add admin prefix to all class names */
+.admin-container {
+  padding: 20px;
+}
+
+.admin-text-center {
+  text-align: center;
+}
+
+.admin-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-form-control {
+  flex: 1;
+}
+
+.admin-btn {
+  flex-shrink: 0;
+}
+
+.admin-btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.admin-btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.admin-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.admin-card-body {
+  padding: 1rem;
+}
+
+.admin-img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.admin-rounded-circle {
+  border-radius: 50%;
+}
+
+.admin-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.admin-user-info {
+  margin-top: 1rem;
+}
+
+.admin-card-text {
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.admin-card-text strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.admin-role-change {
+  margin-top: 1rem;
+}
+
+.admin-password-prompt {
+  padding: 1rem;
+}
+
+.admin-password-prompt .admin-card-body {
+  padding: 1rem;
+}
+
+/* Responsive design adjustments */
+@media (min-width: 1200px) {
+  .col-lg-6 {
+    flex: 0 0 50%; /* 2 cards per row */
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .col-md-8 {
+    flex: 0 0 66.6667%; /* 2 cards per row */
+    max-width: 66.6667%;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-sm-12 {
+    flex: 0 0 100%; /* 1 card per row */
+    max-width: 100%;
+  }
+
+  .admin-img-fluid {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+
+
+/* admin.css */
+
+.admin-container {
+  padding: 20px;
+}
+
+.admin-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.admin-form-group {
+  margin-bottom: 15px;
+}
+
+.admin-form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.admin-form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+}
+
+.admin-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: none;
+}
+
+.admin-btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.admin-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5%;
+  background-color: white;
+}
+
+.admin-card-title {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.admin-card-text {
+  margin-bottom: 10px;
+  font-size: 19px;
+} 
+
 
 
 
