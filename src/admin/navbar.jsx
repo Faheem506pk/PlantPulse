@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext }  from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -27,13 +27,14 @@ import {
 export default function Navbar({ toggleSidebar, sidebarVisible }) {
     const navigate = useNavigate(); // Initialize useNavigate
     const { userDetails, loading } = useContext(UserContext);
-    
+    const [photoURL, setPhotoURL] = useState(userDetails?.photo || "./assets/images/default-photo.png");
 
     useEffect(() => {
         if (userDetails) {
-          // Force re-render to update profile picture
+            setPhotoURL(userDetails.photo || "./assets/images/default-photo.png");
         }
-      }, [userDetails]);
+    }, [userDetails]);
+
     async function handleLogout() {
         try {
             await auth.signOut();
@@ -60,16 +61,16 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
                     >
                         <i className="bi bi-list"></i>
                     </MDBNavbarToggler>
-                    <MDBNavbarBrand  className="d-flex justify-content-center align-items-center ">
-                       <h3  className="title-name" >Plant Pulse</h3>
+                    <MDBNavbarBrand className="d-flex justify-content-center align-items-center ">
+                        <h3 className="title-name">Plant Pulse</h3>
                     </MDBNavbarBrand>
                 </MDBNavbarNav>
                 <MDBNavbarNav className="d-flex flex-row justify-content-end w-auto">
                     {/* Your other Navbar items */}
                     <MDBNavbarItem className='me-3 me-lg-0 d-flex align-items-center'>
                         <MDBDropdown>
-                            <MDBDropdownToggle tag="a" href="#!" className="hidden-arrow nav-link">
-                                <img src={userDetails?.photo || "./assets/images/default-photo.png"} className="rounded-circle dp-img" height="22" alt="" loading="lazy" />
+                            <MDBDropdownToggle tag={Link}  className="hidden-arrow nav-link">
+                                <img src={photoURL} className="rounded-circle dp-img" height="22" alt="Profile" loading="lazy" />
                             </MDBDropdownToggle>
 
                             <MDBDropdownMenu>

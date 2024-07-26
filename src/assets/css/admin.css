@@ -10,6 +10,120 @@
   margin: 0 !important;
 }
 
+.edit-admin-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-label {
+  display: block; /* Ensures label takes full width and aligns to the left */
+  font-weight: bold;
+  margin-bottom: 5px; /* Adds space between label and input */
+}
+
+.form-group {
+  text-align: left; /* Aligns label to the left */
+  margin-bottom: 15px; /* Adjust spacing between form groups if needed */
+}
+
+.cropper-container {
+  margin-top: 20px;
+}
+
+.upload-popup {
+  margin-top: 20px;
+}
+
+.admin-form-control {
+  padding: 25px 20px !important;
+}
+
+/* Ensure the main layout is a flex container */
+.admin-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 5%;
+}
+
+.profile-photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+.form-control {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.admin-profile-details {
+  text-align: left;
+}
+
+.admin-no-data {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.admin-loader {
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-profile-container {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+
 
 
 .adminsidebar {
@@ -23,6 +137,61 @@
 body {
   background-color: #fbfbfb;
 }
+
+.admin-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.admin-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.admin-profile {
+  text-align: center;
+}
+
+.admin-profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.admin-profile-details {
+  text-align: left;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.admin-label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+.admin-profile-name,
+.admin-profile-email,
+.admin-profile-phone,
+.admin-profile-address {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.admin-no-data {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.admin-loader {
+  text-align: center;
+  font-size: 18px;
+}
+
 
 
 
