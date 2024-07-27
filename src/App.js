@@ -5,7 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './components/Dashbord';
-import Graphs from './components/Graphs';
+
 import Settings from './components/Settings';
 import Sidebar from './components/sidebar';
 import Topbar from './components/Topbar';
@@ -29,6 +29,8 @@ import ViewAllUsers from './admin/ViewAllUsers';
 import AppContent from './admin/AppContent';
 import EditAdminProfile from './admin/EditAdminProfile';
 import Presets from './admin/Presets';
+import UserGraphs from './components/UserGraphs';
+import UserPresets from './components/UserPresets';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -104,8 +106,8 @@ const App = () => {
     <Routes>
       <Route path="/" element={user ? <Navigate to={isAdmin ? "/admin" : "/dashboard"} /> : <Navigate to="/login" />} />
       <Route path="/dashboard" element={user && !isAdmin ? <Dashboard /> : <Navigate to="/login" />} />
-      <Route path="/graphs" element={user && !isAdmin ? <Graphs /> : <Navigate to="/login" />} />
-      <Route path="/presets" element={user && !isAdmin ? <Presets /> : <Navigate to="/login" />} />
+      <Route path="/graphs" element={user && !isAdmin ? <UserGraphs /> : <Navigate to="/login" />} />
+      <Route path="/presets" element={user && !isAdmin ? <UserPresets /> : <Navigate to="/login" />} />
       <Route path="/profile" element={user && !isAdmin ? <Profile /> : <Navigate to="/login" />} />
       <Route path="/settings" element={user && !isAdmin ? <Settings /> : <Navigate to="/login" />} />
       <Route path="/login" element={!user ? <Login /> : <Navigate to={isAdmin ? "/admin" : "/dashboard"} />} />

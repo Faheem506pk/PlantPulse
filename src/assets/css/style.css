@@ -197,6 +197,60 @@ body::before {
 }
 
 
+/* User Graphs */
+
+.graphs-container {
+  
+  
+  align-items: center;
+  
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 20px !important;
+  background: rgba(134, 134, 134, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  padding: 20px 20px;
+}
+
+.user-filter-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.user-filter-button {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-filter-button.active {
+  background: #ffffff;
+  color: #000000;
+}
+
+.chart-wrapper {
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+}
+
+.highcharts-container {
+ 
+  border-radius: 20px;
+}
+
+
+
 /* login page */
 
 
@@ -672,7 +726,7 @@ h3 {
 }
 
 .main-wrapper {
-  margin-top: 120px;
+  margin-top: 100px;
   min-height: 100vh;
   position: relative;
  
@@ -893,6 +947,14 @@ h3 {
 
 /* For mobile devices */
 @media (max-width: 768px) {
+  .main-wrapper {
+    margin-top: 120px;
+    min-height: 100vh;
+    position: relative;
+   
+   
+    
+  }
   
   .mb-last{
     margin-bottom: 150px;
