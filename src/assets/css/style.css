@@ -27,7 +27,7 @@ body {
   position: relative;
   background: url('../images/bg-1.jpg') no-repeat center center;
   background-size: cover;
-  background-color: #000; /* Fallback color */
+  background-color: transparent; /* Fallback color */
   background-attachment: scroll; /* Change from fixed to scroll */
   -webkit-background-size: cover; /* Ensure cover property is applied */
   -webkit-background-attachment: scroll; /* Ensure scroll attachment is applied */
