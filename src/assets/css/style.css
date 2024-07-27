@@ -250,7 +250,52 @@ body::before {
 }
 
 
-/* user presets */
+/* Dashboard */
+
+/* Additional styles for expanded card */
+/* Additional styles for expanded card */
+.ui-card.expanded {
+  height: 300px; /* Adjust based on your design */
+  transition: height 0.3s ease-in-out;
+}
+
+/* Styles for temperature details */
+
+
+
+.temperature-details,
+.humidity-details,
+.moisture-details {
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.temperature-row,
+.humidity-row,
+.moisture-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.temperature-label,
+.humidity-label,
+.moisture-label {
+  text-align: center;
+ 
+}
+
+.temperature-details h5,
+.humidity-details h5,
+.moisture-label h5 {
+  margin: 0;
+}
+
+.temperature-details p,
+.humidity-details p,
+.moisture-label p {
+  margin: 5px 0 0;
+}
+
 
 
 /* Grid container for user presets */

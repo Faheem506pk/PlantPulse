@@ -94,7 +94,7 @@ export default function UserPresets() {
               </div>
               <div className="user-preset-card-right">
                 <div className="user-preset-card-details">
-                  <p className="user-preset-card-text"><strong> Temperature Up:</strong> {preset.tempup}°C</p>
+                  <p className="user-preset-card-text"><strong>Temperature Up:</strong> {preset.tempup}°C</p>
                   <p className="user-preset-card-text"><strong>Temperature Down:</strong> {preset.tempdown}°C</p>
                   <p className="user-preset-card-text"><strong>Moisture Up:</strong> {preset.moistureup}%</p>
                   <p className="user-preset-card-text"><strong>Moisture Down:</strong> {preset.moisturedown}%</p>

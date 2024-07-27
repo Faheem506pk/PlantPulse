@@ -63,10 +63,10 @@ export const useFirebaseData = () => {
     const moistureRef = ref(database, "Moisture");
     onValue(moistureRef, (snapshot) => setMoisture(snapshot.val()));
 
-    const moistureUpRef = ref(database, "Moistureup");
+    const moistureUpRef = ref(database, "moistureup");
     onValue(moistureUpRef, (snapshot) => setMoistureUp(snapshot.val()));
 
-    const moistureDownRef = ref(database, "Moisturedown");
+    const moistureDownRef = ref(database, "moisturedown");
     onValue(moistureDownRef, (snapshot) => setMoistureDown(snapshot.val()));
 
     const servoRef = ref(database, "servo");
