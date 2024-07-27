@@ -42,7 +42,7 @@ body::before {
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.2); /* Semi-transparent overlay */
-  backdrop-filter: blur(10px); /* Apply blur effect */
+  backdrop-filter: blur(12px); /* Apply blur effect */
   z-index: -1; /* Ensure it is behind the content */
 }
 
