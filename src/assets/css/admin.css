@@ -1,3 +1,21 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 50px;
+  height: 100%;
+  overflow: auto; /* Allow scrolling */
+  position: relative;
+  background: url('../images/bg-1.jpg') no-repeat center center !important;
+  background-size: cover;
+
+  backdrop-filter: blur(12px) !important; /* Semi-transparent overlay */
+  background-attachment: scroll; /* Change from fixed to scroll */
+  -webkit-background-size: cover; /* Ensure cover property is applied */
+  z-index: -1; 
+  -webkit-background-attachment: scroll; /* Ensure scroll attachment is applied */
+}
+
 
 .admin-container {
   padding: 20px;
