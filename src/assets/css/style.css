@@ -29,10 +29,9 @@ body {
   background-size: cover;
 
   backdrop-filter: blur(12px) ; /* Semi-transparent overlay */
-  background-attachment: scroll; /* Change from fixed to scroll */
-  -webkit-background-size: cover; /* Ensure cover property is applied */
+ 
   z-index: -1; 
-  -webkit-background-attachment: scroll; /* Ensure scroll attachment is applied */
+ 
 }
 
 
