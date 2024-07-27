@@ -582,6 +582,7 @@ h3 {
 
 
 
+
 .profile-cd{
   overflow: hidden;
 }
@@ -851,6 +852,14 @@ h3 {
     padding: 20px 20px 10px 40px;
     
   }
+  .Topbar.top-hide {
+    transform: translateY(-100%); /* Hide the Topbar */
+  }
+  
+  .Topbar.top-show {
+    transform: translateY(0); /* Show the Topbar */
+  }
+  
 
   /* Profile Image */
 .profile-img {
@@ -1036,6 +1045,14 @@ h3 {
     padding: 20px 10px 10px 20px;
     
   }
+  .Topbar.top-hide {
+    transform: translateY(-100%); /* Hide the Topbar */
+  }
+  
+  .Topbar.top-show {
+    transform: translateY(0); /* Show the Topbar */
+  }
+  
   .dp-img-2{
     margin-bottom: 15px;
     position: relative;

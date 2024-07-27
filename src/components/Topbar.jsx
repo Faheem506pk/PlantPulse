@@ -1,43 +1,30 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { auth } from "../hooks/useFirebaseData";
 import { Link } from 'react-router-dom';
-import { UserContext } from "./UserContext";
+import { UserContext } from './UserContext';
+import '../assets/css/style.css';
 
 const Topbar = () => {
   const { userDetails, loading } = useContext(UserContext);
-  const [showTopbar, setShowTopbar] = useState(true);
+  const [isTopbarVisible, setIsTopbarVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop && scrollTop > 100) {
-        setShowTopbar(false);
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
+        setIsTopbarVisible(false);
       } else {
-        setShowTopbar(true);
+        setIsTopbarVisible(true);
       }
-      setLastScrollTop(scrollTop);
+
+      setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop); // For Mobile
     };
 
-    const debounce = (func, wait) => {
-      let timeout;
-      return () => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func(), wait);
-      };
-    };
+    window.addEventListener('scroll', handleScroll);
 
-    const debouncedHandleScroll = debounce(handleScroll, 50);
-    window.addEventListener('scroll', debouncedHandleScroll);
-
-    return () => window.removeEventListener('scroll', debouncedHandleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollTop]);
-
-  useEffect(() => {
-    if (userDetails) {
-      // Force re-render to update profile picture
-    }
-  }, [userDetails]);
 
   if (loading) {
     return (
@@ -48,14 +35,14 @@ const Topbar = () => {
   }
 
   return (
-    <div className={`Topbar `}>
+    <div className={`Topbar ${isTopbarVisible ? 'top-show' : 'top-hide'}`}>
       <div className="today-weather">
         <h1>Plant Pulse</h1>
       </div>
       <div className="dp-img-2">
         <Link to="/profile">
           <img
-            src={userDetails?.photo || "./assets/images/default-photo.png"}
+            src={userDetails?.photo || './assets/images/default-photo.png'}
             className="dp-img"
             alt="User Profile"
           />
