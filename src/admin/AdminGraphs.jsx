@@ -57,7 +57,7 @@ function AdminGraphs() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://sheetdb.io/api/v1/vvg3hfwnsr9pi");
+      const response = await fetch("https://sheetdb.io/api/v1/yy0chtmjxx9dz");
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -101,9 +101,7 @@ function AdminGraphs() {
 
   useEffect(() => {
     fetchData();
-    const intervalId = setInterval(fetchData, 2000); // Fetch new data every 20 seconds
-
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    // No interval logic here
   }, [filter]); // Dependency on filter
 
   const handleFilterChange = (newFilter) => {
