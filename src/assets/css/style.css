@@ -516,6 +516,10 @@ h3 {
 }
 
 .main-layout {
+  background: url('../images/bg-1.jpg') no-repeat center center ;
+  background-size: cover;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px) ; /* Semi-transparent overlay */
   display: flex;
   flex: 1;
   overflow: hidden;
