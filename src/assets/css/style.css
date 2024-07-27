@@ -27,7 +27,7 @@ body {
   position: relative;
   background: url('../images/bg-1.jpg') no-repeat center center;
   background-size: cover;
-  background-color: transparent; /* Fallback color */
+  background-color: rgba(102, 102, 102, 0.1); /* Semi-transparent overlay */
   background-attachment: scroll; /* Change from fixed to scroll */
   -webkit-background-size: cover; /* Ensure cover property is applied */
   -webkit-background-attachment: scroll; /* Ensure scroll attachment is applied */
@@ -41,6 +41,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
+  background: url('../images/bg-1.jpg') no-repeat center center;
+  background-size: cover;
   background: rgba(102, 102, 102, 0.1); /* Semi-transparent overlay */
   backdrop-filter: blur(12px); /* Apply blur effect */
   z-index: -1; /* Ensure it is behind the content */
