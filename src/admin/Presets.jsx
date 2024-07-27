@@ -76,17 +76,17 @@ export default function Presets() {
           {presets.map(preset => (
             <div key={preset.id} className="preset-card">
               <div className="preset-card-left">
-                <img src={preset.photo || './assets/images/default-photo.png'} alt={preset.name} className="preset-card-img" />
+                <img src={preset.photo || './assets/images/default-photo.png'} alt={preset.name} className="preset-card-img card-img-top rounded-circle mx-auto mt-3" />
               </div> 
-              <div className="preset-card-right">
-                <h5 className="preset-card-title">{preset.name}</h5>
-                <div className="preset-card-details">
-                  <p className="preset-card-text">Temperature Up: {preset.tempup}°C</p>
-                  <p className="preset-card-text">Temperature Down: {preset.tempdown}°C</p>
-                  <p className="preset-card-text">Moisture Up: {preset.moistureup}%</p>
-                  <p className="preset-card-text">Moisture Down: {preset.moisturedown}%</p>
-                  <p className="preset-card-text">Humidity Up: {preset.humidup}%</p>
-                  <p className="preset-card-text">Humidity Down: {preset.humiddown}%</p>
+              <div className="admin-card-body">
+                <h5 className="card-title text-center">{preset.name}</h5>
+                <div className="user-info ">
+                  <p className="card-text"><strong> Temperature Up:</strong> {preset.tempup}°C</p>
+                  <p className="card-text"><strong>Temperature Down:</strong> {preset.tempdown}°C</p>
+                  <p className="card-text"><strong>Moisture Up: </strong> {preset.moistureup}%</p>
+                  <p className="card-text"><strong>Moisture Down:</strong> {preset.moisturedown}%</p>
+                  <p className="card-text"><strong>Humidity Up: </strong> {preset.humidup}%</p>
+                  <p className="card-text"><strong>Humidity Down:</strong> {preset.humiddown}%</p>
                 </div>
                 <button className="save-button" onClick={() => handleSaveToRealtimeDB(preset)}>Update in Realtime Database</button>
                 <button className="delete-button" onClick={() => handleDelete(preset.id)}>Delete Preset</button>
