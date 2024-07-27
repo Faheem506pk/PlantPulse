@@ -3,8 +3,7 @@
   --main-bg-blur: blur(10px);
   --btn-bg-color: #007bff;
   --btn-bg-hover-color: #0056b3;
-  --font-color: rgba(255, 255, 255, 0.8);
-  --overlay-color: rgba(255, 255, 255, 0.2);
+  
   --z-index-bg: -1;
   --z-index-content: 1;
   --main-padding: 20px;
