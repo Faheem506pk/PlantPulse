@@ -15,6 +15,7 @@ const EditAdminProfile = () => {
     email: '',
     phone: '',
     address: '',
+    city: '',
     photo: '',
   });
   const [selectedImage, setSelectedImage] = useState(null);
@@ -156,6 +157,17 @@ const EditAdminProfile = () => {
             id="phone"
             name="phone"
             value={adminData.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="city" className="form-label">City</label>
+          <input
+            type="text"
+            className="form-control"
+            id="city"
+            name="city"
+            value={adminData.city}
             onChange={handleChange}
           />
         </div>

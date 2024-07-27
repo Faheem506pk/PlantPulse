@@ -77,6 +77,10 @@ export default function AdminProfile() {
               <p className="form-control">{adminData.phone}</p>
             </div>
             <div className="form-group">
+              <label className="form-label">City</label>
+              <p className="form-control">{adminData.city}</p>
+            </div>
+            <div className="form-group">
               <label className="form-label">Address</label>
               <p className="form-control">{adminData.address}</p>
             </div>
