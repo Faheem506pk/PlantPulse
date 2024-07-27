@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import SteinStore from 'stein-js-client';
 
 function AdminGraphs() {
   const [data, setData] = useState([]);
@@ -55,53 +56,50 @@ function AdminGraphs() {
     });
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch("https://sheetdb.io/api/v1/yy0chtmjxx9dz");
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const result = await response.json();
-      console.log("Fetched data:", result); // Debugging line
-
-      // Filter data based on selected filter
-      const filteredData = getFilteredData(result, filter);
-
-      // Process data for charts
-      const dates = filteredData.map(row => row.Date + ' ' + row.Time);
-      const temperatures = filteredData.map(row => parseFloat(row.Temperature));
-      const humidities = filteredData.map(row => parseFloat(row.Humidity));
-      const moistureValues = filteredData.map(row => parseFloat(row.MoistureValue));
-
-      setChartOptions(prevOptions => ({
-        temperature: {
-          ...prevOptions.temperature,
-          xAxis: { ...prevOptions.temperature.xAxis, categories: dates },
-          series: [{ ...prevOptions.temperature.series[0], data: temperatures }],
-        },
-        humidity: {
-          ...prevOptions.humidity,
-          xAxis: { ...prevOptions.humidity.xAxis, categories: dates },
-          series: [{ ...prevOptions.humidity.series[0], data: humidities }],
-        },
-        moisture: {
-          ...prevOptions.moisture,
-          xAxis: { ...prevOptions.moisture.xAxis, categories: dates },
-          series: [{ ...prevOptions.moisture.series[0], data: moistureValues }],
-        },
-      }));
-
-      setLoading(false); // Set loading to false once data is fetched
-    } catch (error) {
-      console.error("Error fetching data:", error); // Debugging line
-      setError(error);
-      setLoading(false); // Set loading to false even if there's an error
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const store = new SteinStore('https://api.steinhq.com/v1/storages/66a520b34d11fd04f017ef98');
+
+      try {
+        const fetchedData = await store.read('Sheet1'); // Adjust limit as needed
+        setData(fetchedData);
+        
+        // Filter data based on selected filter
+        const filteredData = getFilteredData(fetchedData, filter);
+
+        // Process data for charts
+        const dates = filteredData.map(row => row.Date + ' ' + row.Time);
+        const temperatures = filteredData.map(row => parseFloat(row.Temperature));
+        const humidities = filteredData.map(row => parseFloat(row.Humidity));
+        const moistureValues = filteredData.map(row => parseFloat(row.MoistureValue));
+
+        setChartOptions(prevOptions => ({
+          temperature: {
+            ...prevOptions.temperature,
+            xAxis: { ...prevOptions.temperature.xAxis, categories: dates },
+            series: [{ ...prevOptions.temperature.series[0], data: temperatures }],
+          },
+          humidity: {
+            ...prevOptions.humidity,
+            xAxis: { ...prevOptions.humidity.xAxis, categories: dates },
+            series: [{ ...prevOptions.humidity.series[0], data: humidities }],
+          },
+          moisture: {
+            ...prevOptions.moisture,
+            xAxis: { ...prevOptions.moisture.xAxis, categories: dates },
+            series: [{ ...prevOptions.moisture.series[0], data: moistureValues }],
+          },
+        }));
+
+        setLoading(false); // Set loading to false once data is fetched
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError(err);
+        setLoading(false); // Set loading to false even if there's an error
+      }
+    };
+
     fetchData();
-    // No interval logic here
   }, [filter]); // Dependency on filter
 
   const handleFilterChange = (newFilter) => {
