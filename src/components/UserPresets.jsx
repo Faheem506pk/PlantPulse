@@ -75,33 +75,33 @@ export default function UserPresets() {
 
   if (loading) {
     return (
-      <div className="loader-container">
-        <div className="loader"></div>
+      <div className="l-loader-container">
+        <div className="l-loader"></div>
       </div>
     );
   }
 
   return (
-    <div className="presets-container">
+  <main className="main-wrapper">
+    <div className="user-presets-container">
       {presets.length > 0 ? (
-        <div className="presets-grid">
+        <div className="user-presets-grid">
           {presets.map(preset => (
-            <div key={preset.id} className="preset-card">
-              <div className="preset-card-left">
-                <img src={preset.photo || './assets/images/default-photo.png'} alt={preset.name} className="preset-card-img card-img-top rounded-circle mx-auto mt-3" />
-                <h5 className="preset-card-title">{preset.name}</h5>
+            <div key={preset.id} className="user-preset-card">
+              <div className="user-preset-card-left">
+                <img src={preset.photo || './assets/images/default-photo.png'} alt={preset.name} className="user-preset-card-img" />
+                <h5 className="user-preset-card-title">{preset.name}</h5>
               </div>
-              <div className="preset-card-right">
-                <div className="preset-card-details">
-                  <p className="preset-card-text"><strong> Temperature Up:</strong> {preset.tempup}°C</p>
-                  <p className="preset-card-text"><strong>Temperature Down:</strong> {preset.tempdown}°C</p>
-                  <p className="preset-card-text"><strong>Moisture Up:</strong> {preset.moistureup}%</p>
-                  <p className="preset-card-text"><strong>Moisture Down:</strong> {preset.moisturedown}%</p>
-                  <p className="preset-card-text"><strong>Humidity Up:</strong> {preset.humidup}%</p>
-                  <p className="preset-card-text"><strong>Humidity Down:</strong> {preset.humiddown}%</p>
+              <div className="user-preset-card-right">
+                <div className="user-preset-card-details">
+                  <p className="user-preset-card-text"><strong> Temperature Up:</strong> {preset.tempup}°C</p>
+                  <p className="user-preset-card-text"><strong>Temperature Down:</strong> {preset.tempdown}°C</p>
+                  <p className="user-preset-card-text"><strong>Moisture Up:</strong> {preset.moistureup}%</p>
+                  <p className="user-preset-card-text"><strong>Moisture Down:</strong> {preset.moisturedown}%</p>
+                  <p className="user-preset-card-text"><strong>Humidity Up:</strong> {preset.humidup}%</p>
+                  <p className="user-preset-card-text"><strong>Humidity Down:</strong> {preset.humiddown}%</p>
                 </div>
-                <button className="save-button" onClick={() => handlePasswordCheck(handleSaveToRealtimeDB, preset)}>Update in Realtime Database</button>
-                <button className="delete-button" onClick={() => handlePasswordCheck(handleDelete, preset.id)}>Delete Preset</button>
+                <button className="user-preset-update-button" onClick={() => handlePasswordCheck(handleSaveToRealtimeDB, preset)}>Update in Realtime Database</button>
               </div>
             </div>
           ))}
@@ -110,5 +110,6 @@ export default function UserPresets() {
         <p>No presets available</p>
       )}
     </div>
+    </main>
   );
 }

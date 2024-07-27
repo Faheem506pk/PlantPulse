@@ -250,6 +250,175 @@ body::before {
 }
 
 
+/* user presets */
+
+
+/* Grid container for user presets */
+.user-presets-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Preset card styles */
+.user-preset-card {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 20px);
+  /* Ensures cards fit within the grid with gaps */
+}
+
+/* Preset card left section */
+.user-preset-card-left {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(71, 71, 71, 0.3);
+}
+
+/* Preset card image styles */
+.user-preset-card-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+}
+
+/* Preset card right section */
+.user-preset-card-right {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Preset card title styles */
+.user-preset-card-title {
+  font-size: 24px;
+  margin: 5px 0 5px 0px;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Preset card details styles */
+.user-preset-card-details {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  color: #ffffff;
+}
+
+/* Preset card text styles */
+.user-preset-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-size: 14px;
+  width: calc(50% - 15px);
+  box-sizing: border-box;
+}
+
+/* Card text alignment */
+.user-preset-card-details p {
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.user-preset-card-details strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 15px;
+}
+
+/* Button styles */
+.user-preset-update-button,
+.user-preset-delete-button {
+  background-color: #007bff;
+  border: none;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.user-preset-delete-button {
+  background-color: #dc3545;
+}
+
+.user-preset-update-button:hover,
+.user-preset-delete-button:hover {
+  opacity: 0.8;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 992px) {
+  .user-presets-container{
+
+    padding: 20px;
+  }
+  .user-preset-card {
+    width: calc(100% );
+  }
+}
+
+@media (max-width: 768px) {
+  .user-preset-card {
+    width: calc(100% );
+  }
+}
+
+@media (max-width: 480px) {
+  .user-preset-card {
+    width: 100%;
+  }
+}
+
+
+
+/* Loader styles */
+.user-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.user-loader {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 8px solid #ffffff;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Presets container styles */
+
+
+/* Presets grid styles */
+
+
+
+
 
 /* login page */
 
