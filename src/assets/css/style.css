@@ -41,7 +41,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.2); /* Semi-transparent overlay */
+  background: rgba(102, 102, 102, 0.1); /* Semi-transparent overlay */
   backdrop-filter: blur(12px); /* Apply blur effect */
   z-index: -1; /* Ensure it is behind the content */
 }
@@ -1060,7 +1060,7 @@ h3 {
   
   
   .usersidebar {
-    background-color: rgba(97, 97, 97, 0.1);
+    background-color: rgba(97, 97, 97, 0.7);
     position: fixed;
     bottom: 0;
     width: 100%;
