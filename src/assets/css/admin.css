@@ -534,7 +534,7 @@ margin-right: 50px;
 .main-layout-admin {
   display: flex;
   height: 100vh; /* Full height for the layout */
-  background-color: #f0f0f0;
+  background-color: #d3d3d3;
   overflow: hidden;
 }
 .title-name{

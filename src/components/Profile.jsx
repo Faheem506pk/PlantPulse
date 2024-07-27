@@ -102,8 +102,8 @@ function Profile() {
 
   if (loading) {
     return (
-      <div className="loader-container">
-        <div className="loader"></div>
+      <div className="l-loader-container">
+        <div className="l-loader"></div>
       </div>
     );
   }
