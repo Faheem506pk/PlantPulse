@@ -366,7 +366,7 @@ margin-right: 50px;
 /* all presets */
 
 .presets-container {
-  padding: 20px;
+  
   background-color: #f4f4f4;
   min-height: 100vh;
 }
@@ -379,7 +379,7 @@ margin-right: 50px;
 
 .preset-card {
   background: #fff;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
@@ -390,49 +390,66 @@ margin-right: 50px;
 .preset-card-left {
   flex-shrink: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f6fff3;
 }
 
 .preset-card-img {
-  width: 100px; /* Adjust size as needed */
-  height: 100px; /* Adjust size as needed */
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  object-fit: cover; /* Ensures the image covers the circle */
-  border: 2px solid #ddd; /* Optional: add border for better visibility */
+  object-fit: cover;
+  border: 2px solid #ddd;
 }
-
 
 .preset-card-right {
   padding: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center-aligns the children horizontally */
+  align-items: center;
+  
 }
 
 .preset-card-title {
-  font-size: 18px;
-  margin: 0 0 10px;
+  font-size: 24px;
+  margin: 5px 0 5px 0px;
   color: #333;
-  text-align: center; /* Center-aligns the title text */
+  text-align: center;
 }
 
 .preset-card-details {
   margin-bottom: 15px;
   display: flex;
-  flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
-  gap: 15px; /* Adjusts the space between items */
-  justify-content: center; /* Centers items horizontally */
+  
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
 }
 
 .preset-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   font-size: 14px;
   color: #555;
-  width: calc(50% - 15px); /* Ensures two items per row with some gap */
-  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+  width: calc(50% - 15px);
+  box-sizing: border-box;
 }
 
+.preset-card-details p {
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.preset-card-details strong {
+  display: block ;
+  margin-bottom: 0.25rem;
+  font-size: 15px;
+}
 
 .save-button, .delete-button {
   border: none;
@@ -441,15 +458,15 @@ margin-right: 50px;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
-  margin: 5px; /* Adds margin between buttons */
+  margin: 5px;
 }
 
 .save-button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
 }
 
 .delete-button {
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
 }
 
 @media (max-width: 768px) {
@@ -463,6 +480,7 @@ margin-right: 50px;
     width: 100%;
   }
 }
+
 
 
 

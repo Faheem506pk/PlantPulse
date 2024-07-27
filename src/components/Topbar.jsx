@@ -7,7 +7,7 @@ const Topbar = () => {
   const { userDetails, loading } = useContext(UserContext);
   const [showTopbar, setShowTopbar] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-
+  
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -40,7 +40,11 @@ const Topbar = () => {
   }, [userDetails]);
 
   if (loading) {
-    return <p className="loader">Loading...</p>;
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   return (

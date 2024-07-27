@@ -46,7 +46,11 @@ function Settings() {
   }
 
   if (loading) {
-    return <p className="loader">Loading...</p>;
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   return (

@@ -29,7 +29,6 @@ export default function Presets() {
 
   const handleSaveToRealtimeDB = async (preset) => {
     try {
-      // Construct the data to update
       const dataToUpdate = {
         tempup: preset.tempup,
         tempdown: preset.tempdown,
@@ -39,7 +38,6 @@ export default function Presets() {
         humiddown: preset.humiddown
       };
 
-      // Directly update the data at the root level (no additional node)
       const dataRef = ref(rtdb);
       await update(dataRef, dataToUpdate);
       alert(`Preset data successfully updated in Realtime Database`);
@@ -50,15 +48,12 @@ export default function Presets() {
 
   const handleDelete = async (id) => {
     try {
-      // Delete from Firestore
       const presetDocRef = doc(db, 'presets', id);
       await deleteDoc(presetDocRef);
 
-      // Delete from Realtime Database (you should ensure that `id` corresponds to the correct node)
       const dataRef = ref(rtdb, id); // Adjust path as necessary
       await remove(dataRef);
 
-      // Update local state
       setPresets(prevPresets => prevPresets.filter(preset => preset.id !== id));
 
       alert('Preset successfully deleted');
@@ -67,7 +62,13 @@ export default function Presets() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="presets-container">
@@ -77,16 +78,16 @@ export default function Presets() {
             <div key={preset.id} className="preset-card">
               <div className="preset-card-left">
                 <img src={preset.photo || './assets/images/default-photo.png'} alt={preset.name} className="preset-card-img card-img-top rounded-circle mx-auto mt-3" />
+                <h5 className="preset-card-title">{preset.name}</h5>
               </div> 
-              <div className="admin-card-body">
-                <h5 className="card-title text-center">{preset.name}</h5>
-                <div className="user-info ">
-                  <p className="card-text"><strong> Temperature Up:</strong> {preset.tempup}°C</p>
-                  <p className="card-text"><strong>Temperature Down:</strong> {preset.tempdown}°C</p>
-                  <p className="card-text"><strong>Moisture Up: </strong> {preset.moistureup}%</p>
-                  <p className="card-text"><strong>Moisture Down:</strong> {preset.moisturedown}%</p>
-                  <p className="card-text"><strong>Humidity Up: </strong> {preset.humidup}%</p>
-                  <p className="card-text"><strong>Humidity Down:</strong> {preset.humiddown}%</p>
+              <div className="preset-card-right">
+                <div className="preset-card-details">
+                  <p className="preset-card-text"><strong> Temperature Up:</strong> {preset.tempup}°C</p>
+                  <p className="preset-card-text"><strong>Temperature Down:</strong> {preset.tempdown}°C</p>
+                  <p className="preset-card-text"><strong>Moisture Up:</strong> {preset.moistureup}%</p>
+                  <p className="preset-card-text"><strong>Moisture Down:</strong> {preset.moisturedown}%</p>
+                  <p className="preset-card-text"><strong>Humidity Up:</strong> {preset.humidup}%</p>
+                  <p className="preset-card-text"><strong>Humidity Down:</strong> {preset.humiddown}%</p>
                 </div>
                 <button className="save-button" onClick={() => handleSaveToRealtimeDB(preset)}>Update in Realtime Database</button>
                 <button className="delete-button" onClick={() => handleDelete(preset.id)}>Delete Preset</button>

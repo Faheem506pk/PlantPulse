@@ -49,9 +49,12 @@ export default function AdminProfile() {
   }, []);
 
   if (loading) {
-    return <p className="admin-loader">Loading...</p>;
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
   }
-
   return (
     <div className="admin-profile-container">
       {adminData ? (
