@@ -11,7 +11,8 @@ import "../assets/css/admin.css"; // Adjust the path as needed
 
 const EditAdminProfile = () => {
   const [adminData, setAdminData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     address: '',
@@ -128,13 +129,24 @@ const EditAdminProfile = () => {
       <h2 className="text-center">Edit Admin Profile</h2>
       <form onSubmit={handleSubmit} className="text-center admin-form-control">
         <div className="form-group">
-          <label htmlFor="name" className="form-label">Name</label>
+          <label htmlFor="firstName" className="form-label">First Name</label>
           <input
             type="text"
             className="form-control"
-            id="name"
-            name="name"
-            value={adminData.name}
+            id="firstName"
+            name="firstName"
+            value={adminData.firstName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastName" className="form-label">Last Name</label>
+          <input
+            type="text"
+            className="form-control"
+            id="lastName"
+            name="lastName"
+            value={adminData.lastName}
             onChange={handleChange}
           />
         </div>

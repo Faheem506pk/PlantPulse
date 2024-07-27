@@ -66,7 +66,7 @@ export default function AdminProfile() {
           <div className="admin-profile-details">
             <div className="form-group">
               <label className="form-label">Name</label>
-              <p className="form-control">{adminData.name}</p>
+              <p className="form-control">{adminData.firstName} {adminData.lastName}</p>
             </div>
             <div className="form-group">
               <label className="form-label">Email</label>
