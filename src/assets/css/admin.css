@@ -1,5 +1,7 @@
 /* AdminGraphs.css */
-
+.highcharts-credits{
+  display: none;
+}
 .admin-graphs {
   padding: 20px;
 }
