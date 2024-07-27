@@ -295,6 +295,10 @@ margin-right: 50px;
   color: #ffffff;
 }
 
+.topnav-list{
+  padding-left: 20px !important;
+}
+
 .offcanvas .nav-link.active {
   background-color: #495057;
 }

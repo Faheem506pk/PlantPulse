@@ -75,9 +75,9 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
                             </MDBDropdownToggle>
 
                             <MDBDropdownMenu>
-                                <MDBDropdownItem tag={Link} to="/admin/profile" className="list-group-item list-group-item-action border-0 p-1 rounded">My profile</MDBDropdownItem>
-                                <MDBDropdownItem tag={Link} to="/admin/editprofile" className="list-group-item list-group-item-action border-0 p-1 rounded">Edit profile</MDBDropdownItem>
-                                <MDBDropdownItem tag={Link} onClick={handleLogout} className="list-group-item list-group-item-action border-0 p-1 rounded">Logout</MDBDropdownItem>
+                                <MDBDropdownItem tag={Link} to="/admin/profile" className="list-group-item list-group-item-action border-bottom border-0 p-1 rounded topnav-list">My profile</MDBDropdownItem>
+                                <MDBDropdownItem tag={Link} to="/admin/editprofile" className="list-group-item list-group-item-action border-bottom border-0 p-1 rounded topnav-list">Edit profile</MDBDropdownItem>
+                                <MDBDropdownItem tag={Link} onClick={handleLogout} className="list-group-item list-group-item-action border-0 p-1 rounded topnav-list">Logout</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
                     </MDBNavbarItem>
