@@ -23,7 +23,7 @@ body {
   padding: 0;
   padding-bottom: 50px;
   height: 100%;
-  overflow: auto; /* Allow scrolling */
+  overflow: hidden; /* Allow scrolling */
   position: relative;
   background: url('../images/bg-1.jpg') no-repeat center center ;
   background-size: cover;
