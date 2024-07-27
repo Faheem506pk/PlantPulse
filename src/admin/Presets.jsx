@@ -3,6 +3,8 @@ import { db, rtdb } from '../hooks/useFirebaseData'; // Adjust the import path a
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { ref, update, remove } from 'firebase/database';
 
+const HARDCODED_PASSWORD = "mcb121450"; // Set your hardcoded password here
+
 export default function Presets() {
   const [presets, setPresets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,6 +28,15 @@ export default function Presets() {
 
     fetchPresets();
   }, []);
+
+  const handlePasswordCheck = (action, preset) => {
+    const enteredPassword = prompt("Enter password to proceed:");
+    if (enteredPassword === HARDCODED_PASSWORD) {
+      action(preset);
+    } else {
+      alert("Incorrect password. Action denied.");
+    }
+  };
 
   const handleSaveToRealtimeDB = async (preset) => {
     try {
@@ -79,7 +90,7 @@ export default function Presets() {
               <div className="preset-card-left">
                 <img src={preset.photo || './assets/images/default-photo.png'} alt={preset.name} className="preset-card-img card-img-top rounded-circle mx-auto mt-3" />
                 <h5 className="preset-card-title">{preset.name}</h5>
-              </div> 
+              </div>
               <div className="preset-card-right">
                 <div className="preset-card-details">
                   <p className="preset-card-text"><strong> Temperature Up:</strong> {preset.tempup}°C</p>
@@ -89,8 +100,8 @@ export default function Presets() {
                   <p className="preset-card-text"><strong>Humidity Up:</strong> {preset.humidup}%</p>
                   <p className="preset-card-text"><strong>Humidity Down:</strong> {preset.humiddown}%</p>
                 </div>
-                <button className="save-button" onClick={() => handleSaveToRealtimeDB(preset)}>Update in Realtime Database</button>
-                <button className="delete-button" onClick={() => handleDelete(preset.id)}>Delete Preset</button>
+                <button className="save-button" onClick={() => handlePasswordCheck(handleSaveToRealtimeDB, preset)}>Update in Realtime Database</button>
+                <button className="delete-button" onClick={() => handlePasswordCheck(handleDelete, preset.id)}>Delete Preset</button>
               </div>
             </div>
           ))}
