@@ -1,428 +1,4 @@
 
-/* Ensure the main layout is a flex container */
-.main-layout-admin {
-  display: flex;
-  height: 100vh; /* Full height for the layout */
-  background-color: #f0f0f0;
-  overflow: hidden;
-}
-.title-name{
-  margin: 0 !important;
-}
-
-.edit-admin-profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-
-.profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.form-label {
-  display: block; /* Ensures label takes full width and aligns to the left */
-  font-weight: bold;
-  margin-bottom: 5px; /* Adds space between label and input */
-}
-
-.form-group {
-  text-align: left; /* Aligns label to the left */
-  margin-bottom: 15px; /* Adjust spacing between form groups if needed */
-}
-
-.cropper-container {
-  margin-top: 20px;
-}
-
-.upload-popup {
-  margin-top: 20px;
-}
-
-.admin-form-control {
-  padding: 25px 20px !important;
-}
-
-/* Ensure the main layout is a flex container */
-.admin-profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #ffffff;
-  border-radius: 20px;
-}
-
-.profile-photo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  margin-bottom: 20px;
-}
-
-.profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.form-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 10px;
-}
-
-.form-control {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-.admin-profile-details {
-  text-align: left;
-}
-
-.admin-no-data {
-  text-align: center;
-  font-size: 18px;
-  color: #888;
-}
-
-.admin-loader {
-  text-align: center;
-  font-size: 18px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .admin-profile-container {
-    padding: 15px;
-    width: 100%;
-  }
-
-  .profile-photo {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-
-
-/* user card */
-
-.user-card {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  background-color: #fff; /* Ensuring a white background for cards */
-}
-
-.user-card .card-img-top {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border: 3px solid #ddd;
-  margin: 0 auto;
-}
-
-.admin-card-body {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-top: 1px solid #ddd;
-}
-
-.card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  text-align: center; /* Center the card title text */
-}
-
-.user-info p {
-  margin: 0.5rem 0;
-  text-align: left;
-}
-
-.user-info strong {
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-/* Responsive design adjustments */
-@media (min-width: 1200px) {
-  .col-lg-4 {
-    flex: 0 0 33.3333%; /* 3 cards per row */
-    max-width: 33.3333%;
-  }
-}
-
-@media (max-width: 1199px) and (min-width: 768px) {
-  .col-md-6 {
-    flex: 0 0 50%; /* 2 cards per row */
-    max-width: 50%;
-  }
-}
-
-@media (max-width: 767px) {
-  .col-sm-12 {
-    flex: 0 0 100%; /* 1 card per row */
-    max-width: 100%;
-  }
-
-  .user-card .card-img-top {
-    width: 100px;
-    height: 100px;
-  }
-}
-/* Add styling for the stats cards */
-
-.card-stats {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  background-color: #f8f9fa;
-}
-
-.card-stats:hover {
-  background-color: #e9ecef;
-}
-
-.card-stats .admin-card-body {
-  padding: 2rem;
-}
-
-.card-stats .card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.card-stats .card-text {
-  font-size: 1.25rem;
-}
-
-/* search User */
-
-/* Add admin prefix to all class names */
-.topdetail{
-  display: flex;
-  flex-direction: column;
-  align-items: center !important;
-  justify-content: center;
-  text-align: center;
-  align-content: center;
-}
-
-/* Add admin prefix to all class names */
-.admin-container {
-  padding: 20px;
-}
-
-.admin-text-center {
-  text-align: center;
-}
-
-.admin-input-group {
-  display: flex;
-  gap: 10px;
-}
-
-.admin-form-control {
-  flex: 1;
-}
-
-.admin-btn {
-  flex-shrink: 0;
-}
-
-.admin-btn-primary {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.admin-btn-secondary {
-  background-color: #6c757d;
-  color: #fff;
-}
-
-.admin-card {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.admin-card-body {
-  padding: 1rem;
-}
-
-.admin-img-fluid {
-  max-width: 100%;
-  height: auto;
-}
-
-.admin-rounded-circle {
-  border-radius: 50%;
-}
-
-.admin-card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.admin-user-info {
-  margin-top: 1rem;
-}
-
-.admin-card-text {
-  margin: 0.5rem 0;
-  text-align: left;
-}
-
-.admin-card-text strong {
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.admin-role-change {
-  margin-top: 1rem;
-}
-
-.admin-password-prompt {
-  padding: 1rem;
-}
-
-.admin-password-prompt .admin-card-body {
-  padding: 1rem;
-}
-
-/* Responsive design adjustments */
-@media (min-width: 1200px) {
-  .col-lg-6 {
-    flex: 0 0 50%; /* 2 cards per row */
-    max-width: 50%;
-  }
-}
-
-@media (max-width: 1199px) and (min-width: 768px) {
-  .col-md-8 {
-    flex: 0 0 66.6667%; /* 2 cards per row */
-    max-width: 66.6667%;
-  }
-}
-
-@media (max-width: 767px) {
-  .col-sm-12 {
-    flex: 0 0 100%; /* 1 card per row */
-    max-width: 100%;
-  }
-
-  .admin-img-fluid {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-
-
-
-/* admin.css */
-
-.admin-container {
-  padding: 20px;
-}
-
-.admin-form {
-  max-width: 600px;
-  margin: auto;
-}
-
-.admin-form-group {
-  margin-bottom: 15px;
-}
-
-.admin-form-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.admin-form-control {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 50px;
-  border: 1px solid #ccc;
-}
-
-.admin-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 20px;
-  border: none;
-}
-
-.admin-btn-primary {
-  background-color: #007bff;
-  color: white;
-}
-
-.admin-card {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: white;
-}
-
-.admin-card-title {
-  margin-bottom: 15px;
-  font-size: 24px;
-}
-
-.admin-card-text {
-  margin-bottom: 10px;
-  font-size: 19px;
-} 
-
-
-
-
-.adminsidebar {
-  flex: 0 0 80px; /* Fixed width for the sidebar */
-  
-  height: 100%; /* Full height */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-body {
-  background-color: #fbfbfb;
-}
-
 .admin-container {
   padding: 20px;
   max-width: 600px;
@@ -887,3 +463,427 @@ margin-right: 50px;
     width: 100%;
   }
 }
+
+
+
+/* Ensure the main layout is a flex container */
+.main-layout-admin {
+  display: flex;
+  height: 100vh; /* Full height for the layout */
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+.title-name{
+  margin: 0 !important;
+}
+
+.edit-admin-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-label {
+  display: block; /* Ensures label takes full width and aligns to the left */
+  font-weight: bold;
+  margin-bottom: 5px; /* Adds space between label and input */
+}
+
+.form-group {
+  text-align: left; /* Aligns label to the left */
+  margin-bottom: 15px; /* Adjust spacing between form groups if needed */
+}
+
+.cropper-container {
+  margin-top: 20px;
+}
+
+.upload-popup {
+  margin-top: 20px;
+}
+
+.admin-form-control {
+  padding: 25px 20px !important;
+}
+
+/* Ensure the main layout is a flex container */
+.admin-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+.profile-photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+.form-control {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.admin-profile-details {
+  text-align: left;
+}
+
+.admin-no-data {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.admin-loader {
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-profile-container {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+
+/* user card */
+
+.user-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #fff; /* Ensuring a white background for cards */
+}
+
+.user-card .card-img-top {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  margin: 0 auto;
+}
+
+.admin-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center; /* Center the card title text */
+}
+
+.user-info p {
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.user-info strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Responsive design adjustments */
+@media (min-width: 1200px) {
+  .col-lg-4 {
+    flex: 0 0 33.3333%; /* 3 cards per row */
+    max-width: 33.3333%;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 50%; /* 2 cards per row */
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-sm-12 {
+    flex: 0 0 100%; /* 1 card per row */
+    max-width: 100%;
+  }
+
+  .user-card .card-img-top {
+    width: 100px;
+    height: 100px;
+  }
+}
+/* Add styling for the stats cards */
+
+.card-stats {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #f8f9fa;
+}
+
+.card-stats:hover {
+  background-color: #e9ecef;
+}
+
+.card-stats .admin-card-body {
+  padding: 2rem;
+}
+
+.card-stats .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-stats .card-text {
+  font-size: 1.25rem;
+}
+
+/* search User */
+
+/* Add admin prefix to all class names */
+.topdetail{
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+}
+
+/* Add admin prefix to all class names */
+.admin-container {
+  padding: 20px;
+}
+
+.admin-text-center {
+  text-align: center;
+}
+
+.admin-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-form-control {
+  flex: 1;
+}
+
+.admin-btn {
+  flex-shrink: 0;
+}
+
+.admin-btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.admin-btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.admin-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.admin-card-body {
+  padding: 1rem;
+}
+
+.admin-img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.admin-rounded-circle {
+  border-radius: 50%;
+}
+
+.admin-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.admin-user-info {
+  margin-top: 1rem;
+}
+
+.admin-card-text {
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.admin-card-text strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.admin-role-change {
+  margin-top: 1rem;
+}
+
+.admin-password-prompt {
+  padding: 1rem;
+}
+
+.admin-password-prompt .admin-card-body {
+  padding: 1rem;
+}
+
+/* Responsive design adjustments */
+@media (min-width: 1200px) {
+  .col-lg-6 {
+    flex: 0 0 50%; /* 2 cards per row */
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .col-md-8 {
+    flex: 0 0 66.6667%; /* 2 cards per row */
+    max-width: 66.6667%;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-sm-12 {
+    flex: 0 0 100%; /* 1 card per row */
+    max-width: 100%;
+  }
+
+  .admin-img-fluid {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+
+
+/* admin.css */
+
+.admin-container {
+  padding: 20px;
+}
+
+.admin-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.admin-form-group {
+  margin-bottom: 15px;
+}
+
+.admin-form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.admin-form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+}
+
+.admin-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: none;
+}
+
+.admin-btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.admin-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.admin-card-title {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.admin-card-text {
+  margin-bottom: 10px;
+  font-size: 19px;
+} 
+
+
+
+
+.adminsidebar {
+  flex: 0 0 80px; /* Fixed width for the sidebar */
+  
+  height: 100%; /* Full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+

@@ -77,7 +77,7 @@ export default function Presets() {
             <div key={preset.id} className="preset-card">
               <div className="preset-card-left">
                 <img src={preset.photo || './assets/images/default-photo.png'} alt={preset.name} className="preset-card-img" />
-              </div>
+              </div> 
               <div className="preset-card-right">
                 <h5 className="preset-card-title">{preset.name}</h5>
                 <div className="preset-card-details">
