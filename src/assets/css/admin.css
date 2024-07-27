@@ -1,3 +1,49 @@
+/* AdminGraphs.css */
+
+.admin-graphs {
+  padding: 20px;
+}
+
+.filter-buttons {
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 15px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.filter-button.active {
+  background-color: #0056b3;
+}
+
+.chart-container {
+  margin-bottom: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  padding: 15px;
+}
+
+.loading, .error {
+  text-align: center;
+  font-size: 18px;
+  color: #ff0000;
+}
+
+@media (max-width: 768px) {
+  .filter-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
 
 .admin-container {
   padding: 20px;
