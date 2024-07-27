@@ -52,15 +52,15 @@ export default function Navbar({ toggleSidebar, sidebarVisible }) {
             <MDBContainer fluid className="navbar-admin">
                 <MDBNavbarNav className="d-flex flex-row align-items-center w-auto ">
                     <MDBNavbarToggler
-                    className='me-2  '
+                    className=' '
                         type='button'
-                        aria-label='Toggle navigation'
+                        
                         onClick={() => {
                             console.log('Toggling sidebar visibility from Navbar'); // Debugging line
                             toggleSidebar(); // Call the passed function
                         }}
                     >
-                        <i className="bi bi-list " style={{color: "black"}}></i>
+                        <i className="bi bi-list humburger " style={{color: "black"}}></i>
                     </MDBNavbarToggler>
                     <MDBNavbarBrand className="d-flex justify-content-center align-items-center ">
                         <h3 className="title-name">Plant Pulse</h3>

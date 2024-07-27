@@ -298,6 +298,16 @@ margin-right: 50px;
 .topnav-list{
   padding-left: 20px !important;
 }
+.navbar-toggler{
+  padding: 4px 0px;
+  margin-right: 5px;
+}
+
+.humburger{
+  border: 2px solid #000000;
+  border-radius: 10px;
+  padding: 4px 6px;
+}
 
 .offcanvas .nav-link.active {
   background-color: #495057;
