@@ -55,8 +55,8 @@ export default function ViewAllUsers() {
 
     return (
         <div className="container mt-4">
+            <ToastContainer />
             <h2 className="text-center mb-4">View All Users</h2>
-
             {loading ? (
                 <p className="text-center">Loading...</p>
             ) : (

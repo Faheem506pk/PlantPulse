@@ -121,6 +121,7 @@ function AdminGraphs() {
 
   return (
     <div className="admin-graphs">
+      <ToastContainer />
       <div className="filter-buttons">
         <button
           className={`filter-button ${filter === 'day' ? 'active' : ''}`}

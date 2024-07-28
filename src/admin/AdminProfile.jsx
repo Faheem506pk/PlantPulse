@@ -57,6 +57,7 @@ export default function AdminProfile() {
   }
   return (
     <div className="admin-profile-container">
+      <ToastContainer />
       {adminData ? (
         <div className="admin-profile-content">
           <h2 className="text-center">Admin Profile</h2>
@@ -89,7 +90,7 @@ export default function AdminProfile() {
       ) : (
         <p className="admin-no-data">No profile data available.</p>
       )}
-      <ToastContainer />
+      
     </div>
   );
 }

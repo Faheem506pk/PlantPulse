@@ -83,6 +83,7 @@ export default function Presets() {
 
   return (
     <div className="presets-container">
+      <ToastContainer />
       {presets.length > 0 ? (
         <div className="presets-grid">
           {presets.map(preset => (

@@ -123,6 +123,7 @@ const EditAdminProfile = () => {
 
   return (
     <div className="edit-admin-profile-container">
+      <ToastContainer />
       <div className="profile-photo-container">
         <img src={adminData.photo || "./assets/images/default-photo.png"} alt="Profile" className="profile-photo" />
       </div>
