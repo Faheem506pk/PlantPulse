@@ -110,7 +110,7 @@ function Profile() {
 
   return (
     <main className="main-wrapper">
-      
+      <ToastContainer />
       <div className="profile-cd d-flex justify-content-center align-items-center">
         <div className="row w-100">
           <div className="col-lg-5 col-md-5 profile-n">
@@ -196,7 +196,7 @@ function Profile() {
             </div>
           </div>
         </div>
-        <ToastContainer />
+        
     </main>
   );
 }

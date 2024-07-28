@@ -55,6 +55,7 @@ function Settings() {
 
   return (
     <main className="main-wrapper">
+      <ToastContainer />
     <div className="container profile-container">
       <div className="row gutters-sm">
         <div className="col-md-4 profile-n">

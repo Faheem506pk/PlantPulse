@@ -33,6 +33,7 @@ const Dashboard = () => {
     <main className="main-wrapper">
       <div className="container">
         <div className="dashboard">
+        <ToastContainer />
           <section className="content">
             <div className="row g-4">
               {/* Temperature Card */}

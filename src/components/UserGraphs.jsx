@@ -123,6 +123,7 @@ function UserGraphs() {
   return (
     <main className="main-wrapper">
     <div className="graphs-container">
+    <ToastContainer />
       <div className="user-filter-buttons">
         <button
           className={`user-filter-button ${filter === 'day' ? 'active' : ''}`}

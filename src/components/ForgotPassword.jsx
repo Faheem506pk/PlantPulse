@@ -37,7 +37,7 @@ function ForgotPassword() {
 
   return (
     <div className="loginpage">
-      
+      <ToastContainer />
         <form className="forgot-password-page" onSubmit={handleResetPassword}>
           <h3>Forgot Password</h3>
           <div className="mb-3">

@@ -130,7 +130,7 @@ const App = () => {
             <div className="main-content">
               <ScrollToTop />
               {userRoutes}
-              <ToastContainer />
+              
             </div>
           </div>
         )}

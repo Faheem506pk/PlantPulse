@@ -11,6 +11,7 @@ const AppContent = () => {
     <main >
       <div className="container">
         <div className="dashboard">
+        <ToastContainer />
           <section className="content">
             <div className="row g-4">
             <div className="col-lg-4 col-md-6 col-sm-12">

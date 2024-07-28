@@ -39,6 +39,7 @@ function Register() {
 
   return (
     <div className="registerpage">
+      <ToastContainer />
       <form className="Sign-Up-password-page" onSubmit={handleRegister}>
         <h3>Sign Up</h3>
 
