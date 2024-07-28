@@ -39,7 +39,7 @@ function Login() {
           toast.success("User logged in Successfully", {
             position: "top-center",
           });
-          navigate("/profile");
+          navigate("/dashboard");
         }
       } else {
         console.log("No such document!");
