@@ -29,15 +29,6 @@ function Login() {
         const role = userData.role;
         const access = userData.access;
 
-        if (access === false) {
-          auth.signOut();
-          console.log("You have no access to login. Contact with admin.");
-          toast.error("You have no access to login. Contact with admin.", {
-            position: "bottom-center",
-          });
-          return;
-        }
-
         if (role === 'admin') {
           console.log("Admin logged in Successfully");
           toast.success("Admin logged in Successfully", {
@@ -45,11 +36,20 @@ function Login() {
           });
           navigate("/admin");
         } else if (role === 'user') {
-          console.log("User logged in Successfully");
-          toast.success("User logged in Successfully", {
-            position: "top-center",
-          });
-          navigate("/dashboard");
+          if (access === false) {
+            await auth.signOut();
+            console.log("You have no access to login. Contact with admin.");
+            toast.error("You have no access to login. Contact with admin.", {
+              position: "bottom-center",
+            });
+            return; // Return early to prevent further code execution
+          } else if (access === true) {
+            console.log("User logged in Successfully");
+            toast.success("User logged in Successfully", {
+              position: "top-center",
+            });
+            navigate("/dashboard");
+          }
         } else {
           console.log("Invalid role!");
           toast.error("Invalid role!", {
