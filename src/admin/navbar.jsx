@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import "../assets/css/admin.css"; // Adjust the path as needed
 import { auth } from "../hooks/useFirebaseData"; // Ensure correct path
-import { toast } from 'react-toastify'; // Import toast for notifications
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from 'react-router-dom';
 import { UserContext } from "../components/UserContext";
 import {

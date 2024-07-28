@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './navbar'; // Adjust path as needed
 import AppSidebar from './AppSidebar'; // Adjust path as needed
-
+import { toast, ToastContainer } from "react-toastify";
 const DefaultLayout = ({ routes }) => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 992);

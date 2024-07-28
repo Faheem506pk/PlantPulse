@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <div className="usersidebar">
-      <ToastContainer />
+ 
       <aside className="side-navbar">
         <ul className="nav">
           <li className="nav-item">

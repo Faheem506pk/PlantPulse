@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../hooks/useFirebaseData"; // Import Firestore
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import SignInwithGoogle from "./signInWIthGoogle";
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore"; // Import Firestore functions
@@ -20,13 +20,23 @@ function Login() {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Fetch role from Firestore
+      // Fetch role and access from Firestore
       const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
 
       if (userDoc.exists()) {
         const userData = userDoc.data();
         const role = userData.role;
+        const access = userData.access;
+
+        if (access === false) {
+          auth.signOut();
+          console.log("You have no access to login. Contact with admin.");
+          toast.error("You have no access to login. Contact with admin.", {
+            position: "bottom-center",
+          });
+          return;
+        }
 
         if (role === 'admin') {
           console.log("Admin logged in Successfully");
@@ -34,12 +44,17 @@ function Login() {
             position: "top-center",
           });
           navigate("/admin");
-        } else {
+        } else if (role === 'user') {
           console.log("User logged in Successfully");
           toast.success("User logged in Successfully", {
             position: "top-center",
           });
           navigate("/dashboard");
+        } else {
+          console.log("Invalid role!");
+          toast.error("Invalid role!", {
+            position: "bottom-center",
+          });
         }
       } else {
         console.log("No such document!");

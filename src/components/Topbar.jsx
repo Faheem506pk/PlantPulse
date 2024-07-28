@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from './UserContext';
+import { toast, ToastContainer } from "react-toastify";
 import '../assets/css/style.css';
 
 const Topbar = () => {

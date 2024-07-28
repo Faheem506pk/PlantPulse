@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; 
 import { auth, db } from "../hooks/useFirebaseData";
 import { doc, getDoc } from "firebase/firestore";
-
+import { toast, ToastContainer } from "react-toastify";
 function Settings() {
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(true);

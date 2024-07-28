@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import SteinStore from 'stein-js-client';
-
+import { toast, ToastContainer } from "react-toastify";
 function AdminGraphs() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

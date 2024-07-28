@@ -1,10 +1,10 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, db } from "../hooks/useFirebaseData";
-import { toast } from "react-toastify";
+
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import googleImage from "../assets/images/google.png";
-
+import { toast, ToastContainer } from "react-toastify";
 function SignInwithGoogle() {
   const navigate = useNavigate();
 

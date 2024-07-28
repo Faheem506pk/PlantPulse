@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../hooks/useFirebaseData";
 import { sendPasswordResetEmail, fetchSignInMethodsForEmail } from "firebase/auth";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from 'react-router-dom';
 import "../assets/css/style.css"; // Adjust the path as needed
 
