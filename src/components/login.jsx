@@ -42,8 +42,7 @@ function Login() {
             toast.error("You have no access to login. Contact with admin.", {
               position: "bottom-center",
             });
-            return; // Return early to prevent further code execution
-          } else if (access === true) {
+          } else {
             console.log("User logged in Successfully");
             toast.success("User logged in Successfully", {
               position: "top-center",
@@ -72,7 +71,6 @@ function Login() {
 
   return (
     <div className="loginpage">
-      <ToastContainer />
       <form className="login-password-page" onSubmit={handleSubmit}>
         <h3>Login</h3>
         <div className="mb-3">
@@ -108,6 +106,7 @@ function Login() {
         </p>
         <SignInwithGoogle />
       </form>
+<ToastContainer />
     </div>
   );
 }

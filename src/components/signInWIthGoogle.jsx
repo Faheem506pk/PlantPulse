@@ -54,7 +54,7 @@ function SignInwithGoogle() {
 
   return (
     <div>
-      <ToastContainer />
+      
       <p className="continue-p">--Or continue with--</p>
       <div
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}

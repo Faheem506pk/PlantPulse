@@ -54,6 +54,11 @@ body::before {
 
 
 /* toastStyles.css */
+.Toastify{
+  z-index: 9999 !important; /* Adjust the z-index as needed */
+
+}
+
 .Toastify__toast-container {
   z-index: 9999 !important; /* Adjust the z-index as needed */
 }
