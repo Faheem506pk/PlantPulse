@@ -58,17 +58,10 @@ function AdminGraphs() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const store = new SteinStore('https://api.steinhq.com/v1/storages/66a520b34d11fd04f017ef98');
-
-      // try {
-      //   const fetchedData = await store.read('Sheet1'); // Adjust limit as needed
-      //   setData(fetchedData);
-        
-      //   // Filter data based on selected filter
-      //   const filteredData = getFilteredData(fetchedData, filter);
+      
 
       try {
-      const response = await fetch("https://sheetdb.io/api/v1/yy0chtmjxx9dz");
+      const response = await fetch("https://sheetdb.io/api/v1/vvg3hfwnsr9pi");
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
