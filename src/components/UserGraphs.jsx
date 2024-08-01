@@ -59,14 +59,25 @@ function UserGraphs() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const store = new SteinStore('https://api.steinhq.com/v1/storages/66a520b34d11fd04f017ef98');
+     // const store = new SteinStore('https://api.steinhq.com/v1/storages/66a520b34d11fd04f017ef98');
+
+      // try {
+      //   const fetchedData = await store.read('Sheet1'); // Adjust limit as needed
+      //   setData(fetchedData);
+        
+      //   // Filter data based on selected filter
+      //   const filteredData = getFilteredData(fetchedData, filter);
 
       try {
-        const fetchedData = await store.read('Sheet1'); // Adjust limit as needed
-        setData(fetchedData);
-        
+        const response = await fetch("https://sheetdb.io/api/v1/yy0chtmjxx9dz");
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        console.log("Fetched data:", result); // Debugging line
+  
         // Filter data based on selected filter
-        const filteredData = getFilteredData(fetchedData, filter);
+        const filteredData = getFilteredData(result, filter);
 
         // Process data for charts
         const dates = filteredData.map(row => row.Date + ' ' + row.Time);
