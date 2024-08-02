@@ -39,6 +39,46 @@
   color: #ff0000;
 }
 
+
+/* Styles for temperature details */
+
+
+
+.admin-temperature-details,
+.admin-humidity-details,
+.admin-moisture-details {
+  margin-top: 10px;
+  color: #181818;
+}
+
+.admin-temperature-row,
+.admin-humidity-row,
+.admin-moisture-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-temperature-label,
+.admin-humidity-label,
+.admin-moisture-label {
+  text-align: center;
+ 
+}
+
+.admin-temperature-details h5,
+.admin-humidity-details h5,
+.admin-moisture-label h5 {
+  margin: 0;
+}
+
+.admin-temperature-details p,
+.admin-humidity-details p,
+.admin-moisture-label p {
+  margin: 5px 0 0;
+}
+
+
+
 @media (max-width: 768px) {
   .filter-button {
     padding: 8px 16px;
