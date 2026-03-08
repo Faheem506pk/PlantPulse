@@ -19,16 +19,16 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 
 // Simulated historical data for high-end visualization
-const generateSimulatedData = (currentVal = 25) => {
-  return Array.from({ length: 24 }, (_, i) => ({
-    time: `${i.toString().padStart(2, '0')}:00`,
-    temp: currentVal - 2 + Math.random() * 2,
-    humi: 50 + Math.random() * 5,
-    mois: 30 + Math.random() * 5,
+const generateSimulatedData = (currentVal = 25, count = 24) => {
+  return Array.from({ length: count }, (_, i) => ({
+    time: count === 24 ? `${i.toString().padStart(2, '0')}:00` : `Day ${i + 1}`,
+    temp: currentVal - 2 + Math.random() * 4,
+    humi: 50 + Math.random() * 10,
+    mois: 30 + Math.random() * 10,
   }));
 };
 
-const PremiumMetricCard = ({ title, value, unit, icon: Icon, color, trend }) => (
+const PremiumMetricCard = ({ title, value, unit, icon: Icon, color }) => (
   <Card className="glass-card overflow-hidden group hover:border-brand-neon/50 transition-all duration-500">
     <CardContent className="h-full pt-6">
       <div className="flex justify-between items-start mb-4">
@@ -36,12 +36,10 @@ const PremiumMetricCard = ({ title, value, unit, icon: Icon, color, trend }) => 
           <Icon className="w-5 h-5 text-brand-deep" />
         </div>
         <div className="flex flex-col items-end">
-          <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full", 
-            trend > 0 ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"
-          )}>
-            {trend > 0 ? '+' : ''}{trend}%
+          <span className="text-[10px] font-bold text-brand-neon uppercase tracking-tighter bg-brand-neon/5 px-2 py-0.5 rounded-full border border-brand-neon/20 shadow-[0_0_10px_rgba(34,197,94,0.1)]">
+            Live telemetry
           </span>
-          <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1">{title}</p>
+          <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-2">{title}</p>
         </div>
       </div>
       
@@ -75,6 +73,7 @@ const Dashboard = () => {
   } = useFirebaseData();
 
   const { writeServoAngleData } = useEsp32Data();
+  const [servoVal, setServoVal] = useState(servo || 90);
   const [selectedRange, setSelectedRange] = useState('24H');
   const [autoWatering, setAutoWatering] = useState(true);
   const [growLights, setGrowLights] = useState(false);
@@ -88,18 +87,6 @@ const Dashboard = () => {
     <div className="flex-1 bg-brand-deep min-h-screen p-8 space-y-8 animate-in fade-in duration-700">
       <ToastContainer theme="dark" />
       
-      {/* SVG Filters for Glow Effects */}
-      <svg className="absolute w-0 h-0 overflow-hidden">
-        <defs>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-      </svg>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <PremiumMetricCard 
           title="Temperature" 
@@ -107,7 +94,6 @@ const Dashboard = () => {
           unit="°C" 
           icon={ThermometerSun} 
           color="bg-amber-500" 
-          trend={2.4}
         />
         <PremiumMetricCard 
           title="Humidity" 
@@ -115,7 +101,6 @@ const Dashboard = () => {
           unit="%" 
           icon={Droplets} 
           color="bg-blue-500" 
-          trend={-1.2}
         />
         <PremiumMetricCard 
           title="Soil Moisture" 
@@ -123,7 +108,6 @@ const Dashboard = () => {
           unit="%" 
           icon={Droplet} 
           color="bg-teal-500" 
-          trend={5.1}
         />
         <PremiumMetricCard 
           title="Light Intensity" 
@@ -131,7 +115,6 @@ const Dashboard = () => {
           unit="" 
           icon={Sun} 
           color="bg-yellow-500" 
-          trend={10.2}
         />
       </div>
 
@@ -147,9 +130,10 @@ const Dashboard = () => {
               {['24H', '7D', '30D'].map((range) => (
                 <button 
                   key={range}
+                  onClick={() => setSelectedRange(range)}
                   className={cn(
                     "px-4 py-1.5 text-[10px] font-bold rounded-md transition-all",
-                    range === '24H' ? "bg-brand-neon text-brand-deep shadow-lg overflow-hidden relative" : "text-zinc-400 hover:text-white"
+                    range === selectedRange ? "bg-brand-neon text-brand-deep shadow-lg overflow-hidden relative" : "text-zinc-400 hover:text-white"
                   )}
                 >
                   {range}

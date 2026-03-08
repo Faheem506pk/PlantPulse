@@ -139,6 +139,18 @@ const App = () => {
             </div>
           </div>
         )}
+        {/* Global SVG Filters for Recharts */}
+        <svg className="absolute w-0 h-0 overflow-hidden">
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
       </div>
     </UserProvider>
   );
