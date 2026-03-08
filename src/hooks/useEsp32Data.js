@@ -19,14 +19,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig, "esp32"); // Use a named app instance
 const database = getDatabase(app);
 
+import { toast } from "react-toastify";
+
 export const useEsp32Data = () => {
     
     const writeTemperatureData = (tempupValue) => {
-        if (validateFloat(tempupValue) && parseFloat(tempupValue) >= 2 && parseFloat(tempupValue) <= 40) {
+        if (validateFloat(tempupValue) && parseFloat(tempupValue) >= 2 && parseFloat(tempupValue) >= 2 && parseFloat(tempupValue) <= 40) {
             set(ref(database, 'tempup'), parseFloat(tempupValue));
             set(ref(database, 'tempdown'), parseFloat(tempupValue) - 2);
         } else {
-            alert("Temperature values must be between 2 and 40.");
+            toast.error("Temperature values must be between 2 and 40.");
         }
     }
 
@@ -35,7 +37,7 @@ export const useEsp32Data = () => {
             set(ref(database, 'humidup'), parseInt(humidupValue));
             set(ref(database, 'humiddown'), parseInt(humidupValue) - 10);
         } else {
-            alert("Humidity value must be between 10 and 100.");
+            toast.error("Humidity value must be between 10 and 100.");
         }
     }
 
@@ -44,7 +46,7 @@ export const useEsp32Data = () => {
             set(ref(database, 'Moistureup'), parseInt(moistureupValue));
             set(ref(database, 'Moisturedown'), parseInt(moistureupValue) - 20);
         } else {
-            alert("Moisture value must be between 20 and 100.");
+            toast.error("Moisture value must be between 20 and 100.");
         }
     }
 
@@ -53,7 +55,7 @@ export const useEsp32Data = () => {
         if (validateFloat(servoangleValue) && val >= 0 && val <= 180) {
             set(ref(database, 'servoangle'), val);
         } else {
-            alert("Servo Angle value must be between 0 and 180.");
+            toast.error("Servo Angle value must be between 0 and 180.");
         }
     }
 

@@ -5,14 +5,27 @@ import { ref, update } from 'firebase/database';
 import { toast, ToastContainer } from "react-toastify";
 import { ThermometerSun, Droplets, Droplet, CheckCircle2, ShieldCheck, Flower2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription, 
+  DialogFooter 
+} from "@/components/ui/dialog";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const HARDCODED_PASSWORD = "mcb121450";
 
 export default function UserPresets() {
   const [presets, setPresets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const [selectedPreset, setSelectedPreset] = useState(null);
 
   useEffect(() => {
     const fetchPresets = async () => {
@@ -30,17 +43,23 @@ export default function UserPresets() {
     fetchPresets();
   }, []);
 
-  const handleApplyPreset = async (preset) => {
-    const enteredPassword = prompt("Enter security code to apply configuration:");
-    if (enteredPassword === HARDCODED_PASSWORD) {
+  const initiateApplyPreset = (preset) => {
+    setSelectedPreset(preset);
+    setIsDialogOpen(true);
+    setPassword("");
+  };
+
+  const confirmApplyPreset = async () => {
+    if (password === HARDCODED_PASSWORD) {
       try {
         const dataToUpdate = {
-          tempup: preset.tempup, tempdown: preset.tempdown,
-          moistureup: preset.moistureup, moisturedown: preset.moisturedown,
-          humidup: preset.humidup, humiddown: preset.humiddown
+          tempup: selectedPreset.tempup, tempdown: selectedPreset.tempdown,
+          moistureup: selectedPreset.moistureup, moisturedown: selectedPreset.moisturedown,
+          humidup: selectedPreset.humidup, humiddown: selectedPreset.humiddown
         };
         await update(ref(rtdb), dataToUpdate);
-        toast.success(`Active configuration updated: ${preset.name}`);
+        toast.success(`Active configuration updated: ${selectedPreset.name}`);
+        setIsDialogOpen(false);
       } catch (error) {
         toast.error('Failed to update system parameters');
       }
@@ -107,7 +126,7 @@ export default function UserPresets() {
               </div>
 
               <Button 
-                onClick={() => handleApplyPreset(preset)}
+                onClick={() => initiateApplyPreset(preset)}
                 className="w-full bg-brand-neon hover:bg-brand-neon/80 text-brand-deep font-bold mt-auto group/btn overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -124,6 +143,38 @@ export default function UserPresets() {
           </div>
         )}
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="glass-card border-brand-muted text-white max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold flex items-center gap-2 tracking-tight">
+              <ShieldCheck className="w-5 h-5 text-brand-neon" />
+              Security Verification
+            </DialogTitle>
+            <DialogDescription className="text-zinc-400">
+              Enter the master security code to synchronize this preset with your hardware.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <Input 
+              type="password"
+              placeholder="Enter security code..."
+              className="bg-brand-deep/50 border-brand-muted text-white focus:border-brand-neon transition-all"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && confirmApplyPreset()}
+            />
+          </div>
+          <DialogFooter className="flex gap-2 sm:gap-0">
+            <Button variant="ghost" onClick={() => setIsDialogOpen(false)} className="text-zinc-400 hover:text-white hover:bg-white/5">
+              Cancel
+            </Button>
+            <Button onClick={confirmApplyPreset} className="bg-brand-neon text-brand-deep font-bold hover:bg-brand-neon/90">
+              Authenticate
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
