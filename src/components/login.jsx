@@ -55,7 +55,7 @@ function Login() {
   };
 
   return (
-    <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000">
+    <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000 h-full py-10 flex flex-col justify-center">
       <ToastContainer theme="dark" />
       
       <div className="w-full">
@@ -64,7 +64,6 @@ function Login() {
             <Leaf className="w-10 h-10 text-brand-deep" />
           </div>
           <h1 className="text-4xl font-black text-white glow-text tracking-tighter mb-2">PlantPulse</h1>
-          <p className="text-brand-neon font-black tracking-[0.3em] uppercase text-[10px] opacity-80">Premium IoT Terminal</p>
         </div>
 
         <Card className="glass-card border-brand-muted relative overflow-hidden group">
@@ -73,23 +72,22 @@ function Login() {
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                 <ShieldCheck className="w-6 h-6 text-brand-neon" />
-                Authenticate Identification
+                Login
               </h2>
-              <p className="text-zinc-500 text-sm mt-1">Provide authorized credentials for system access</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                  <Mail className="w-3 h-3 text-brand-neon" />
-                  Access Node (Email)
+                  <Mail className="w-3" />
+                  Email
                 </label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@matrix.com"
+                  placeholder="name@example.com"
                   className="w-full bg-brand-deep/50 border border-brand-muted/50 rounded-xl px-4 py-3.5 text-white text-sm focus:border-brand-neon/50 focus:ring-1 focus:ring-brand-neon/20 outline-none transition-all placeholder:text-zinc-700"
                 />
               </div>
@@ -97,8 +95,8 @@ function Login() {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                    <Lock className="w-3 h-3 text-brand-neon" />
-                    Security Key (Password)
+                    <Lock className="w-3" />
+                    Password
                   </label>
                   <Link to="/forgotpassword" title="Recover Identification" className="text-[10px] font-bold text-brand-neon hover:underline tracking-widest uppercase opacity-70">
                     Recover
@@ -120,19 +118,18 @@ function Login() {
                 className="w-full bg-brand-neon hover:bg-brand-neon/80 text-brand-deep font-black py-7 rounded-xl group relative overflow-hidden transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center gap-2 uppercase tracking-widest text-xs">
-                  {isSubmitting ? "Verifying..." : "Initialize Access"}
+                  {isSubmitting ? "Verifying..." : "Login"}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
               </Button>
             </form>
 
-            <div className="mt-10 pt-8 border-t border-brand-muted/50">
-              <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest text-center mb-6">External Synchronization</p>
+            <div className="mt-8 pt-6 border-t border-brand-muted/50">
               <div className="flex flex-col gap-4">
                 <SignInwithGoogle />
                 <Button asChild variant="outline" className="w-full border-brand-muted text-zinc-400 hover:text-white hover:bg-brand-muted/30 py-6 rounded-xl font-bold uppercase tracking-widest text-[10px]">
-                  <Link to="/register">Create System Identification</Link>
+                  <Link to="/register">Register</Link>
                 </Button>
               </div>
             </div>

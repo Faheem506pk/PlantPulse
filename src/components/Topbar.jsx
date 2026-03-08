@@ -2,6 +2,17 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Search, Bell, User, Menu, LogOut, Thermometer, Droplets, Droplet, Leaf } from 'lucide-react';
 import { UserContext } from './UserContext';
 import { Button } from '@/components/ui/button';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useFirebaseData, auth } from '../hooks/useFirebaseData';
 import { cn } from '@/lib/utils';
 
@@ -91,13 +102,28 @@ const Topbar = ({ toggleSidebar }) => {
               )}
             </div>
           </div>
-          <button 
-            onClick={handleLogout}
-            className="p-2 text-zinc-500 hover:text-red-500 transition-colors group-hover:bg-red-500/10 rounded-lg"
-            title="Disconnect Terminal"
-          >
-            <LogOut className="w-4 h-4" />
-          </button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <button 
+                className="p-2 text-zinc-500 hover:text-red-500 transition-colors group-hover:bg-red-500/10 rounded-lg"
+                title="Disconnect Terminal"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="glass-card border-brand-muted">
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-white glow-text">Disconnect Terminal</AlertDialogTitle>
+                <AlertDialogDescription className="text-zinc-400">
+                  Are you sure you want to log out of the PlantPulse system?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="bg-brand-surface border-brand-muted text-white hover:bg-brand-muted">Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleLogout} className="bg-red-500 hover:bg-red-600 text-white">Disconnect</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
     </header>

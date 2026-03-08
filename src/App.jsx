@@ -117,7 +117,6 @@ const MainAppLayout = () => {
             <Topbar toggleSidebar={toggleSidebar} />
             <main
               className="flex-1 p-4 lg:p-8 w-full overflow-y-auto"
-              style={{ maxHeight: 'calc(100vh - 80px)' }}
             >
               <ScrollToTop />
               <div className="max-w-7xl mx-auto w-full pb-20">

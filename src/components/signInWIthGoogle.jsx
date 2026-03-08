@@ -53,11 +53,9 @@ function SignInwithGoogle() {
   }
 
   return (
-    <div>
-      
-      <p className="continue-p">--Or continue with--</p>
+    <div className="flex justify-center">
       <div
-        style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
+        className="cursor-pointer hover:opacity-80 transition-opacity"
         onClick={googleLogin}
       >
         <img src={googleImage} width={"50%"} alt="Google Sign In" />

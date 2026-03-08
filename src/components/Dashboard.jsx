@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useFirebaseData } from "../hooks/useFirebaseData";
 import { useEsp32Data } from "../hooks/useEsp32Data";
 import { toast, ToastContainer } from "react-toastify";
@@ -72,16 +72,46 @@ const Dashboard = () => {
     temperature, humidity, ldr, moisture, servo, setData
   } = useFirebaseData();
 
-  const { writeServoAngleData } = useEsp32Data();
+  const { writeServoAngleData, writeAutoWateringData, writeGrowLightsData } = useEsp32Data();
   const [servoVal, setServoVal] = useState(servo || 90);
   const [selectedRange, setSelectedRange] = useState('24H');
   const [autoWatering, setAutoWatering] = useState(true);
   const [growLights, setGrowLights] = useState(false);
 
+  // Keep servo synced with remote if it changes remotely
+  useEffect(() => {
+    if (servo !== undefined && servo !== servoVal) {
+      setServoVal(servo);
+    }
+  }, [servo]);
+
+  // Use real temperature data over time (simulated accumulation for demo purposes)
+  // In a real app we would fetch historical data from Firebase
+  const [historicalData, setHistoricalData] = useState([]);
+  
+  useEffect(() => {
+    if (temperature && humidity && moisture) {
+      setHistoricalData(prev => {
+        const now = new Date();
+        const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+        const newPoint = {
+          time: timeStr,
+          temp: parseFloat(temperature) || 25,
+          humi: parseFloat(humidity) || 50,
+          mois: parseFloat(moisture) || 30
+        };
+        const updated = [...prev, newPoint];
+        // Keep last 24 points
+        return updated.length > 24 ? updated.slice(updated.length - 24) : updated;
+      });
+    }
+  }, [temperature, humidity, moisture]);
+
   const trendData = useMemo(() => {
+    if (historicalData.length > 0) return historicalData;
     const points = selectedRange === '24H' ? 24 : selectedRange === '7D' ? 7 : 30;
     return generateSimulatedData(parseFloat(temperature) || 25, points);
-  }, [temperature, selectedRange]);
+  }, [temperature, selectedRange, historicalData]);
 
   return (
     <div className="w-full p-0 space-y-8 animate-in fade-in duration-700">
@@ -142,14 +172,19 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="h-[350px] w-full relative z-10">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="h-[350px] min-h-[350px] w-full relative z-10 flex-1">
+            <div className="absolute inset-0">
+              <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={trendData}>
                 <defs>
                   <linearGradient id="colorGreen" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#22C55E" stopOpacity={0.3}/>
                     <stop offset="95%" stopColor="#22C55E" stopOpacity={0}/>
                   </linearGradient>
+                  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1A2E1A" vertical={false} />
                 <XAxis 
@@ -177,6 +212,7 @@ const Dashboard = () => {
                 />
               </AreaChart>
             </ResponsiveContainer>
+            </div>
           </div>
         </Card>
 
@@ -217,14 +253,28 @@ const Dashboard = () => {
                     <Zap className={cn("w-4 h-4 transition-colors", autoWatering ? "text-brand-neon" : "text-zinc-600")} />
                     <span className="text-xs font-bold text-white">Auto-Watering</span>
                   </div>
-                  <Switch checked={autoWatering} onCheckedChange={setAutoWatering} />
+                  <Switch 
+                    checked={autoWatering} 
+                    onCheckedChange={(v) => {
+                      setAutoWatering(v);
+                      writeAutoWateringData(v);
+                      toast.info(`Auto-Watering ${v ? 'Enabled' : 'Disabled'}`);
+                    }} 
+                  />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Lightbulb className={cn("w-4 h-4 transition-colors", growLights ? "text-brand-neon" : "text-zinc-600")} />
                     <span className="text-xs font-bold text-white">Grow Lights</span>
                   </div>
-                  <Switch checked={growLights} onCheckedChange={setGrowLights} />
+                  <Switch 
+                    checked={growLights} 
+                    onCheckedChange={(v) => {
+                      setGrowLights(v);
+                      writeGrowLightsData(v);
+                      toast.info(`Grow Lights ${v ? 'Enabled' : 'Disabled'}`);
+                    }} 
+                  />
                 </div>
               </div>
             </div>
@@ -241,12 +291,13 @@ const Dashboard = () => {
             
             <div className="space-y-4">
               {[
-                { time: 'System Active', text: 'Telemetry synchronization active', icon: CheckCircle2 },
-                { time: 'Auth Level 4', text: `Authorized: ${userDetails?.firstName}`, icon: Power },
+                { time: 'System Active', text: 'Telemetry synchronization active', icon: CheckCircle2, alert: false },
+                { time: 'Auth Level 4', text: `Authorized: ${userDetails?.firstName || 'Operator'}`, icon: Power, alert: false },
+                { time: 'Module State', text: autoWatering ? 'Auto-watering enabled' : 'Auto-watering disabled', icon: Droplets, alert: !autoWatering },
               ].map((log, i) => (
                 <div key={i} className="flex gap-4 group">
                   <div className={cn("w-1 h-10 rounded-full transition-all duration-300", 
-                    log.alert ? "bg-red-500" : "bg-brand-muted group-hover:bg-brand-neon"
+                    log.alert ? "bg-amber-500" : "bg-brand-muted group-hover:bg-brand-neon"
                   )} />
                   <div>
                     <p className="text-xs font-bold text-white group-hover:text-brand-neon transition-colors">{log.text}</p>

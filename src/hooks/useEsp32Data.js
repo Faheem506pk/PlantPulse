@@ -59,15 +59,27 @@ export const useEsp32Data = () => {
         }
     }
 
+    const writeAutoWateringData = (state) => {
+        set(ref(database, 'autoWatering'), state);
+    }
+
+    const writeGrowLightsData = (state) => {
+        set(ref(database, 'growLights'), state);
+    }
+
     const validateFloat = (value) => {
-        const strVal = String(value || "");
-        return /^\d+(\.\d+)?$/.test(strVal.trim());
+        if (value === null || value === undefined) return false;
+        const strVal = String(value).trim();
+        if (strVal === "") return false;
+        return !isNaN(parseFloat(strVal)) && isFinite(strVal);
     }
 
     return {
         writeTemperatureData,
         writeHumidityData,
         writeMoistureData,
-        writeServoAngleData
+        writeServoAngleData,
+        writeAutoWateringData,
+        writeGrowLightsData
     };
 };

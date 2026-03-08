@@ -8,6 +8,17 @@ import { User, Mail, Phone, MapPin, Building, LogOut, Trash2, Edit3, ShieldAlert
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 function Profile() {
   const [userDetails, setUserDetails] = useState(null);
@@ -57,26 +68,24 @@ function Profile() {
   }
 
   async function handleDeleteAccount() {
-    if (window.confirm("CRITICAL: This will permanently delete your IoT profile and all associated data. Continue?")) {
-      try {
-        const user = auth.currentUser;
-        if (user.providerData[0].providerId === "password") {
-          const pass = prompt("Verification required. Enter password:");
-          if (!pass) return;
-          const credential = EmailAuthProvider.credential(user.email, pass);
-          await reauthenticateWithCredential(user, credential);
-        } else if (user.providerData[0].providerId === "google.com") {
-          const provider = new GoogleAuthProvider();
-          await reauthenticateWithPopup(user, provider);
-        }
-
-        await deleteDoc(doc(db, "users", user.uid));
-        await user.delete();
-        navigate("/login");
-        toast.success("Account terminated");
-      } catch (error) {
-        toast.error(`Termination failed: ${error.message}`);
+    try {
+      const user = auth.currentUser;
+      if (user.providerData[0].providerId === "password") {
+        const pass = prompt("Verification required. Enter password:");
+        if (!pass) return;
+        const credential = EmailAuthProvider.credential(user.email, pass);
+        await reauthenticateWithCredential(user, credential);
+      } else if (user.providerData[0].providerId === "google.com") {
+        const provider = new GoogleAuthProvider();
+        await reauthenticateWithPopup(user, provider);
       }
+
+      await deleteDoc(doc(db, "users", user.uid));
+      await user.delete();
+      navigate("/login");
+      toast.success("Account terminated");
+    } catch (error) {
+      toast.error(`Termination failed: ${error.message}`);
     }
   }
 
@@ -109,13 +118,28 @@ function Profile() {
           >
             <LogOut className="w-3 h-3" /> Sign Out
           </Button>
-          <Button 
-            variant="destructive" 
-            onClick={handleDeleteAccount}
-            className="bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border-none font-bold text-[10px] uppercase tracking-widest gap-2"
-          >
-            <Trash2 className="w-3 h-3" /> Terminate
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button 
+                variant="destructive" 
+                className="bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border-none font-bold text-[10px] uppercase tracking-widest gap-2"
+              >
+                <Trash2 className="w-3 h-3" /> Terminate
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="glass-card border-brand-muted">
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-white glow-text">Terminate Account Data</AlertDialogTitle>
+                <AlertDialogDescription className="text-red-400">
+                  CRITICAL: This will permanently delete your IoT profile and all associated data. Continue?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="bg-brand-surface border-brand-muted text-white hover:bg-brand-muted">Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDeleteAccount} className="bg-red-500 hover:bg-red-600 text-white">Terminate</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
 

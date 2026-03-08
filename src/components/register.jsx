@@ -43,16 +43,15 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-neon/5 via-brand-deep to-brand-deep">
+    <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000 h-full py-10 flex flex-col justify-center">
       <ToastContainer theme="dark" />
       
-      <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000">
+      <div className="w-full">
         <div className="flex flex-col items-center mb-10">
           <div className="bg-brand-neon p-4 rounded-2xl glow-green shadow-[0_0_30px_rgba(34,197,94,0.4)] mb-6">
             <Leaf className="w-10 h-10 text-brand-deep" />
           </div>
           <h1 className="text-4xl font-black text-white glow-text tracking-tighter mb-2">PlantPulse</h1>
-          <p className="text-brand-neon font-black tracking-[0.3em] uppercase text-[10px] opacity-80">Premium IoT Terminal</p>
         </div>
 
         <Card className="glass-card border-brand-muted relative overflow-hidden group">
@@ -61,17 +60,16 @@ function Register() {
             <div className="mb-8 text-center">
               <h2 className="text-2xl font-bold text-white tracking-tight flex items-center justify-center gap-2">
                 <ShieldPlus className="w-6 h-6 text-brand-neon" />
-                Initialize System ID
+                Register
               </h2>
-              <p className="text-zinc-500 text-sm mt-1">Register new operator credentials</p>
             </div>
 
             <form onSubmit={handleRegister} className="space-y-5">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                    <User className="w-3 h-3 text-brand-neon" />
-                    Given Name
+                    <User className="w-3" />
+                    First Name
                   </label>
                   <input
                     type="text"
@@ -83,8 +81,8 @@ function Register() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                    <User className="w-3 h-3 text-brand-neon" />
-                    Surname
+                    <User className="w-3" />
+                    Last Name
                   </label>
                   <input
                     type="text"
@@ -97,13 +95,13 @@ function Register() {
 
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                  <Mail className="w-3 h-3 text-brand-neon" />
-                  Access Node (Email)
+                  <Mail className="w-3" />
+                  Email
                 </label>
                 <input
                   type="email"
                   required
-                  placeholder="name@matrix.com"
+                  placeholder="name@example.com"
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-brand-deep/50 border border-brand-muted/50 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-neon/50 outline-none transition-all placeholder:text-zinc-700"
                 />
@@ -111,8 +109,8 @@ function Register() {
 
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                  <Lock className="w-3 h-3 text-brand-neon" />
-                  Security Key (Password)
+                  <Lock className="w-3" />
+                  Password
                 </label>
                 <input
                   type="password"
@@ -129,7 +127,7 @@ function Register() {
                 className="w-full bg-brand-neon hover:bg-brand-neon/80 text-brand-deep font-black py-7 rounded-xl group relative overflow-hidden transition-all duration-300 mt-4"
               >
                 <span className="relative z-10 flex items-center gap-2 uppercase tracking-widest text-xs">
-                  {isSubmitting ? "Processing..." : "Register Identification"}
+                  {isSubmitting ? "Processing..." : "Register"}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
@@ -140,17 +138,12 @@ function Register() {
               <p className="text-zinc-500 text-xs">
                 Already part of the network?{" "}
                 <Link to="/login" className="text-brand-neon font-bold hover:underline">
-                  Terminal Sign-in
+                  Login Here
                 </Link>
               </p>
             </div>
           </CardContent>
         </Card>
-        
-        <div className="mt-8 text-center flex items-center justify-center gap-3 text-[10px] font-bold text-zinc-600 uppercase tracking-[0.2em]">
-          <Globe className="w-3 h-3" />
-          Encrypted Registration Tunnel
-        </div>
       </div>
     </div>
   );
