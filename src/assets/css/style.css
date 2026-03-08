@@ -1514,3 +1514,15 @@ h3 {
 
 
 
+
+/* --- Stitch UI Custom Styles --- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.circular-progress {
+    background: conic-gradient(from 0deg, #13ec5b 78%, rgba(19, 236, 91, 0.1) 0%);
+}
+

@@ -30,7 +30,6 @@ function Login() {
         const access = userData.access;
 
         if (role === 'admin') {
-          console.log("Admin logged in Successfully");
           toast.success("Admin logged in Successfully", {
             position: "top-center",
           });
@@ -38,31 +37,26 @@ function Login() {
         } else if (role === 'user') {
           if (access === false) {
             await auth.signOut();
-            console.log("You have no access to login. Contact with admin.");
             toast.error("You have no access to login. Contact with admin.", {
               position: "bottom-center",
             });
           } else {
-            console.log("User logged in Successfully");
             toast.success("User logged in Successfully", {
               position: "top-center",
             });
-            navigate("/dashboard");
+          navigate("/dashboard");
           }
         } else {
-          console.log("Invalid role!");
           toast.error("Invalid role!", {
             position: "bottom-center",
           });
         }
       } else {
-        console.log("No such document!");
         toast.error("No user data found", {
           position: "bottom-center",
         });
       }
     } catch (error) {
-      console.log(error.message);
       toast.error(error.message, {
         position: "bottom-center",
       });

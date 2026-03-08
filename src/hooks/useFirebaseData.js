@@ -9,14 +9,14 @@ import {getStorage} from "firebase/storage";
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBU2T3J2eXy-dUqIPRLZ5Hj1ijbIrXhs5g",
-  authDomain: "plantpulse-742d1.firebaseapp.com",
-  databaseURL: "https://plantpulse-742d1-default-rtdb.firebaseio.com",
-  projectId: "plantpulse-742d1",
-  storageBucket: "plantpulse-742d1.appspot.com",
-  messagingSenderId: "1163762562",
-  appId: "1:1163762562:web:18d1ee709944072aac8d9b",
-  measurementId: "G-KXQBKTPF3X"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

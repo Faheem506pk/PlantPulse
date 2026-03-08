@@ -30,7 +30,6 @@ function Register() {
         position: "top-center",
       });
     } catch (error) {
-      console.log(error.message);
       toast.error(error.message, {
         position: "bottom-center",
       });
