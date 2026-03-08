@@ -109,9 +109,9 @@ function EditProfile() {
   };
 
   const InputField = ({ icon: Icon, label, name, value, onChange, placeholder, maxLength }) => (
-    <div className="space-y-2">
-      <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-        <Icon className="w-3 h-3 text-brand-neon" />
+    <div className="space-y-2 group/input">
+      <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2 group-focus-within/input:text-brand-neon transition-colors">
+        <Icon className="w-3" />
         {label}
       </label>
       <input
@@ -121,7 +121,7 @@ function EditProfile() {
         onChange={onChange}
         maxLength={maxLength}
         placeholder={placeholder}
-        className="w-full bg-brand-deep border border-brand-muted/50 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-neon/50 focus:ring-1 focus:ring-brand-neon/20 outline-none transition-all placeholder:text-zinc-600"
+        className="w-full bg-brand-deep/40 border border-brand-muted/30 rounded-xl px-4 py-3.5 text-white text-sm focus:border-brand-neon/50 focus:ring-1 focus:ring-brand-neon/20 outline-none transition-all placeholder:text-zinc-700 backdrop-blur-sm shadow-inner"
       />
     </div>
   );

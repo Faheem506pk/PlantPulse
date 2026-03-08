@@ -55,10 +55,10 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-neon/5 via-brand-deep to-brand-deep">
+    <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000">
       <ToastContainer theme="dark" />
       
-      <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000">
+      <div className="w-full">
         <div className="flex flex-col items-center mb-10">
           <div className="bg-brand-neon p-4 rounded-2xl glow-green shadow-[0_0_30px_rgba(34,197,94,0.4)] mb-6">
             <Leaf className="w-10 h-10 text-brand-deep" />
