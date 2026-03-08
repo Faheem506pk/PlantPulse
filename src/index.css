@@ -76,10 +76,30 @@
   .glow-text {
     text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
   }
+  @keyframes progress {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-progress {
+    animation: progress 2s infinite ease-in-out;
+  }
 }
- 
+
 @layer base {
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+    min-height: 100vh;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-deep;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-muted rounded-full hover:bg-brand-neon transition-colors;
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import { LayoutDashboard, BarChart3, Construction, Users, Settings, Leaf, Cpu } from 'lucide-react';
+import { LayoutDashboard, BarChart3, Construction, Users, Settings, Leaf, Cpu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, toggle }) => {
   const location = useLocation();
   const navItems = [
     { title: 'Dashboard', icon: LayoutDashboard, path: '/' },
@@ -14,21 +14,29 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 border-r border-brand-muted bg-brand-deep flex flex-col h-screen fixed inset-y-0 z-50">
-      <div className="px-6 py-8">
-        <Link to="/" className="flex items-center gap-2 mb-8 group cursor-pointer px-4">
-          <div className="bg-brand-neon p-2 rounded-lg glow-green shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-            <Leaf className="w-6 h-6 text-brand-deep" />
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-white tracking-tighter glow-text">PlantPulse</h2>
-            <p className="text-[10px] text-brand-neon font-black tracking-widest uppercase opacity-80">Premium IoT</p>
-          </div>
-        </Link>
+    <div className={cn(
+      "w-64 border-r border-brand-muted bg-brand-deep flex flex-col h-screen fixed inset-y-0 left-0 z-50 transition-transform duration-300 ease-in-out lg:translate-x-0",
+      isOpen ? "translate-x-0 shadow-[20px_0_50px_rgba(0,0,0,0.5)]" : "-translate-x-full"
+    )}>
+      <div className="px-6 py-8 h-full flex flex-col">
+        <div className="flex items-center justify-between mb-8 group cursor-pointer">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="bg-brand-neon p-2 rounded-lg glow-green shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+              <Leaf className="w-6 h-6 text-brand-deep" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-white tracking-tighter glow-text">PlantPulse</h2>
+              <p className="text-[10px] text-brand-neon font-black tracking-widest uppercase opacity-80">Premium IoT</p>
+            </div>
+          </Link>
+          <Button variant="ghost" size="icon" onClick={toggle} className="lg:hidden text-zinc-400">
+            <X className="w-5 h-5" />
+          </Button>
+        </div>
         
-        <div className="space-y-2">
+        <div className="space-y-2 flex-1 overflow-y-auto custom-scrollbar pr-2">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.path;
+            const isActive = location.pathname === item.path || (item.path === '/' && location.pathname === '/dashboard');
             return (
               <Link key={item.title} to={item.path}>
                 <Button

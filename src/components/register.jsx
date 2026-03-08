@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import { auth, db } from "../hooks/useFirebaseData";
 import { setDoc, doc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
+import { User, Mail, Lock, ShieldPlus, ArrowRight, Leaf, Globe } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
@@ -10,91 +14,144 @@ function Register() {
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      const user = auth.currentUser;
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
       if (user) {
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
           firstName: fname,
           lastName: lname,
           photo: "",
-          role: "user", // Add role field here
+          role: "user",
           access: false
         });
       }
-      toast.success("User Registered Successfully!!", {
-        position: "top-center",
-      });
+      toast.success("Identity Created: Authorization Pending");
+      setTimeout(() => navigate("/login"), 2000);
     } catch (error) {
-      toast.error(error.message, {
-        position: "bottom-center",
-      });
+      toast.error(error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="registerpage">
-      <ToastContainer />
-      <form className="Sign-Up-password-page" onSubmit={handleRegister}>
-        <h3>Sign Up</h3>
-
-        <div className="mb-3">
-          <label>First name</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="First name"
-            onChange={(e) => setFname(e.target.value)}
-            required
-          />
+    <div className="min-h-screen w-full flex items-center justify-center p-4 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-neon/5 via-brand-deep to-brand-deep">
+      <ToastContainer theme="dark" />
+      
+      <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000">
+        <div className="flex flex-col items-center mb-10">
+          <div className="bg-brand-neon p-4 rounded-2xl glow-green shadow-[0_0_30px_rgba(34,197,94,0.4)] mb-6">
+            <Leaf className="w-10 h-10 text-brand-deep" />
+          </div>
+          <h1 className="text-4xl font-black text-white glow-text tracking-tighter mb-2">PlantPulse</h1>
+          <p className="text-brand-neon font-black tracking-[0.3em] uppercase text-[10px] opacity-80">Premium IoT Terminal</p>
         </div>
 
-        <div className="mb-3">
-          <label>Last name</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Last name"
-            onChange={(e) => setLname(e.target.value)}
-          />
-        </div>
+        <Card className="glass-card border-brand-muted relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-neon/10 via-transparent to-transparent opacity-50" />
+          <CardContent className="pt-10 px-8 pb-10 relative z-10">
+            <div className="mb-8 text-center">
+              <h2 className="text-2xl font-bold text-white tracking-tight flex items-center justify-center gap-2">
+                <ShieldPlus className="w-6 h-6 text-brand-neon" />
+                Initialize System ID
+              </h2>
+              <p className="text-zinc-500 text-sm mt-1">Register new operator credentials</p>
+            </div>
 
-        <div className="mb-3">
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+            <form onSubmit={handleRegister} className="space-y-5">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                    <User className="w-3 h-3 text-brand-neon" />
+                    Given Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Alex"
+                    onChange={(e) => setFname(e.target.value)}
+                    className="w-full bg-brand-deep/50 border border-brand-muted/50 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-neon/50 outline-none transition-all placeholder:text-zinc-700"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                    <User className="w-3 h-3 text-brand-neon" />
+                    Surname
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Rivera"
+                    onChange={(e) => setLname(e.target.value)}
+                    className="w-full bg-brand-deep/50 border border-brand-muted/50 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-neon/50 outline-none transition-all placeholder:text-zinc-700"
+                  />
+                </div>
+              </div>
 
-        <div className="mb-3">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                  <Mail className="w-3 h-3 text-brand-neon" />
+                  Access Node (Email)
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="name@matrix.com"
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-brand-deep/50 border border-brand-muted/50 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-neon/50 outline-none transition-all placeholder:text-zinc-700"
+                />
+              </div>
 
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
-            Sign Up
-          </button>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                  <Lock className="w-3 h-3 text-brand-neon" />
+                  Security Key (Password)
+                </label>
+                <input
+                  type="password"
+                  required
+                  placeholder="••••••••••••"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-brand-deep/50 border border-brand-muted/50 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-neon/50 outline-none transition-all placeholder:text-zinc-700 font-mono"
+                />
+              </div>
+
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-brand-neon hover:bg-brand-neon/80 text-brand-deep font-black py-7 rounded-xl group relative overflow-hidden transition-all duration-300 mt-4"
+              >
+                <span className="relative z-10 flex items-center gap-2 uppercase tracking-widest text-xs">
+                  {isSubmitting ? "Processing..." : "Register Identification"}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+              </Button>
+            </form>
+
+            <div className="mt-8 pt-6 border-t border-brand-muted/50 text-center">
+              <p className="text-zinc-500 text-xs">
+                Already part of the network?{" "}
+                <Link to="/login" className="text-brand-neon font-bold hover:underline">
+                  Terminal Sign-in
+                </Link>
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <div className="mt-8 text-center flex items-center justify-center gap-3 text-[10px] font-bold text-zinc-600 uppercase tracking-[0.2em]">
+          <Globe className="w-3 h-3" />
+          Encrypted Registration Tunnel
         </div>
-        <p className="forgot-password text-right">
-          Already registered <a href="/login">Login</a>
-        </p>
-      </form>
-      <ToastContainer />
+      </div>
     </div>
   );
 }

@@ -5,26 +5,35 @@ import { doc, getDoc } from 'firebase/firestore';
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
+    const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
+      if (firebaseUser) {
         try {
-          const docRef = doc(db, "users", user.uid);
+          setUser(firebaseUser);
+          const docRef = doc(db, "users", firebaseUser.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-            setUserDetails(docSnap.data());
+            const data = docSnap.data();
+            setUserDetails(data);
+            setIsAdmin(data.role === 'admin');
           } else {
-            console.log("No such document!");
+            setIsAdmin(false);
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
+          setIsAdmin(false);
         } finally {
           setLoading(false);
         }
       } else {
+        setUser(null);
+        setUserDetails(null);
+        setIsAdmin(false);
         setLoading(false);
       }
     });
@@ -33,7 +42,7 @@ const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ userDetails, setUserDetails, loading }}>
+    <UserContext.Provider value={{ user, userDetails, setUserDetails, isAdmin, loading }}>
       {children}
     </UserContext.Provider>
   );

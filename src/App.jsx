@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { Leaf } from 'lucide-react';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './components/Dashboard';
 
@@ -14,7 +15,7 @@ import Login from './components/login';
 import EditProfile from './components/EditProfile';
 import ScrollToTop from './components/ScrollToTop';
 import { auth, db } from "./hooks/useFirebaseData";
-import { UserProvider } from './components/UserContext';
+import { UserContext, UserProvider } from './components/UserContext';
 import DefaultLayout from './admin/DefaultLayout';
 import { doc, getDoc } from 'firebase/firestore';
 import AddNewPresets from './admin/AddNewPresets';
@@ -24,81 +25,39 @@ import AdminProfile from './admin/AdminProfile';
 import SearchUsers from './admin/SearchUsers';
 import UserPasswordReset from './admin/UserPasswordReset';
 import ViewAllUsers from './admin/ViewAllUsers';
-import AppContent from './admin/AppContent';
+import AdminDashboard from './admin/AppContent'; // Renamed import
 import EditAdminProfile from './admin/EditAdminProfile';
 import Presets from './admin/Presets';
+
 import UserGraphs from './components/UserGraphs';
 import UserPresets from './components/UserPresets';
 
-const App = () => {
-  const [user, setUser] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [loading, setLoading] = useState(true);
+const MainAppLayout = () => {
+  const { user, isAdmin, loading } = useContext(UserContext);
   const location = useLocation();
-  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
-  const [visible, setVisible] = useState(true);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [isTopbarVisible, setIsTopbarVisible] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isAuthRoute = ['/login', '/register', '/forgotpassword'].includes(location.pathname);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      console.log("Current Scroll Top:", currentScrollTop, "Last Scroll Top:", lastScrollTop);
-    
-      if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
-        setIsTopbarVisible(false);
-      } else {
-        setIsTopbarVisible(true);
-      }
-      
-      setLastScrollTop(currentScrollTop);
-    };
-    
+    setSidebarOpen(false);
+  }, [location.pathname]);
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos]);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const userDocRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          setIsAdmin(userData.role === 'admin');
-        } else {
-          setIsAdmin(false);
-        }
-        setUser(user);
-      } else {
-        setIsAdmin(false);
-        setUser(null);
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const adminRoutes = (
-    <Routes>
-      <Route path="/admin" element={isAdmin ? <AppContent /> : <Navigate to="/login" />} />
-      <Route path="/admin/addnewpreset" element={isAdmin ? <AddNewPresets /> : <Navigate to="/login" />} />
-      <Route path="/admin/graphs" element={isAdmin ? <AdminGraphs /> : <Navigate to="/login" />} />
-      <Route path="/admin/addnewuser" element={isAdmin ? <AddNewUser /> : <Navigate to="/login" />} />
-      <Route path="/admin/profile" element={isAdmin ? <AdminProfile /> : <Navigate to="/login" />} />
-      <Route path="/admin/editprofile" element={isAdmin ? <EditAdminProfile /> : <Navigate to="/login" />} />
-      <Route path="/admin/presets" element={isAdmin ? <Presets /> : <Navigate to="/login" />} />
-      <Route path="/admin/searchusers" element={isAdmin ? <SearchUsers /> : <Navigate to="/login" />} />
-      <Route path="/admin/resetuserpassword" element={isAdmin ? <UserPasswordReset /> : <Navigate to="/login" />} />
-      <Route path="/admin/viewallusers" element={isAdmin ? <ViewAllUsers /> : <Navigate to="/login" />} />
-      <Route path="/admin/*" element={<Navigate to="/admin" />} />
-    </Routes>
-  );
+  if (loading) {
+    return (
+      <div className="min-h-screen w-full bg-brand-deep flex flex-col items-center justify-center gap-4">
+        <div className="bg-brand-neon p-4 rounded-2xl glow-green animate-pulse">
+          <Leaf className="w-10 h-10 text-brand-deep" />
+        </div>
+        <div className="w-48 h-1 bg-brand-muted rounded-full overflow-hidden">
+          <div className="h-full bg-brand-neon animate-progress" style={{ width: '40%' }} />
+        </div>
+        <p className="text-[10px] font-black text-brand-neon uppercase tracking-[0.3em] animate-pulse">Initializing System...</p>
+      </div>
+    );
+  }
 
   const userRoutes = (
     <Routes>
@@ -116,42 +75,75 @@ const App = () => {
     </Routes>
   );
 
+  const adminRoutes = (
+    <Routes>
+      <Route path="/admin" element={isAdmin ? <DefaultLayout routes={<Routes>
+        <Route path="/" element={<AdminDashboard />} />
+        <Route path="/addnewpreset" element={<AddNewPresets />} />
+        <Route path="/graphs" element={<AdminGraphs />} />
+        <Route path="/addnewuser" element={<AddNewUser />} />
+        <Route path="/profile" element={<AdminProfile />} />
+        <Route path="/editprofile" element={<EditAdminProfile />} />
+        <Route path="/presets" element={<Presets />} />
+        <Route path="/searchusers" element={<SearchUsers />} />
+        <Route path="/resetuserpassword" element={<UserPasswordReset />} />
+        <Route path="/viewallusers" element={<ViewAllUsers />} />
+      </Routes>} /> : <Navigate to="/login" />} />
+    </Routes>
+  );
+
+  return (
+    <div className="min-h-screen w-full bg-brand-deep font-sans antialiased text-white selection:bg-brand-neon/30">
+      {isAdminRoute ? (
+        adminRoutes
+      ) : isAuthRoute ? (
+        <div className="flex w-full items-center justify-center min-h-screen bg-brand-deep p-4">
+          {userRoutes}
+        </div>
+      ) : (
+        <div className="flex w-full min-h-screen bg-brand-deep relative overflow-hidden">
+          <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
+
+          {sidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[45] lg:hidden transition-all duration-300"
+              onClick={toggleSidebar}
+            />
+          )}
+
+          <div className="flex flex-col flex-1 w-full min-h-screen transition-all duration-300 lg:pl-64 overflow-hidden">
+            <Topbar toggleSidebar={toggleSidebar} />
+            <main
+              className="flex-1 p-4 lg:p-8 w-full overflow-y-auto"
+              style={{ maxHeight: 'calc(100vh - 80px)' }}
+            >
+              <ScrollToTop />
+              <div className="max-w-7xl mx-auto w-full pb-20">
+                {userRoutes}
+              </div>
+            </main>
+          </div>
+        </div>
+      )}
+      <svg className="absolute w-0 h-0 overflow-hidden pointer-events-none">
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+const App = () => {
   return (
     <UserProvider>
-      <div className="min-h-screen w-full bg-brand-deep font-sans antialiased text-white selection:bg-brand-neon/30">
-        {isAdminRoute ? (
-          <DefaultLayout routes={adminRoutes} />
-        ) : isAuthRoute ? (
-          <div className="flex w-full items-center justify-center min-h-screen bg-brand-deep">
-            {userRoutes}
-          </div>
-        ) : (
-          <div className="flex w-full min-h-screen relative">
-            <Sidebar />
-            <div className="flex flex-col flex-1 min-h-screen">
-              <Topbar />
-              <main className="flex-1 ml-64 p-6 lg:p-10">
-                <ScrollToTop />
-                <div className="max-w-7xl mx-auto w-full">
-                  {userRoutes}
-                </div>
-              </main>
-            </div>
-          </div>
-        )}
-        {/* Global SVG Filters for Recharts */}
-        <svg className="absolute w-0 h-0 overflow-hidden">
-          <defs>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-        </svg>
-      </div>
+      <MainAppLayout />
     </UserProvider>
   );
 };

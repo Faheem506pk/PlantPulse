@@ -84,7 +84,7 @@ const Dashboard = () => {
   }, [temperature, selectedRange]);
 
   return (
-    <div className="flex-1 bg-brand-deep min-h-screen p-8 space-y-8 animate-in fade-in duration-700">
+    <div className="w-full p-0 space-y-8 animate-in fade-in duration-700">
       <ToastContainer theme="dark" />
       
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
