@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from "../hooks/useFirebaseData"; // Ensure correct path
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
+
 import "../assets/css/admin.css"; // Adjust the path as needed
 import { ToastContainer, toast } from 'react-toastify'; // Import toast for notifications
 import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS

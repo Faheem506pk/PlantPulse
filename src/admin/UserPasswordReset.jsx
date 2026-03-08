@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { auth } from "../hooks/useFirebaseData";
 import { getAuth, sendPasswordResetEmail, fetchSignInMethodsForEmail } from 'firebase/auth';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
+
 import { ToastContainer, toast } from 'react-toastify'; // Import toast for notifications
 import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 

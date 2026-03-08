@@ -20,9 +20,6 @@ const app = initializeApp(firebaseConfig, "esp32"); // Use a named app instance
 const database = getDatabase(app);
 
 export const useEsp32Data = () => {
-    // This is a placeholder hook for the second Firebase DB
-    // At the moment, useFirebaseData already fetches all these values from the main DB string.
-    // So this is meant to fully replace script.js functionality if it was intended to write to the secondary DB.
     
     const writeTemperatureData = (tempupValue) => {
         if (validateFloat(tempupValue) && parseFloat(tempupValue) >= 2 && parseFloat(tempupValue) <= 40) {
@@ -52,15 +49,17 @@ export const useEsp32Data = () => {
     }
 
     const writeServoAngleData = (servoangleValue) => {
-        if (validateFloat(servoangleValue) && parseInt(servoangleValue) >= 0 && parseInt(servoangleValue) <= 90) {
-            set(ref(database, 'servoangle'), parseInt(servoangleValue));
+        const val = parseInt(servoangleValue);
+        if (validateFloat(servoangleValue) && val >= 0 && val <= 180) {
+            set(ref(database, 'servoangle'), val);
         } else {
-            alert("Servo Angle value must be between 0 and 90.");
+            alert("Servo Angle value must be between 0 and 180.");
         }
     }
 
     const validateFloat = (value) => {
-        return /^\\d+(\\.\\d+)?$/.test(value.trim());
+        const strVal = String(value || "");
+        return /^\d+(\.\d+)?$/.test(strVal.trim());
     }
 
     return {

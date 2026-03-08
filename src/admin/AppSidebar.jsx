@@ -1,16 +1,8 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
-import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons
+
+
 import { Link, useLocation } from 'react-router-dom'; // Import useLocation
 import "../assets/css/admin.css"; // Adjust the path as needed
-import {
-    MDBCollapse,
-    MDBListGroup,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem
-} from 'mdb-react-ui-kit';
 
 const AppSidebar = ({ showShow, hideSidebar }) => {
     const location = useLocation();

@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { auth, db, storage } from "../hooks/useFirebaseData";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from "./UserContext";
+import { User, Phone, MapPin, Building, Save, Camera, ArrowLeft, Crop } from 'lucide-react';
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 function EditProfile() {
   const { userDetails, setUserDetails, loading } = useContext(UserContext);
@@ -22,7 +25,6 @@ function EditProfile() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
   const [showCropper, setShowCropper] = useState(false);
-  const [showUploadPopup, setShowUploadPopup] = useState(false);
   const cropperRef = useRef(null);
   const navigate = useNavigate();
 
@@ -50,7 +52,6 @@ function EditProfile() {
       const croppedImageUrl = cropper.getCroppedCanvas().toDataURL("image/jpeg");
       setCroppedImage(croppedImageUrl);
       setShowCropper(false);
-      setShowUploadPopup(true);
     }
   };
 
@@ -68,11 +69,9 @@ function EditProfile() {
         setUserDetails(prevDetails => ({ ...prevDetails, photo: photoURL }));
         setLocalUserDetails(prevDetails => ({ ...prevDetails, photo: photoURL }));
         setCroppedImage(null);
-        setShowUploadPopup(false);
-        toast.success("Profile photo updated successfully!");
+        toast.success("Identity visual updated");
       } catch (error) {
-        console.error("Error updating profile photo:", error);
-        toast.error("Error updating profile photo.");
+        toast.error("Visual update failed");
       }
     }
   };
@@ -89,10 +88,9 @@ function EditProfile() {
           address: localUserDetails.address,
         });
         setUserDetails(localUserDetails);
-        toast.success("Profile details updated successfully!");
+        toast.success("Metadata synchronized");
       } catch (error) {
-        console.error("Error updating profile details:", error);
-        toast.error("Error updating profile details.");
+        toast.error("Synchronization failed");
       }
     }
   };
@@ -106,143 +104,119 @@ function EditProfile() {
       await updateDetails();
       navigate("/profile");
     } catch (error) {
-      console.error("Error during submission:", error);
-      toast.error("Error saving changes.");
+      toast.error("Operation failed");
     }
   };
 
-  if (loading) {
-    return (
-      <div className="l-loader-container">
-        <div className="l-loader"></div>
-      </div>
-    );
-  }
+  const InputField = ({ icon: Icon, label, name, value, onChange, placeholder, maxLength }) => (
+    <div className="space-y-2">
+      <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+        <Icon className="w-3 h-3 text-brand-neon" />
+        {label}
+      </label>
+      <input
+        type="text"
+        name={name}
+        value={value}
+        onChange={onChange}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        className="w-full bg-brand-deep border border-brand-muted/50 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-neon/50 focus:ring-1 focus:ring-brand-neon/20 outline-none transition-all placeholder:text-zinc-600"
+      />
+    </div>
+  );
+
+  if (loading) return <div className="flex items-center justify-center min-h-[400px]"><div className="w-10 h-10 border-4 border-brand-neon border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
-    <main className="main-wrapper">
-      <ToastContainer />
-      <div className="profile-cd d-flex justify-content-center align-items-center">
-        <div className="row w-100">
-          <div className="col-lg-5 col-md-5 profile-n">
-            <div className=" d-flex justify-content-center flex-column align-items-center">
-              <div className="card-body profile-w d-flex align-items-center flex-column justify-content-center">
-                <div className="text-center mb-4">
-                  <img
-                    src={localUserDetails.photo || './assets/images/default-photo.png'}
-                    alt="Profile"
-                    className="img-fluid rounded-circle profile-image"
-                  />
-                </div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="form-control upload-input"
-                />
-              </div>
-            </div>
+    <div className="max-w-4xl mx-auto pb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <ToastContainer theme="dark" />
+      
+      <div className="mb-10 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Button variant="outline" size="icon" onClick={() => navigate("/profile")} className="border-brand-muted hover:bg-brand-muted/50">
+            <ArrowLeft className="w-4 h-4 text-zinc-400" />
+          </Button>
+          <div>
+            <h2 className="text-4xl font-black text-white glow-text tracking-tighter">Modify Metadata</h2>
+            <p className="text-zinc-500 mt-2 font-medium">Update your authorized system identifying details</p>
           </div>
-          <div className="col-lg-7 col-md-7 mb-last-profile">
-          
-              <div className="card-body">
-                <form className="edit-profile-page" onSubmit={handleSubmit}>
-                  {showCropper && selectedImage && (
-                    <div className="cropper-popup">
-                      <Cropper
-                        src={selectedImage}
-                        style={{ height: 400, width: '100%' }}
-                        aspectRatio={1}
-                        guides={false}
-                        ref={cropperRef}
-                      />
-                      <button type="button" onClick={handleCrop} className="btn btn-secondary mt-2">
-                        Crop Image
-                      </button>
-                    </div>
-                  )}
-                  {showUploadPopup && croppedImage && (
-                    <div className="upload-popup">
-                      <img
-                        src={croppedImage}
-                        alt="Cropped"
-                        style={{ maxWidth: "100%" }}
-                      />
-                      <button type="button" onClick={updatePhoto} className="btn btn-secondary mt-2">
-                        Upload Photo
-                      </button>
-                    </div>
-                  )}
-                  <div className="form-group mb-3">
-                    <label htmlFor="firstName">First Name</label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={localUserDetails.firstName}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="Enter your first name"
-                    />
-                  </div>
-                  <div className="form-group mb-3">
-                    <label htmlFor="lastName">Last Name</label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={localUserDetails.lastName}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="Enter your last name"
-                    />
-                  </div>
-                  <div className="form-group mb-3">
-                    <label htmlFor="phone">Phone</label>
-                    <input
-                      type="text"
-                      id="phone"
-                      name="phone"
-                      value={localUserDetails.phone}
-                      onChange={handleChange}
-                      className="form-control"
-                      maxLength="11"
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                  <div className="form-group mb-3">
-                    <label htmlFor="city">City</label>
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      value={localUserDetails.city}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="Enter your city"
-                    />
-                  </div>
-                  <div className="form-group mb-3">
-                    <label htmlFor="address">Address</label>
-                    <input
-                      type="text"
-                      id="address"
-                      name="address"
-                      value={localUserDetails.address}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="Enter your address"
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-primary">Save Changes</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        
-        
+        </div>
       </div>
-    </main>
+
+      <form onSubmit={handleSubmit} className="grid gap-8 lg:grid-cols-3">
+        {/* Left: Avatar Upload */}
+        <Card className="glass-card border-brand-muted h-fit">
+          <CardContent className="pt-10 flex flex-col items-center">
+            <div className="relative group/avatar mb-8">
+              <div className="absolute -inset-1 bg-brand-neon rounded-full blur opacity-25 shadow-[0_0_20px_rgba(34,197,94,0.3)]" />
+              <img 
+                src={croppedImage || localUserDetails.photo || './assets/images/default-photo.png'} 
+                alt="Profile" 
+                className="relative w-40 h-40 rounded-full border-2 border-brand-neon/50 object-cover"
+              />
+              <label className="absolute bottom-2 right-2 bg-brand-neon p-3 rounded-full border-2 border-brand-deep text-brand-deep cursor-pointer hover:scale-110 transition-transform shadow-xl">
+                <Camera className="w-5 h-5" />
+                <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+              </label>
+            </div>
+            
+            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest text-center leading-relaxed">
+              Standard Interface Identification <br/> 400x400 Dynamic Crop
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Right: Form Data */}
+        <Card className="lg:col-span-2 glass-card border-brand-muted">
+          <CardContent className="pt-8 px-8 pb-10">
+            {showCropper && selectedImage && (
+              <div className="mb-10 p-4 rounded-2xl bg-brand-deep border border-brand-neon/30 animate-in zoom-in-95 duration-300">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[10px] font-bold text-brand-neon uppercase tracking-widest flex items-center gap-2">
+                    <Crop className="w-3 h-3" /> Visual Crop Required
+                  </span>
+                </div>
+                <Cropper
+                  src={selectedImage}
+                  style={{ height: 300, width: '100%' }}
+                  aspectRatio={1}
+                  guides={false}
+                  ref={cropperRef}
+                  className="rounded-lg overflow-hidden"
+                />
+                <Button type="button" onClick={handleCrop} className="w-full mt-4 bg-brand-neon text-brand-deep font-bold hover:glow-green transition-all">
+                  Apply Identity Visual
+                </Button>
+              </div>
+            )}
+
+            <div className="grid sm:grid-cols-2 gap-6 mb-10">
+              <InputField icon={User} label="First Identification" name="firstName" value={localUserDetails.firstName} onChange={handleChange} placeholder="Givven identity" />
+              <InputField icon={User} label="Secondary Identification" name="lastName" value={localUserDetails.lastName} onChange={handleChange} placeholder="Family identity" />
+              <InputField icon={Phone} label="Contact Frequency" name="phone" value={localUserDetails.phone} onChange={handleChange} maxLength="11" placeholder="923XXXXXXXXX" />
+              <InputField icon={Building} label="Sector/City" name="city" value={localUserDetails.city} onChange={handleChange} placeholder="Metropolitan area" />
+              <div className="sm:col-span-2">
+                <InputField icon={MapPin} label="Geospatial Address" name="address" value={localUserDetails.address} onChange={handleChange} placeholder="Physical operational base" />
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 pt-6 border-t border-brand-muted/50">
+              <Button type="button" variant="outline" onClick={() => navigate("/profile")} className="border-brand-muted text-zinc-400 px-8 py-6 rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-brand-muted/20">
+                Discard
+              </Button>
+              <Button type="submit" className="bg-brand-neon hover:bg-brand-neon/80 text-brand-deep font-bold px-10 py-6 rounded-xl group relative overflow-hidden transition-all duration-300">
+                <span className="relative z-10 flex items-center gap-2">
+                  <Save className="w-4 h-4" />
+                  Synchronize Metadata
+                </span>
+                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </form>
+    </div>
   );
 }
 

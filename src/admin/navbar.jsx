@@ -1,28 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
-import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons
+
+
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import "../assets/css/admin.css"; // Adjust the path as needed
 import { auth } from "../hooks/useFirebaseData"; // Ensure correct path
 import { toast, ToastContainer } from "react-toastify";
 import { Link } from 'react-router-dom';
 import { UserContext } from "../components/UserContext";
-import {
-    MDBContainer,
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBNavbarToggler,
-    MDBIcon,
-    MDBNavbarNav,
-    MDBNavbarItem,
-    MDBNavbarLink,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBBadge,
-    MDBCollapse
-} from 'mdb-react-ui-kit';
 
 export default function Navbar({ toggleSidebar, sidebarVisible }) {
     const navigate = useNavigate(); // Initialize useNavigate

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './components/Dashboard';
@@ -120,17 +118,24 @@ const App = () => {
 
   return (
     <UserProvider>
-      <div className="App">
+      <div className="min-h-screen w-full bg-brand-deep font-sans antialiased text-white selection:bg-brand-neon/30">
         {isAdminRoute ? (
           <DefaultLayout routes={adminRoutes} />
+        ) : isAuthRoute ? (
+          <div className="flex w-full items-center justify-center min-h-screen bg-brand-deep">
+            {userRoutes}
+          </div>
         ) : (
-          <div className="main-layout">
-            {!isAuthRoute && <Topbar className={visible ? 'top-show' : 'top-hide'} />}
-            {!isAuthRoute && <Sidebar />}
-            <div className="main-content">
-              <ScrollToTop />
-              {userRoutes}
-              
+          <div className="flex w-full min-h-screen relative">
+            <Sidebar />
+            <div className="flex flex-col flex-1 min-h-screen">
+              <Topbar />
+              <main className="flex-1 ml-64 p-6 lg:p-10">
+                <ScrollToTop />
+                <div className="max-w-7xl mx-auto w-full">
+                  {userRoutes}
+                </div>
+              </main>
             </div>
           </div>
         )}
