@@ -807,16 +807,29 @@ h3 {
 
 /* UI Card */
 .ui-card {
-  border: none;
-  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 24px;
   min-height: 210px;
   padding: 20px;
   text-align: left;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.ui-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .ui-card .card-title {
-  color: rgba(255, 255, 255);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
 }
 
 
@@ -972,16 +985,7 @@ h3 {
   font-size: 56px;
 }
 
-.ui-card {
-  border: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 24px;
-  min-height: 210px;
-}
 
-.ui-card .card-title {
-  color: rgba(255, 255, 255);
-}
 
 
 
@@ -1003,14 +1007,30 @@ h3 {
 .weather-data {
   text-align: center;
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 .weather-data .weather-icon {
   font-size: 64px;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+}
+
+.weather-data .weather-icon i {
+  color: #13ec5b;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.ui-card:hover .weather-data .weather-icon i {
+  transform: scale(1.1);
+  color: #16ff63;
 }
 
 .weather-data h4 {
-  font-size: 32px;
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 
