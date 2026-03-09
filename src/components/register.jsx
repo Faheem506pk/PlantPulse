@@ -43,7 +43,7 @@ function Register() {
   };
 
   return (
-    <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000 h-full py-10 flex flex-col justify-center">
+    <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000 py-10 flex flex-col">
       <ToastContainer theme="dark" />
       
       <div className="w-full">

@@ -55,10 +55,10 @@ function SignInwithGoogle() {
   return (
     <div className="flex justify-center">
       <div
-        className="cursor-pointer hover:opacity-80 transition-opacity"
+        className="flex cursor-pointer hover:opacity-80 transition-opacity"
         onClick={googleLogin}
       >
-        <img src={googleImage} width={"50%"} alt="Google Sign In" />
+        <img src={googleImage} width={"200px"} alt="Google Sign In" />
       </div>
     </div>
   );

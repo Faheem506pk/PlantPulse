@@ -55,9 +55,9 @@ function Login() {
   };
 
   return (
-    <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000 h-full py-10 flex flex-col justify-center">
+    <div className=" w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000 py-10 flex flex-col">
       <ToastContainer theme="dark" />
-      
+
       <div className="w-full">
         <div className="flex flex-col items-center mb-10">
           <div className="bg-brand-neon p-4 rounded-2xl glow-green shadow-[0_0_30px_rgba(34,197,94,0.4)] mb-6">
@@ -69,14 +69,9 @@ function Login() {
         <Card className="glass-card border-brand-muted relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-brand-neon/10 via-transparent to-transparent opacity-50" />
           <CardContent className="pt-10 px-8 pb-10 relative z-10">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-                <ShieldCheck className="w-6 h-6 text-brand-neon" />
-                Login
-              </h2>
-            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+
+            <form onSubmit={handleSubmit} className="space-y-6 p-0">
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
                   <Mail className="w-3" />
@@ -112,8 +107,8 @@ function Login() {
                 />
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full bg-brand-neon hover:bg-brand-neon/80 text-brand-deep font-black py-7 rounded-xl group relative overflow-hidden transition-all duration-300"
               >
@@ -127,7 +122,9 @@ function Login() {
 
             <div className="mt-8 pt-6 border-t border-brand-muted/50">
               <div className="flex flex-col gap-4">
-                <SignInwithGoogle />
+                <div className="flex justify-center mx-auto" >
+                  <SignInwithGoogle />
+                </div>
                 <Button asChild variant="outline" className="w-full border-brand-muted text-zinc-400 hover:text-white hover:bg-brand-muted/30 py-6 rounded-xl font-bold uppercase tracking-widest text-[10px]">
                   <Link to="/register">Register</Link>
                 </Button>
@@ -135,7 +132,7 @@ function Login() {
             </div>
           </CardContent>
         </Card>
-        
+
         <div className="mt-8 text-center flex items-center justify-center gap-3 text-[10px] font-bold text-zinc-600 uppercase tracking-[0.2em]">
           <Globe className="w-3 h-3" />
           Secure Global IoT Monitoring Network

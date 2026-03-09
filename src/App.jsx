@@ -97,9 +97,13 @@ const MainAppLayout = () => {
       {isAdminRoute ? (
         adminRoutes
       ) : isAuthRoute ? (
-        <div className="w-full min-h-screen bg-brand-deep overflow-y-auto">
-          <div className="flex items-center justify-center min-h-full p-4 py-12">
-            {userRoutes}
+        <div className="w-full h-screen bg-brand-deep overflow-y-auto">
+          <div className="flex flex-col min-h-full">
+            <div className="flex-grow"></div>
+            <div className="w-full flex justify-center p-4 py-8">
+              {userRoutes}
+            </div>
+            <div className="flex-grow"></div>
           </div>
         </div>
       ) : (
